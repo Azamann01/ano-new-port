@@ -9,7 +9,7 @@ export function Accordion({ items }: { items: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="flex flex-col divide-y divide-[var(--border)] rounded-2xl border border-[var(--border)]">
+    <div className="surface-container flex flex-col divide-y divide-black/10 rounded-2xl">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (

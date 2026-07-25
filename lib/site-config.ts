@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Ano",
+  name: "TechWithTop",
   tagline: "Helping SMEs work smarter with practical software.",
   description:
     "I help businesses simplify operations by developing custom software — practical tools that remove busywork and let your team focus on what matters.",

@@ -18,10 +18,10 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
-  primary: "gradient-bg text-white shadow-lg shadow-indigo-500/20",
+  primary: "surface-container text-black shadow-sm",
   secondary:
-    "border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--foreground)]/5",
-  ghost: "text-[var(--foreground)] hover:bg-[var(--foreground)]/5",
+    "border border-[var(--border)] text-black hover:bg-black/5",
+  ghost: "text-black hover:bg-black/5",
 };
 
 export function Button({

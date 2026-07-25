@@ -52,7 +52,7 @@ export default function ResearchPage() {
         <div className="flex flex-wrap gap-3">
           {industries.map((industry, index) => (
             <AnimatedCard key={industry} index={index}>
-              <span className="inline-block rounded-full border border-[var(--border)] px-4 py-2 text-sm">
+              <span className="surface-container inline-block rounded-full px-4 py-2 text-sm">
                 {industry}
               </span>
             </AnimatedCard>

@@ -39,6 +39,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <div aria-hidden className="bottom-scroll-blur" />
       </body>
     </html>
   );

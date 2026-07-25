@@ -2,7 +2,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function GoogleFormEmbed() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--border)]">
+    <div className="surface-container overflow-hidden rounded-2xl">
       <iframe
         src={siteConfig.researchGoogleFormUrl}
         title="Research contribution form"

@@ -15,13 +15,13 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(120deg, #0a0a0a 0%, #1e1b4b 60%, #4c1d3d 100%)",
-          color: "white",
+          background: "#ffffff",
+          color: "#000000",
           fontSize: 56,
           fontWeight: 700,
         }}
       >
-        <div style={{ fontSize: 32, color: "#a5b4fc", marginBottom: 24 }}>{siteConfig.name}</div>
+        <div style={{ fontSize: 32, color: "#000000", marginBottom: 24 }}>{siteConfig.name}</div>
         <div style={{ display: "flex", maxWidth: 900 }}>{siteConfig.tagline}</div>
       </div>
     ),

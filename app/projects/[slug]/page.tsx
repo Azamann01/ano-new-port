@@ -61,7 +61,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         </article>
       </AnimatedSection>
 
-      <AnimatedSection delay={0.1} className="rounded-2xl border border-[var(--border)] p-6">
+      <AnimatedSection delay={0.1} className="surface-container rounded-2xl p-6">
         <h2 className="text-lg font-semibold">Results</h2>
         <ul className="mt-3 flex flex-col gap-2">
           {project.results.map((result) => (

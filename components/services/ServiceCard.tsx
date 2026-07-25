@@ -12,8 +12,8 @@ export function ServiceCard({ service }: { service: Service }) {
   const Icon = icons[service.icon] ?? Workflow;
 
   return (
-    <div className="flex h-full flex-col gap-4 rounded-2xl border border-[var(--border)] p-6">
-      <div className="gradient-bg flex h-11 w-11 items-center justify-center rounded-xl text-white">
+    <div className="surface-container flex h-full flex-col gap-4 rounded-2xl p-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-black">
         <Icon className="h-5 w-5" />
       </div>
       <h3 className="text-lg font-semibold">{service.title}</h3>

@@ -59,7 +59,7 @@ export default function AboutPage() {
             year to ship.
           </p>
         </div>
-        <div className="rounded-2xl border border-[var(--border)] p-6">
+        <div className="surface-container rounded-2xl p-6">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--muted)]">
             How I work
           </p>
@@ -74,7 +74,7 @@ export default function AboutPage() {
       <AnimatedSection delay={0.1}>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {values.map((value) => (
-            <div key={value.title} className="rounded-2xl border border-[var(--border)] p-6">
+            <div key={value.title} className="surface-container rounded-2xl p-6">
               <h3 className="font-semibold">{value.title}</h3>
               <p className="mt-2 text-sm text-[var(--muted)]">{value.description}</p>
             </div>

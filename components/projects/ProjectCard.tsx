@@ -6,7 +6,7 @@ export function ProjectCard({ project }: { project: ProjectCaseStudy }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group flex h-full flex-col gap-4 rounded-2xl border border-[var(--border)] p-6 transition-colors hover:border-[var(--foreground)]/30"
+      className="surface-container group flex h-full flex-col gap-4 rounded-2xl p-6 transition-colors hover:brightness-95"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -22,7 +22,7 @@ export function ProjectCard({ project }: { project: ProjectCaseStudy }) {
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full border border-[var(--border)] px-2.5 py-1 text-xs text-[var(--muted)]"
+            className="rounded-full border border-black/15 bg-white px-2.5 py-1 text-xs text-[var(--muted)]"
           >
             {tag}
           </span>

@@ -51,7 +51,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-3 rounded-2xl border border-[var(--border)] p-10 text-center">
+      <div className="surface-container flex flex-col items-center gap-3 rounded-2xl p-10 text-center">
         <CheckCircle2 className="h-8 w-8 text-emerald-500" />
         <h3 className="text-lg font-semibold">Message sent</h3>
         <p className="text-sm text-[var(--muted)]">

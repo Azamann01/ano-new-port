@@ -3,11 +3,10 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --accent-from: #6366f1;
-  --accent-to: #ec4899;
+  --foreground: #000000;
+  --muted: #000000;
+  --border: #38bdf8;
+  --container: skyblue;
 }
 
 @theme inline {
@@ -15,17 +14,21 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-container: var(--container);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #f5f5f5;
-    --muted: #9ca3af;
-    --border: #262626;
-  }
+html {
+  background: var(--background);
+  color: var(--foreground);
+  /* Hide the scrollbar while keeping the page scrollable. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -33,24 +36,20 @@ body {
   color: var(--foreground);
 }
 
-.gradient-text {
-  background-image: linear-gradient(120deg, var(--accent-from), var(--accent-to));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.surface-container {
+  background-color: var(--container);
 }
 
-.gradient-bg {
-  background-image: linear-gradient(120deg, var(--accent-from), var(--accent-to));
-}
-
-.gradient-border {
-  position: relative;
-  border: 1px solid var(--border);
-}
-
-.mesh-glow {
-  background:
-    radial-gradient(600px circle at 20% 0%, color-mix(in srgb, var(--accent-from) 18%, transparent), transparent 60%),
-    radial-gradient(600px circle at 80% 20%, color-mix(in srgb, var(--accent-to) 16%, transparent), transparent 60%);
+/* Fixed blur/fade strip pinned to the bottom of the viewport, visible while
+   scrolling in either direction. Non-interactive so it never blocks clicks. */
+.bottom-scroll-blur {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  height: 6rem;
+  backdrop-filter: blur(6px);
+  mask-image: linear-gradient(to top, black, transparent);
+  -webkit-mask-image: linear-gradient(to top, black, transparent);
+  pointer-events: none;
+  z-index: 40;
 }

@@ -12,7 +12,7 @@ export function BlogPostCard({ post }: { post: BlogPostMeta }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex h-full flex-col gap-3 rounded-2xl border border-[var(--border)] p-6 transition-colors hover:border-[var(--foreground)]/30"
+      className="surface-container group flex h-full flex-col gap-3 rounded-2xl p-6 transition-colors hover:brightness-95"
     >
       <div className="flex items-start justify-between gap-4">
         <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
