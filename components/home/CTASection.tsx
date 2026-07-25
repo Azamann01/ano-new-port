@@ -10,7 +10,7 @@ export function CTASection() {
             Ready to cut the busywork out of your operations?
           </h2>
           <p className="max-w-lg text-white/90">
-            Tell me about your process and I'll tell you honestly whether custom software is the right fix.
+            Tell me about your process and I&apos;ll tell you honestly whether custom software is the right fix.
           </p>
           <Button href="/contact" variant="secondary" className="border-white/40 bg-white text-[var(--foreground)] hover:bg-white/90">
             Get in touch

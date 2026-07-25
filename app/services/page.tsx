@@ -37,7 +37,7 @@ export default function ServicesPage() {
       <AnimatedSection delay={0.1} className="rounded-3xl border border-[var(--border)] p-8 text-center">
         <h2 className="text-2xl font-semibold">Not sure which fits?</h2>
         <p className="mx-auto mt-2 max-w-lg text-[var(--muted)]">
-          Tell me about the process that's slowing your team down, and I'll recommend the right
+          Tell me about the process that&apos;s slowing your team down, and I&apos;ll recommend the right
           starting point — even if that means no project at all.
         </p>
         <Button href="/contact" className="mt-6">

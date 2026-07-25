@@ -24,8 +24,11 @@ export function getAllPosts(): BlogPostMeta[] {
   const filenames = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
 
   return filenames
-    .map((filename) => readPostFile(filename))
-    .map(({ content: _content, ...meta }) => meta)
+    .map((filename): BlogPostMeta => {
+      const { content, ...meta } = readPostFile(filename);
+      void content;
+      return meta;
+    })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 

@@ -11,6 +11,7 @@ type ButtonProps = {
   onClick?: () => void;
   target?: string;
   rel?: string;
+  download?: boolean | string;
 };
 
 const base =
@@ -33,12 +34,20 @@ export function Button({
   onClick,
   target,
   rel,
+  download,
 }: ButtonProps) {
   const classes = cn(base, variants[variant], className);
 
   if (href) {
     return (
-      <Link href={href} className={classes} target={target} rel={rel} onClick={onClick}>
+      <Link
+        href={href}
+        className={classes}
+        target={target}
+        rel={rel}
+        onClick={onClick}
+        download={download}
+      >
         {children}
       </Link>
     );

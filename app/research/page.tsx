@@ -40,10 +40,10 @@ export default function ResearchPage() {
       <AnimatedSection delay={0.05} className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">Purpose of this research</h2>
         <p className="max-w-2xl text-[var(--muted)]">
-          Most advice about "digital transformation" is written for enterprises with dedicated IT
+          Most advice about &ldquo;digital transformation&rdquo; is written for enterprises with dedicated IT
           teams and six-figure budgets. This research is focused specifically on SMEs — trying to
           build an honest, practical picture of where custom software is worth the investment, and
-          where it isn't.
+          where it isn&apos;t.
         </p>
       </AnimatedSection>
 

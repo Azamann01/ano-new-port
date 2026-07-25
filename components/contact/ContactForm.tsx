@@ -55,7 +55,7 @@ export function ContactForm() {
         <CheckCircle2 className="h-8 w-8 text-emerald-500" />
         <h3 className="text-lg font-semibold">Message sent</h3>
         <p className="text-sm text-[var(--muted)]">
-          Thanks for reaching out — I'll get back to you within a couple of business days.
+          Thanks for reaching out — I&apos;ll get back to you within a couple of business days.
         </p>
       </div>
     );

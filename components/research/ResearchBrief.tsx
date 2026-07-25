@@ -11,7 +11,12 @@ export function ResearchBrief() {
           A short PDF summarizing findings so far, updated as the research progresses.
         </p>
       </div>
-      <Button href={siteConfig.researchBriefPath} variant="secondary" className="shrink-0">
+      <Button
+        href={siteConfig.researchBriefPath}
+        download="research-brief.pdf"
+        variant="secondary"
+        className="shrink-0"
+      >
         <Download className="h-4 w-4" />
         Download brief
       </Button>
