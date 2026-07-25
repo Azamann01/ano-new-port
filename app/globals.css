@@ -1,13 +1,20 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent-from: #6366f1;
+  --accent-to: #ec4899;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -15,12 +22,35 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f5f5f5;
+    --muted: #9ca3af;
+    --border: #262626;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.gradient-text {
+  background-image: linear-gradient(120deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-bg {
+  background-image: linear-gradient(120deg, var(--accent-from), var(--accent-to));
+}
+
+.gradient-border {
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.mesh-glow {
+  background:
+    radial-gradient(600px circle at 20% 0%, color-mix(in srgb, var(--accent-from) 18%, transparent), transparent 60%),
+    radial-gradient(600px circle at 80% 20%, color-mix(in srgb, var(--accent-to) 16%, transparent), transparent 60%);
 }
