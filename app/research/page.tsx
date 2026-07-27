@@ -27,7 +27,7 @@ const industries = [
 
 export default function ResearchPage() {
   return (
-    <Container className="flex flex-col gap-16 py-20 sm:py-28">
+    <Container className="section-glow relative overflow-hidden flex flex-col gap-16 py-20 sm:py-28">
       <AnimatedSection>
         <SectionHeading
           level="h1"

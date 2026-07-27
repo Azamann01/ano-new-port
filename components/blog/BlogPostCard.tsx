@@ -12,16 +12,16 @@ export function BlogPostCard({ post }: { post: BlogPostMeta }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="surface-container group flex h-full flex-col gap-3 rounded-2xl p-6 transition-colors hover:brightness-95"
+      className="surface-container group flex h-full flex-col gap-3 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     >
       <div className="flex items-start justify-between gap-4">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
+        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--container-muted)]">
           {formattedDate}
         </p>
-        <ArrowUpRight className="h-5 w-5 shrink-0 text-[var(--muted)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <ArrowUpRight className="h-5 w-5 shrink-0 text-[var(--container-muted)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </div>
       <h3 className="text-lg font-semibold">{post.title}</h3>
-      <p className="text-sm text-[var(--muted)]">{post.excerpt}</p>
+      <p className="text-sm text-[var(--container-muted)]">{post.excerpt}</p>
     </Link>
   );
 }

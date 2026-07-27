@@ -54,7 +54,7 @@ export function ContactForm() {
       <div className="surface-container flex flex-col items-center gap-3 rounded-2xl p-10 text-center">
         <CheckCircle2 className="h-8 w-8 text-emerald-500" />
         <h3 className="text-lg font-semibold">Message sent</h3>
-        <p className="text-sm text-[var(--muted)]">
+        <p className="text-sm text-[var(--container-muted)]">
           Thanks for reaching out — I&apos;ll get back to you within a couple of business days.
         </p>
       </div>
@@ -73,8 +73,8 @@ export function ContactForm() {
           value={values.name}
           onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
           className={cn(
-            "rounded-lg border border-[var(--border)] bg-transparent px-4 py-2.5 text-sm outline-none focus:border-[var(--foreground)]/40",
-            errors.name && "border-red-500"
+            "rounded-lg bg-[var(--foreground)]/5 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--container)]",
+            errors.name && "ring-2 ring-red-500"
           )}
         />
         {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
@@ -91,8 +91,8 @@ export function ContactForm() {
           value={values.email}
           onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
           className={cn(
-            "rounded-lg border border-[var(--border)] bg-transparent px-4 py-2.5 text-sm outline-none focus:border-[var(--foreground)]/40",
-            errors.email && "border-red-500"
+            "rounded-lg bg-[var(--foreground)]/5 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--container)]",
+            errors.email && "ring-2 ring-red-500"
           )}
         />
         {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
@@ -109,15 +109,15 @@ export function ContactForm() {
           value={values.message}
           onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
           className={cn(
-            "rounded-lg border border-[var(--border)] bg-transparent px-4 py-2.5 text-sm outline-none focus:border-[var(--foreground)]/40",
-            errors.message && "border-red-500"
+            "rounded-lg bg-[var(--foreground)]/5 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[var(--container)]",
+            errors.message && "ring-2 ring-red-500"
           )}
         />
         {errors.message && <p className="text-xs text-red-500">{errors.message}</p>}
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-500">
+        <div className="flex items-center gap-2 rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-500">
           <AlertCircle className="h-4 w-4 shrink-0" />
           Something went wrong sending your message. Please try again, or email{" "}
           {siteConfig.email} directly.

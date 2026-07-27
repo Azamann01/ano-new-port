@@ -19,6 +19,6 @@ export const faq: FAQItem[] = [
   {
     question: "Can I contribute to the research?",
     answer:
-      "Yes — if you run an SME and want to share how your team currently handles operations, fill out the Google Form above or book a short interview slot.",
+      "Yes — if you run an SME and want to share how your team currently handles operations, fill out the Google Form above or book a free consultation slot.",
   },
 ];

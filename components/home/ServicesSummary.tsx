@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 
 export function ServicesSummary() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="section-glow relative overflow-hidden py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
         <SectionHeading
           eyebrow="What I do"

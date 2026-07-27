@@ -40,10 +40,10 @@ export default async function BlogPostPage({ params }: Props) {
   });
 
   return (
-    <Container className="flex flex-col gap-10 py-20 sm:py-28">
+    <Container className="section-glow relative overflow-hidden flex flex-col gap-10 py-20 sm:py-28">
       <Link
         href="/blog"
-        className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)]"
+        className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--container)]"
       >
         <ArrowLeft className="h-4 w-4" /> Back to insights
       </Link>

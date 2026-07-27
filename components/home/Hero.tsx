@@ -4,9 +4,9 @@ import { siteConfig } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
+    <section className="section-glow relative overflow-hidden py-24 sm:py-32">
       <Container className="flex flex-col items-center gap-6 text-center">
-        <span className="surface-container rounded-full border border-border px-4 py-1.5 text-xs font-medium text-[var(--muted)]">
+        <span className="surface-container rounded-full px-4 py-1.5 text-xs font-medium">
           Custom software for growing businesses
         </span>
         <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">

@@ -8,7 +8,7 @@ export function FeaturedProjects() {
   const featured = projects.slice(0, 3);
 
   return (
-    <section className="border-t border-[var(--border)] py-20 sm:py-28">
+    <section className="section-glow relative overflow-hidden py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
         <SectionHeading
           eyebrow="Recent work"

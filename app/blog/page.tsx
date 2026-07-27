@@ -16,7 +16,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <Container className="flex flex-col gap-12 py-20 sm:py-28">
+    <Container className="section-glow relative overflow-hidden flex flex-col gap-12 py-20 sm:py-28">
       <AnimatedSection>
         <SectionHeading
           level="h1"

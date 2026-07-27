@@ -18,7 +18,7 @@ export function Footer() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)]"
+              className="text-sm text-[var(--muted)] transition-colors hover:text-[var(--container)]"
             >
               {item.label}
             </Link>
@@ -30,7 +30,7 @@ export function Footer() {
         <p>
           © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </p>
-        <a href={`mailto:${siteConfig.email}`} className="hover:text-[var(--foreground)]">
+        <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-[var(--container)]">
           {siteConfig.email}
         </a>
       </Container>

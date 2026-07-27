@@ -16,7 +16,7 @@ export const metadata = buildMetadata({
 
 export default function ServicesPage() {
   return (
-    <Container className="flex flex-col gap-14 py-20 sm:py-28">
+    <Container className="section-glow relative overflow-hidden flex flex-col gap-14 py-20 sm:py-28">
       <AnimatedSection>
         <SectionHeading
           level="h1"
@@ -36,11 +36,11 @@ export default function ServicesPage() {
 
       <AnimatedSection delay={0.1} className="surface-container rounded-3xl p-8 text-center">
         <h2 className="text-2xl font-semibold">Not sure which fits?</h2>
-        <p className="mx-auto mt-2 max-w-lg text-[var(--muted)]">
+        <p className="mx-auto mt-2 max-w-lg text-[var(--container-muted)]">
           Tell me about the process that&apos;s slowing your team down, and I&apos;ll recommend the right
           starting point — even if that means no project at all.
         </p>
-        <Button href="/contact" variant="secondary" className="mt-6 border-black/20 bg-white">
+        <Button href="/contact" variant="secondary" className="mt-6 bg-white text-black hover:bg-white/90">
           Get in touch
         </Button>
       </AnimatedSection>

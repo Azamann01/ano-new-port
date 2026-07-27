@@ -34,10 +34,10 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <Container className="flex flex-col gap-10 py-20 sm:py-28">
+    <Container className="section-glow relative overflow-hidden flex flex-col gap-10 py-20 sm:py-28">
       <Link
         href="/projects"
-        className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)]"
+        className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--container)]"
       >
         <ArrowLeft className="h-4 w-4" /> Back to projects
       </Link>
@@ -65,7 +65,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <h2 className="text-lg font-semibold">Results</h2>
         <ul className="mt-3 flex flex-col gap-2">
           {project.results.map((result) => (
-            <li key={result} className="text-sm text-[var(--muted)]">
+            <li key={result} className="text-sm text-[var(--container-muted)]">
               — {result}
             </li>
           ))}

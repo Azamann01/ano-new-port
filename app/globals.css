@@ -5,8 +5,23 @@
   --background: #ffffff;
   --foreground: #000000;
   --muted: #000000;
-  --border: #38bdf8;
-  --container: skyblue;
+  --border: var(--foreground);
+  --container: rgb(3 105 161);
+  --container-foreground: #ffffff;
+  --container-muted: rgba(255, 255, 255, 0.75);
+  /* Active nav item color — tinted brand color in light mode. */
+  --nav-active: var(--container);
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #ffffff;
+  --border: var(--foreground);
+  /* --container stays constant across themes — it's a fixed brand color, and
+     rgb(3 105 161) has strong contrast against black on its own. */
+  /* Active nav item stays plain text color in dark mode; hover still tints. */
+  --nav-active: var(--foreground);
 }
 
 @theme inline {
@@ -15,6 +30,8 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-container: var(--container);
+  --color-container-foreground: var(--container-foreground);
+  --color-container-muted: var(--container-muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -34,10 +51,37 @@ html::-webkit-scrollbar {
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .surface-container {
-  background-color: var(--container);
+  /* Translucent + shadow reads as "glass" without needing backdrop-filter,
+     which gets expensive (and can fail to composite) when many cards with
+     it are stacked on one page — this keeps the look cheap and reliable. */
+  background-color: color-mix(in srgb, var(--container) 88%, transparent);
+  color: var(--container-foreground);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Soft ambient glow sitting behind a section's content, for depth. Relies on
+   the radial-gradient's own soft falloff rather than a `filter: blur(...)`
+   pass — a real blur filter here got expensive enough (many sections, each
+   its own compositing layer via isolation) to hang the renderer during
+   scroll, so this keeps the look at a fraction of the compositing cost. */
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px circle at 15% 10%, color-mix(in srgb, var(--container) 14%, transparent) 0%, transparent 70%),
+    radial-gradient(600px circle at 85% 55%, color-mix(in srgb, var(--container) 10%, transparent) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Fixed blur/fade strip pinned to the bottom of the viewport, visible while
@@ -52,4 +96,25 @@ body {
   -webkit-mask-image: linear-gradient(to top, black, transparent);
   pointer-events: none;
   z-index: 40;
+}
+
+/* Animated underline for interactive nav links. */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--container);
+  transition: right 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  right: 0;
 }

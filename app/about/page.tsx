@@ -31,7 +31,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <Container className="flex flex-col gap-16 py-20 sm:py-28">
+    <Container className="section-glow relative overflow-hidden flex flex-col gap-16 py-20 sm:py-28">
       <AnimatedSection>
         <SectionHeading
           level="h1"
@@ -60,7 +60,7 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="surface-container rounded-2xl p-6">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--muted)]">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--container-muted)]">
             How I work
           </p>
           <ol className="mt-4 flex flex-col gap-3 text-sm">
@@ -76,7 +76,7 @@ export default function AboutPage() {
           {values.map((value) => (
             <div key={value.title} className="surface-container rounded-2xl p-6">
               <h3 className="font-semibold">{value.title}</h3>
-              <p className="mt-2 text-sm text-[var(--muted)]">{value.description}</p>
+              <p className="mt-2 text-sm text-[var(--container-muted)]">{value.description}</p>
             </div>
           ))}
         </div>
