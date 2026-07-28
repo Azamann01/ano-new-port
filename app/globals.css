@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #ffffff;
@@ -96,6 +97,30 @@ body {
   -webkit-mask-image: linear-gradient(to top, black, transparent);
   pointer-events: none;
   z-index: 40;
+}
+
+/* Soft blurred divider used to segment sections on a page. The blur is only
+   ever applied to a 1px-tall strip (tiny pixel area), which is cheap —
+   unlike the large-area section glow above, this is safe to repeat several
+   times per page. */
+.blur-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--foreground) 25%, transparent) 50%,
+    transparent
+  );
+}
+
+.blur-divider::after {
+  content: "";
+  position: absolute;
+  inset: -5px 8%;
+  background: inherit;
+  filter: blur(4px);
+  pointer-events: none;
 }
 
 /* Animated underline for interactive nav links. */

@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { AnimatedCard } from "@/components/ui/AnimatedCard";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Accordion } from "@/components/ui/Accordion";
 import { ResearchBrief } from "@/components/research/ResearchBrief";
 import { GoogleFormEmbed } from "@/components/research/GoogleFormEmbed";
@@ -37,6 +38,8 @@ export default function ResearchPage() {
         />
       </AnimatedSection>
 
+      <SectionDivider />
+
       <AnimatedSection delay={0.05} className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">Purpose of this research</h2>
         <p className="max-w-2xl text-[var(--muted)]">
@@ -46,6 +49,8 @@ export default function ResearchPage() {
           where it isn&apos;t.
         </p>
       </AnimatedSection>
+
+      <SectionDivider />
 
       <AnimatedSection delay={0.1} className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">Industries involved</h2>
@@ -60,9 +65,13 @@ export default function ResearchPage() {
         </div>
       </AnimatedSection>
 
+      <SectionDivider />
+
       <AnimatedSection delay={0.15}>
         <ResearchBrief />
       </AnimatedSection>
+
+      <SectionDivider />
 
       <AnimatedSection delay={0.2} className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">Contribute to the research</h2>
@@ -73,9 +82,13 @@ export default function ResearchPage() {
         <GoogleFormEmbed />
       </AnimatedSection>
 
+      <SectionDivider />
+
       <AnimatedSection delay={0.25}>
         <InterviewCTA />
       </AnimatedSection>
+
+      <SectionDivider />
 
       <AnimatedSection delay={0.3} className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">Frequently asked questions</h2>

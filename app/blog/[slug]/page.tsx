@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -54,6 +55,8 @@ export default async function BlogPostPage({ params }: Props) {
         </p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{post.title}</h1>
       </AnimatedSection>
+
+      <SectionDivider />
 
       <AnimatedSection
         delay={0.05}

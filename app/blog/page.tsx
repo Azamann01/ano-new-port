@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { BlogList } from "@/components/blog/BlogList";
 import { getAllPosts } from "@/lib/mdx";
 import { buildMetadata } from "@/lib/metadata";
@@ -25,6 +26,8 @@ export default function BlogPage() {
           description="Short, practical writing — no jargon, no theory that doesn't hold up in a small business."
         />
       </AnimatedSection>
+
+      <SectionDivider />
 
       <BlogList posts={posts} />
     </Container>

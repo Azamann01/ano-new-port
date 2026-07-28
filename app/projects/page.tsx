@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { projects } from "@/content/projects";
 import { buildMetadata } from "@/lib/metadata";
@@ -23,6 +24,8 @@ export default function ProjectsPage() {
           description="Each project started as a specific, costly manual process. Here's how they got fixed."
         />
       </AnimatedSection>
+
+      <SectionDivider />
 
       <ProjectGrid projects={projects} />
     </Container>

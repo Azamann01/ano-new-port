@@ -1,11 +1,21 @@
-import { Workflow, LayoutDashboard, Plug, AppWindow, Check, type LucideIcon } from "lucide-react";
+import {
+  Search,
+  Workflow,
+  AppWindow,
+  LayoutDashboard,
+  RefreshCw,
+  Rocket,
+  type LucideIcon,
+} from "lucide-react";
 import type { Service } from "@/types";
 
 const icons: Record<string, LucideIcon> = {
+  Search,
   Workflow,
-  LayoutDashboard,
-  Plug,
   AppWindow,
+  LayoutDashboard,
+  RefreshCw,
+  Rocket,
 };
 
 export function ServiceCard({ service }: { service: Service }) {
@@ -18,14 +28,6 @@ export function ServiceCard({ service }: { service: Service }) {
       </div>
       <h3 className="text-lg font-semibold">{service.title}</h3>
       <p className="text-sm text-[var(--container-muted)]">{service.description}</p>
-      <ul className="mt-auto flex flex-col gap-2 pt-2">
-        {service.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2 text-sm">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--container-muted)]" />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

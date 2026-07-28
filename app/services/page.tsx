@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCard } from "@/components/ui/AnimatedCard";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { ServiceCard } from "@/components/services/ServiceCard";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/content/services";
@@ -10,7 +11,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Services",
   description:
-    "Process automation, internal tools, systems integration, and custom web apps for growing businesses.",
+    "Operational discovery, process automation, custom business systems, and dashboards for growing businesses.",
   path: "/services",
 });
 
@@ -26,6 +27,8 @@ export default function ServicesPage() {
         />
       </AnimatedSection>
 
+      <SectionDivider />
+
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {services.map((service, index) => (
           <AnimatedCard key={service.slug} index={index}>
@@ -33,6 +36,8 @@ export default function ServicesPage() {
           </AnimatedCard>
         ))}
       </div>
+
+      <SectionDivider />
 
       <AnimatedSection delay={0.1} className="surface-container rounded-3xl p-8 text-center">
         <h2 className="text-2xl font-semibold">Not sure which fits?</h2>

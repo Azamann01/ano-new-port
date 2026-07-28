@@ -1,11 +1,11 @@
 export const siteConfig = {
   name: "TechWithTop",
-  tagline: "Helping SMEs work smarter with practical software.",
+  tagline: "Helping SMEs work smarter with technology",
   description:
     "I help businesses simplify operations by developing custom software — practical tools that remove busywork and let your team focus on what matters.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
   email: "projects@topewilson.tech",
-  location: "Remote / Worldwide",
+  location: "United Kingdom / Worldwide",
 
   nav: [
     { label: "About", href: "/about" },

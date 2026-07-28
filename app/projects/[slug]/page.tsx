@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Button } from "@/components/ui/Button";
 import { projects } from "@/content/projects";
 import { buildMetadata } from "@/lib/metadata";
@@ -50,6 +51,8 @@ export default async function ProjectDetailPage({ params }: Props) {
         <p className="max-w-2xl text-lg text-[var(--muted)]">{project.summary}</p>
       </AnimatedSection>
 
+      <SectionDivider />
+
       <AnimatedSection delay={0.05} className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <article>
           <h2 className="text-lg font-semibold">The problem</h2>
@@ -60,6 +63,8 @@ export default async function ProjectDetailPage({ params }: Props) {
           <p className="mt-2 text-[var(--muted)]">{project.solution}</p>
         </article>
       </AnimatedSection>
+
+      <SectionDivider />
 
       <AnimatedSection delay={0.1} className="surface-container rounded-2xl p-6">
         <h2 className="text-lg font-semibold">Results</h2>

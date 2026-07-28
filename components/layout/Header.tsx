@@ -22,7 +22,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[var(--background)]/70 shadow-sm backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="text-lg font-bold tracking-tight" onClick={() => setOpen(false)}>
+        <Link href="/" className="text-lg font-extrabold tracking-tight" onClick={() => setOpen(false)}>
           {siteConfig.name}
         </Link>
 

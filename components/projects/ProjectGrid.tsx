@@ -7,7 +7,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCaseStudy[] }) {
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project, index) => (
         <AnimatedCard key={project.slug} index={index}>
-          <ProjectCard project={project} />
+          <ProjectCard project={project} index={index} />
         </AnimatedCard>
       ))}
     </div>

@@ -1,31 +1,37 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Button } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Why I build custom software for small and mid-sized businesses instead of selling one-size-fits-all platforms.",
+    "Technology should solve business problems, not create them — how TechWithTop approaches discovery, design, and development.",
   path: "/about",
 });
 
-const values = [
+const steps = [
   {
-    title: "Practical over impressive",
-    description:
-      "A tool that quietly saves your team two hours a week beats a flashy system nobody fully uses.",
+    title: "Discover",
+    description: "Understand your business, goals, and operational challenges.",
   },
   {
-    title: "Built around your process",
-    description:
-      "Software should adapt to how your business runs — not force your team to change how they work to fit the tool.",
+    title: "Analyse",
+    description: "Identify inefficiencies and opportunities for improvement.",
   },
   {
-    title: "Honest scoping",
-    description:
-      "If a spreadsheet or an integration would solve your problem cheaper than custom software, I'll tell you that.",
+    title: "Design",
+    description: "Create solutions aligned with your workflows and objectives.",
+  },
+  {
+    title: "Develop",
+    description: "Build secure, scalable software focused on business outcomes.",
+  },
+  {
+    title: "Improve",
+    description: "Continuously refine solutions through feedback and measurable results.",
   },
 ];
 
@@ -36,49 +42,59 @@ export default function AboutPage() {
         <SectionHeading
           level="h1"
           eyebrow="About"
-          title="I build software that removes busywork, not adds to it"
+          title="Technology should solve business problems, not create them."
         />
       </AnimatedSection>
+
+      <SectionDivider />
 
       <AnimatedSection className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]" delay={0.05}>
         <div className="flex flex-col gap-4 text-base text-[var(--muted)] sm:text-lg">
           <p>
-            I work with small and mid-sized businesses that have outgrown spreadsheets and
-            manual processes, but don&apos;t need — or want to pay for — a bloated enterprise
-            platform.
+            At TechWithTop, we work closely with organisations to understand how they operate,
+            identify inefficiencies, and develop software that improves productivity and
+            supports growth.
           </p>
           <p>
-            Most of my projects start the same way: a business is losing hours every week to a
-            process that used to work fine at a smaller scale, but is now causing missed
-            appointments, duplicate data entry, or errors that take days to catch. My job is to
-            build the smallest, most maintainable tool that actually fixes that.
-          </p>
-          <p>
-            That usually means a focused internal tool, a scheduling or dispatch system, or an
-            integration between tools you already use — not a from-scratch platform that takes a
-            year to ship.
+            Every solution is informed by research, built around real workflows, and designed
+            to deliver measurable business value.
           </p>
         </div>
         <div className="surface-container rounded-2xl p-6">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--container-muted)]">
-            How I work
+            How we work
           </p>
-          <ol className="mt-4 flex flex-col gap-3 text-sm">
-            <li>1. Understand the manual process and what it&apos;s costing you</li>
-            <li>2. Scope the smallest tool that solves it</li>
-            <li>3. Build, ship, and iterate based on real use</li>
+          <ol className="mt-4 flex flex-col gap-4 text-sm">
+            {steps.map((step, index) => (
+              <li key={step.title} className="flex gap-3">
+                <span className="font-semibold text-[var(--container-muted)]">
+                  {index + 1}
+                </span>
+                <span>
+                  <span className="font-semibold">{step.title}</span>
+                  <span className="text-[var(--container-muted)]"> — {step.description}</span>
+                </span>
+              </li>
+            ))}
           </ol>
         </div>
       </AnimatedSection>
 
+      <SectionDivider />
+
       <AnimatedSection delay={0.1}>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {values.map((value) => (
-            <div key={value.title} className="surface-container rounded-2xl p-6">
-              <h3 className="font-semibold">{value.title}</h3>
-              <p className="mt-2 text-sm text-[var(--container-muted)]">{value.description}</p>
-            </div>
-          ))}
+        <div className="surface-container rounded-2xl p-8 sm:p-10">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--container-muted)]">
+            Why Work With Me
+          </p>
+          <p className="mt-3 text-xl font-semibold sm:text-2xl">
+            I don&apos;t start with technology—I start with your business.
+          </p>
+          <p className="mt-3 text-[var(--container-muted)]">
+            By understanding your operations, identifying inefficiencies, and focusing on
+            measurable outcomes, I build solutions that solve real problems and deliver
+            lasting value.
+          </p>
         </div>
       </AnimatedSection>
 

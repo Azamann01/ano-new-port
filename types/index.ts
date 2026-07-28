@@ -3,7 +3,6 @@ export type Service = {
   title: string;
   description: string;
   icon: string; // lucide-react icon name
-  features: string[];
 };
 
 export type ProjectCaseStudy = {

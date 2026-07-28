@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="border-t border-[var(--border)]">
       <Container className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-lg font-bold tracking-tight">{siteConfig.name}</p>
+          <p className="text-lg font-extrabold tracking-tight">{siteConfig.name}</p>
           <p className="mt-1 max-w-sm text-sm text-[var(--muted)]">
             {siteConfig.tagline}
           </p>

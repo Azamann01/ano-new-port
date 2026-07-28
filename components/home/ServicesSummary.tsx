@@ -10,7 +10,7 @@ export function ServicesSummary() {
     <section className="section-glow relative overflow-hidden py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
         <SectionHeading
-          eyebrow="What I do"
+          eyebrow="What we do"
           title="Practical software, built around your operations"
           description="No bloated platforms or year-long rollouts — just focused tools that remove the manual work slowing your team down."
         />
