@@ -19,12 +19,18 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) return buildMetadata({ title: "Post not found", path: `/blog/${slug}` });
+  if (!post) {
+    return {
+      ...buildMetadata({ title: "Post not found", path: `/blog/${slug}` }),
+      robots: { index: false, follow: true },
+    };
+  }
 
   return buildMetadata({
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
+    ogImage: `/blog/${post.slug}/opengraph-image`,
   });
 }
 

@@ -1,33 +1,22 @@
-import {
-  Search,
-  Workflow,
-  AppWindow,
-  LayoutDashboard,
-  RefreshCw,
-  Rocket,
-  type LucideIcon,
-} from "lucide-react";
+import Image from "next/image";
 import type { Service } from "@/types";
 
-const icons: Record<string, LucideIcon> = {
-  Search,
-  Workflow,
-  AppWindow,
-  LayoutDashboard,
-  RefreshCw,
-  Rocket,
-};
-
 export function ServiceCard({ service }: { service: Service }) {
-  const Icon = icons[service.icon] ?? Workflow;
-
   return (
-    <div className="surface-container flex h-full flex-col gap-4 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-black">
-        <Icon className="h-5 w-5" />
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
+        <Image
+          src={service.image}
+          alt={service.title}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
-      <h3 className="text-lg font-semibold">{service.title}</h3>
-      <p className="text-sm text-[var(--container-muted)]">{service.description}</p>
+      <div className="surface-container flex flex-1 flex-col gap-1.5 p-5">
+        <h3 className="text-base font-semibold">{service.title}</h3>
+        <p className="text-sm text-[var(--container-muted)]">{service.description}</p>
+      </div>
     </div>
   );
 }

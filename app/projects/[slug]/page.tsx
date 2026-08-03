@@ -19,12 +19,18 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
-  if (!project) return buildMetadata({ title: "Project not found", path: `/projects/${slug}` });
+  if (!project) {
+    return {
+      ...buildMetadata({ title: "Project not found", path: `/projects/${slug}` }),
+      robots: { index: false, follow: true },
+    };
+  }
 
   return buildMetadata({
     title: project.title,
     description: project.summary,
     path: `/projects/${project.slug}`,
+    ogImage: `/projects/${project.slug}/opengraph-image`,
   });
 }
 
@@ -70,8 +76,9 @@ export default async function ProjectDetailPage({ params }: Props) {
         <h2 className="text-lg font-semibold">Results</h2>
         <ul className="mt-3 flex flex-col gap-2">
           {project.results.map((result) => (
-            <li key={result} className="text-sm text-[var(--container-muted)]">
-              — {result}
+            <li key={result} className="flex gap-2 text-sm text-[var(--container-muted)]">
+              <span aria-hidden className="text-[var(--container)]">•</span>
+              {result}
             </li>
           ))}
         </ul>

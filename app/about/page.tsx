@@ -8,8 +8,9 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Technology should solve business problems, not create them — how TechWithTop approaches discovery, design, and development.",
+    "Technology should solve business problems, not create them. How TechWithTop approaches discovery, design, and development.",
   path: "/about",
+  ogImage: "/about/opengraph-image",
 });
 
 const steps = [
@@ -72,7 +73,7 @@ export default function AboutPage() {
                 </span>
                 <span>
                   <span className="font-semibold">{step.title}</span>
-                  <span className="text-[var(--container-muted)]"> — {step.description}</span>
+                  <span className="text-[var(--container-muted)]">: {step.description}</span>
                 </span>
               </li>
             ))}
@@ -85,21 +86,21 @@ export default function AboutPage() {
       <AnimatedSection delay={0.1}>
         <div className="surface-container rounded-2xl p-8 sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--container-muted)]">
-            Why Work With Me
+            WHY WORK WITH US
           </p>
           <p className="mt-3 text-xl font-semibold sm:text-2xl">
-            I don&apos;t start with technology—I start with your business.
+            We don&apos;t start with technology. We start with your business.
           </p>
           <p className="mt-3 text-[var(--container-muted)]">
             By understanding your operations, identifying inefficiencies, and focusing on
-            measurable outcomes, I build solutions that solve real problems and deliver
+            measurable outcomes, we build solutions that solve real problems and deliver
             lasting value.
           </p>
         </div>
       </AnimatedSection>
 
       <AnimatedSection delay={0.15} className="flex justify-start">
-        <Button href="/contact">Let&apos;s talk about your process</Button>
+        <Button href="/contact">Let&apos;s talk</Button>
       </AnimatedSection>
     </Container>
   );

@@ -13,7 +13,7 @@ export function FeaturedProjects() {
         <SectionHeading
           eyebrow="Recent work"
           title="Real problems, real software"
-          description="A sample of the tools I've built for businesses looking to cut manual work out of their day-to-day."
+          description="A sample of the tools we've built for businesses looking to cut manual work out of their daily operations."
         />
         <ProjectGrid projects={featured} />
         <Button href="/projects" variant="secondary" className="self-start">

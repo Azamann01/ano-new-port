@@ -21,6 +21,7 @@ describe("ContactForm", () => {
     expect(await screen.findByText(/please enter your name/i)).toBeInTheDocument();
     expect(screen.getByText(/please enter a valid email address/i)).toBeInTheDocument();
     expect(screen.getByText(/please add a short message/i)).toBeInTheDocument();
+    expect(screen.getByText(/please confirm you agree to the privacy policy/i)).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });
 
@@ -45,6 +46,7 @@ describe("ContactForm", () => {
     await user.type(screen.getByLabelText(/name/i), "Ada Lovelace");
     await user.type(screen.getByLabelText(/email/i), "ada@example.com");
     await user.type(screen.getByLabelText(/message/i), "Hello there");
+    await user.click(screen.getByRole("checkbox"));
     await user.click(screen.getByRole("button", { name: /send message/i }));
 
     expect(await screen.findByText(/message sent/i)).toBeInTheDocument();
@@ -59,6 +61,7 @@ describe("ContactForm", () => {
     await user.type(screen.getByLabelText(/name/i), "Ada Lovelace");
     await user.type(screen.getByLabelText(/email/i), "ada@example.com");
     await user.type(screen.getByLabelText(/message/i), "Hello there");
+    await user.click(screen.getByRole("checkbox"));
     await user.click(screen.getByRole("button", { name: /send message/i }));
 
     await waitFor(() =>

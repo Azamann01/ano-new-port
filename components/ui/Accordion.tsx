@@ -9,16 +9,20 @@ export function Accordion({ items }: { items: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="surface-container flex flex-col divide-y divide-white/15 overflow-hidden rounded-2xl">
+    <div className="surface-container flex flex-col divide-y divide-[var(--container-foreground)]/15 overflow-hidden rounded-2xl">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
+        const triggerId = `faq-trigger-${index}`;
+        const panelId = `faq-panel-${index}`;
         return (
           <div key={item.question}>
             <button
               type="button"
+              id={triggerId}
               onClick={() => setOpenIndex(isOpen ? null : index)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left transition-colors hover:bg-white/5"
+              aria-controls={panelId}
+              className="flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left transition-colors hover:bg-[var(--container-foreground)]/5"
             >
               <span className="font-medium">{item.question}</span>
               <ChevronDown
@@ -29,6 +33,9 @@ export function Accordion({ items }: { items: FAQItem[] }) {
               />
             </button>
             <div
+              id={panelId}
+              role="region"
+              aria-labelledby={triggerId}
               className={cn(
                 "grid overflow-hidden transition-all duration-300 ease-out",
                 isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"

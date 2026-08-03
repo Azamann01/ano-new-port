@@ -1,6 +1,13 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 import { Container } from "@/components/ui/Container";
+import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/SocialIcons";
+
+const socialLinks = [
+  { label: "GitHub", href: siteConfig.social.github, icon: GithubIcon },
+  { label: "LinkedIn", href: siteConfig.social.linkedin, icon: LinkedinIcon },
+  { label: "Twitter", href: siteConfig.social.twitter, icon: TwitterIcon },
+].filter(({ href }) => !isPlaceholderUrl(href));
 
 export function Footer() {
   return (
@@ -13,7 +20,7 @@ export function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-wrap gap-x-6 gap-y-2">
+        <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
           {siteConfig.nav.map((item) => (
             <Link
               key={item.href}
@@ -24,12 +31,46 @@ export function Footer() {
             </Link>
           ))}
         </nav>
+
+        <div className="flex items-center gap-4">
+          {socialLinks.map(({ label, href, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="text-[var(--muted)] transition-colors hover:text-[var(--container)]"
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ))}
+        </div>
       </Container>
 
-      <Container className="flex flex-col gap-2 border-t border-[var(--border)] py-6 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-        </p>
+      <Container className="flex flex-col gap-4 border-t border-[var(--border)] py-6 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-1">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+          </p>
+          <p>
+            {siteConfig.companyName} · Company No. {siteConfig.companyNumber} ·{" "}
+            {siteConfig.registeredAddress}
+          </p>
+        </div>
+
+        <nav className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          {siteConfig.legalNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="transition-colors hover:text-[var(--container)]"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
         <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-[var(--container)]">
           {siteConfig.email}
         </a>

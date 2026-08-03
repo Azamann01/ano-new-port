@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Custom Software for SMEs",
   description:
-    "Helping small and mid-sized businesses work smarter with practical, custom-built software.",
+    "Helping small and midsize businesses work smarter with practical, custom software.",
   path: "/",
 });
 

@@ -1,8 +1,10 @@
 import { CalendarClock } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
+import { isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 import { Button } from "@/components/ui/Button";
 
 export function InterviewCTA() {
+  if (isPlaceholderUrl(siteConfig.calendlyUrl)) return null;
+
   return (
     <div className="surface-container flex flex-col items-start gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between">
       <div>

@@ -10,8 +10,8 @@ export function ProjectCard({ project, index = 0 }: { project: ProjectCaseStudy;
       href={`/projects/${project.slug}`}
       className="group flex h-full flex-col items-center gap-4 rounded-2xl p-4 text-center transition-all duration-300 hover:bg-[var(--foreground)]/[0.03]"
     >
-      <div className="w-full max-w-[220px] transition-transform duration-300 ease-out group-hover:-translate-y-2 group-hover:rotate-[-1deg] group-hover:scale-[1.03]">
-        <PhoneMockup className="shadow-lg transition-shadow duration-300 group-hover:shadow-2xl">
+      <div className="w-full max-w-[220px] transition-transform duration-300 ease-out group-hover:-translate-y-2 group-hover:rotate-[-1deg] group-hover:scale-[1.03] group-focus-visible:-translate-y-2 group-focus-visible:rotate-[-1deg] group-focus-visible:scale-[1.03]">
+        <PhoneMockup className="shadow-lg transition-shadow duration-300 group-hover:shadow-2xl group-focus-visible:shadow-2xl">
           <ProjectAppScreen project={project} index={index} />
         </PhoneMockup>
       </div>

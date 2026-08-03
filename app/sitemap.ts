@@ -12,6 +12,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/research",
     "/blog",
     "/contact",
+    "/privacy",
+    "/terms",
+    "/cookies",
+    "/accessibility",
   ].map((path) => ({
     url: new URL(path, siteConfig.url).toString(),
     lastModified: new Date(),

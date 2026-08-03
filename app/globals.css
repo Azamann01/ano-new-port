@@ -5,11 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --muted: #000000;
+  --muted: color-mix(in srgb, var(--foreground) 60%, var(--background));
   --border: var(--foreground);
   --container: rgb(3 105 161);
   --container-foreground: #ffffff;
-  --container-muted: rgba(255, 255, 255, 0.75);
+  /* rgba(255,255,255,0.75) (the dark-mode value below) only hits ~3.36:1
+     against the light-mode surface-container background — fails WCAG AA's
+     4.5:1 for body text. 0.98 clears it (~4.55:1) with a small safety
+     margin; see .dark below for the value that's already compliant there. */
+  --container-muted: rgba(255, 255, 255, 0.98);
   /* Active nav item color — tinted brand color in light mode. */
   --nav-active: var(--container);
 }
@@ -17,10 +21,13 @@
 .dark {
   --background: #000000;
   --foreground: #ffffff;
-  --muted: #ffffff;
+  --muted: color-mix(in srgb, var(--foreground) 60%, var(--background));
   --border: var(--foreground);
   /* --container stays constant across themes — it's a fixed brand color, and
      rgb(3 105 161) has strong contrast against black on its own. */
+  /* Against the dark-mode surface-container background this already clears
+     WCAG AA (~4.77:1), unlike the light-mode value above. */
+  --container-muted: rgba(255, 255, 255, 0.75);
   /* Active nav item stays plain text color in dark mode; hover still tints. */
   --nav-active: var(--foreground);
 }
@@ -121,6 +128,22 @@ body {
   background: inherit;
   filter: blur(4px);
   pointer-events: none;
+}
+
+/* Global keyboard-focus ring — a single indicator so Button, Accordion,
+   ThemeToggle, and nav links don't each need their own focus-visible
+   utility classes. */
+:focus-visible {
+  outline: 2px solid var(--container);
+  outline-offset: 2px;
+}
+
+/* A brand-blue outline has too little contrast sitting on top of the
+   blue surface-container fill itself (e.g. the primary Button, Accordion's
+   trigger) — swap to the white container-foreground token there instead. */
+.surface-container :focus-visible,
+.surface-container:focus-visible {
+  outline-color: var(--container-foreground);
 }
 
 /* Animated underline for interactive nav links. */

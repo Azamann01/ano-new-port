@@ -7,11 +7,11 @@ export const projects: ProjectCaseStudy[] = [
     client: "Regional HVAC Contractor",
     industry: "Home Services",
     summary:
-      "Replaced a whiteboard-and-phone-calls scheduling process with a shared dispatch tool for technicians.",
+      "Replaced a manual whiteboard and phone scheduling process with a shared dispatch tool for technicians.",
     problem:
-      "Dispatchers were manually coordinating technician schedules over the phone, leading to double-bookings and missed appointments.",
+      "Dispatchers were manually coordinating technician schedules over the phone, leading to double bookings and missed appointments.",
     solution:
-      "Built a lightweight scheduling app with drag-and-drop dispatch, technician availability, and automated SMS reminders for customers.",
+      "Built a lightweight scheduling app with an intuitive dispatch board, technician availability, and automated SMS reminders for customers.",
     results: [
       "40% fewer missed appointments in the first quarter",
       "Dispatch time cut from ~20 minutes to under 5 minutes per job",
@@ -25,11 +25,11 @@ export const projects: ProjectCaseStudy[] = [
     client: "Multi-location Retailer",
     industry: "Retail",
     summary:
-      "Connected point-of-sale and e-commerce inventory so stock counts stayed accurate across 6 store locations.",
+      "Connected point of sale and ecommerce inventory so stock counts stayed accurate across 6 store locations.",
     problem:
-      "Store inventory and the online store were tracked separately, causing overselling and manual end-of-day reconciliation.",
+      "Store inventory and the online store were tracked separately, causing overselling and manual reconciliation at the end of each day.",
     solution:
-      "Built an integration pipeline syncing POS inventory changes to the online store in near real-time, with a daily reconciliation report.",
+      "Built an integration pipeline syncing POS inventory changes to the online store continuously, with a daily reconciliation report.",
     results: [
       "Eliminated overselling incidents",
       "Removed ~6 hours/week of manual reconciliation work",
@@ -43,7 +43,7 @@ export const projects: ProjectCaseStudy[] = [
     client: "Boutique Accounting Firm",
     industry: "Professional Services",
     summary:
-      "A self-service portal so new clients can submit documents and information without back-and-forth emails.",
+      "An online portal so new clients can submit documents and information without a long email exchange.",
     problem:
       "Client onboarding relied on email chains for document collection, often taking weeks and multiple follow-ups.",
     solution:
@@ -51,7 +51,7 @@ export const projects: ProjectCaseStudy[] = [
     results: [
       "Onboarding time reduced from ~3 weeks to under 5 days",
       "Staff reclaimed hours previously spent chasing documents",
-      "Clients get real-time status visibility",
+      "Clients get live status visibility",
     ],
     tags: ["Client Portal", "Workflow", "Professional Services"],
   },

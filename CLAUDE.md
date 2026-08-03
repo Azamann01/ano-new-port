@@ -42,9 +42,9 @@ components/
   home/              Hero, ServicesSummary, FeaturedProjects, CTASection
   projects/          ProjectCard (renders as an interactive phone mockup), ProjectGrid, ProjectAppScreen
   services/          ServiceCard
-  research/          ResearchBrief, GoogleFormEmbed, InterviewCTA
+  research/          ResearchBrief, GoogleFormEmbed
   blog/              BlogList, BlogPostCard
-  contact/           ContactForm
+  contact/           ContactForm, InterviewCTA
 
 content/
   services.ts        typed Service[] data (6 services, no sub-feature bullets — title + one-line description)
@@ -113,8 +113,8 @@ Every border was deliberately removed from Header, Button (secondary/ghost use a
 
 ## Current page copy (source of truth — don't regress to older placeholder wording)
 
-- **Home hero**: heading "Transforming Business Challenges into Practical Digital Solutions"; sub-copy "Smarter operations, Better decisions with Technology that delivers measurable results." No eyebrow badge/button above the heading — it was there briefly (a link to `/blog`) but was removed by request; don't re-add it without being asked.
-- **About page**: heading "Technology should solve business problems—not create them."; a "How we work" 5-step list (Discover → Analyse → Design → Develop → Improve); a "Why Work With Me" panel ("I don't start with technology—I start with your business.").
+- **Home hero**: heading "Transforming Business Challenges into Practical Digital Solutions"; sub-copy "Smarter operations, better decisions with technology that delivers measurable results." No eyebrow badge/button above the heading — it was there briefly (a link to `/blog`) but was removed by request; don't re-add it without being asked.
+- **About page**: heading "Technology should solve business problems—not create them."; a "How we work" 5-step list (Discover → Analyse → Design → Develop → Improve); a "WHY WORK WITH US" panel ("we don't start with technology—I start with your business.").
 - **Services page**: 6 services, each just a title + one-line description (no sub-bullet feature lists): Operational Discovery, Business Process Automation, Custom Business Systems, Operational Dashboards, Digital Transformation, MVP Development.
 
 ## Placeholders to replace before launch
@@ -124,10 +124,15 @@ All centralized in `lib/site-config.ts` and `.env.local.example`:
 - `NEXT_PUBLIC_FORMSPREE_ID` — real Formspree form ID for the contact form to actually deliver mail
 - `NEXT_PUBLIC_SITE_URL` — real production domain (used for canonical URLs, sitemap, OG metadata)
 - `siteConfig.researchGoogleFormUrl` — real embedded Google Form URL on the Research page
-- `siteConfig.calendlyUrl` — real Calendly (or similar) link for "Book free consultation"
+- `siteConfig.calendlyUrl` — real Calendly (or similar) link, used in two places, both placeholder-aware:
+  - `components/contact/InterviewCTA.tsx` (the "Prefer to talk instead?" panel on the Contact page) renders nothing until it's set, rather than showing a self-referential link back to the page it's already on
+  - `components/home/CTASection.tsx` (the homepage's closing CTA) shows "Book a call" linking to Calendly once set; until then it falls back to "Get in touch" linking to `/contact`
 - `public/research-brief.pdf` — currently a minimal placeholder PDF; swap for the real research brief
 - `content/projects.ts`, `content/blog/*.mdx` — currently seeded/placeholder copy; swap for real case studies and posts as they're ready
 - `siteConfig.social` — placeholder GitHub/LinkedIn/Twitter links
+- `siteConfig.companyNumber` / `siteConfig.registeredAddress` — Companies House number and registered office address for TechWithTop Ltd, shown in the footer and Privacy Policy; deliberately left as `REPLACE_ME` rather than a fabricated value
+
+`siteConfig.isPlaceholderUrl()` detects the `REPLACE_ME` convention at runtime — used to hide the "Prefer to talk instead?" Calendly panel entirely and swap the homepage CTA between "Book a call"/Calendly and "Get in touch"/`/contact` until a real link is set, hide unset social icons in the footer, and keep unresolved URLs out of the root layout's JSON-LD `sameAs` array. Any new placeholder URL should follow the same `REPLACE_ME` substring convention so it's automatically covered.
 
 ## Testing
 

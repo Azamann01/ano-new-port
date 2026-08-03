@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { InterviewCTA } from "@/components/contact/InterviewCTA";
 import { siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -10,6 +11,7 @@ export const metadata = buildMetadata({
   title: "Contact",
   description: "Get in touch to talk about a custom software project for your business.",
   path: "/contact",
+  ogImage: "/contact/opengraph-image",
 });
 
 export default function ContactPage() {
@@ -19,8 +21,8 @@ export default function ContactPage() {
         <SectionHeading
           level="h1"
           eyebrow="Contact"
-          title="Tell me about your process"
-          description="Share what's slowing your team down and I'll follow up within a couple of business days."
+          title="We're here to help you"
+          description="Share what's slowing your team down and we'll follow up within a couple of business days."
         />
         <div className="flex flex-col gap-4">
           <a
@@ -33,6 +35,8 @@ export default function ContactPage() {
             <MapPin className="h-4 w-4" /> {siteConfig.location}
           </p>
         </div>
+
+        <InterviewCTA />
       </AnimatedSection>
 
       <AnimatedSection delay={0.05}>

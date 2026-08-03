@@ -58,6 +58,8 @@ export function Header() {
             type="button"
             className="text-[var(--foreground)]"
             aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -66,6 +68,7 @@ export function Header() {
       </Container>
 
       <div
+        id="mobile-nav"
         className={cn(
           "grid overflow-hidden transition-all duration-300 ease-out md:hidden",
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"

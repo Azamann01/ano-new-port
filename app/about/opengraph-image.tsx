@@ -5,5 +5,5 @@ export const size = ogImageSize;
 export const contentType = ogImageContentType;
 
 export default function Image() {
-  return buildOgImageResponse(siteConfig.tagline, siteConfig.name);
+  return buildOgImageResponse("About", siteConfig.name);
 }

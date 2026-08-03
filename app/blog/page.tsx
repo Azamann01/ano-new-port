@@ -9,8 +9,9 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Insights",
   description:
-    "Practical writing on custom software, automation, and operations for small and mid-sized businesses.",
+    "Practical writing on custom software, automation, and operations for small and midsize businesses.",
   path: "/blog",
+  ogImage: "/blog/opengraph-image",
 });
 
 export default function BlogPage() {
@@ -23,7 +24,7 @@ export default function BlogPage() {
           level="h1"
           eyebrow="Insights"
           title="Notes on software, automation, and operations"
-          description="Short, practical writing — no jargon, no theory that doesn't hold up in a small business."
+          description="Short, practical writing. No jargon, no theory that doesn't hold up in a small business."
         />
       </AnimatedSection>
 

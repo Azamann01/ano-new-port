@@ -5,7 +5,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeWatcher } from "@/components/ui/ThemeWatcher";
-import { siteConfig } from "@/lib/site-config";
+import { CookieConsentBanner } from "@/components/ui/CookieConsentBanner";
+import { isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 
 const THEME_INIT_SCRIPT = `
 (function () {
@@ -32,7 +33,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: `${siteConfig.name}: ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -51,13 +52,38 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-[var(--container)] focus:px-4 focus:py-2 focus:text-[var(--container-foreground)] focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <Script id="theme-init" strategy="beforeInteractive">
           {THEME_INIT_SCRIPT}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: siteConfig.name,
+              legalName: siteConfig.companyName,
+              description: siteConfig.description,
+              url: siteConfig.url,
+              email: siteConfig.email,
+              areaServed: siteConfig.location,
+              sameAs: Object.values(siteConfig.social).filter((url) => !isPlaceholderUrl(url)),
+            }),
+          }}
+        />
         <ThemeWatcher />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <Footer />
+        <CookieConsentBanner />
         <div aria-hidden className="bottom-scroll-blur" />
       </body>
     </html>
