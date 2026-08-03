@@ -9,7 +9,7 @@ export function Hero() {
           Transforming Business Challenges into Practical Digital Solutions
         </h1>
         <p className="max-w-xl text-lg text-[var(--muted)]">
-          Smarter operations, Better decisions with Technology that delivers measurable results.
+          Smarter operations, better decisions with technology that delivers measurable results.
         </p>
         <div className="mt-2 flex flex-col gap-3 sm:flex-row">
           <Button href="/contact">Start a project</Button>

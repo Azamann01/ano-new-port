@@ -8,7 +8,7 @@ export function ResearchBrief() {
       <div>
         <h3 className="font-semibold">Download the current research brief</h3>
         <p className="mt-1 text-sm text-[var(--container-muted)]">
-          A short PDF summarizing findings so far, updated as the research progresses.
+          A short PDF summarising findings so far, updated as the research progresses.
         </p>
       </div>
       <Button
