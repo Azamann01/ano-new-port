@@ -52,21 +52,20 @@ export default function PrivacyPage() {
             for how they handle data in transit.
           </p>
           <p>
-            <strong>Research contribution form.</strong> The embedded form on our Research page is
-            a Google Form. Any information you submit there goes directly to Google&apos;s servers
-            under Google&apos;s own privacy policy. We don&apos;t control or process that data
-            transfer; we only receive the responses you choose to submit.
-          </p>
-          <p>
             <strong>Theme preference.</strong> Your light/dark mode choice is stored in your
             browser&apos;s <code>localStorage</code>, not a cookie. It never leaves your device and
             isn&apos;t personal data.
           </p>
           <p>
-            <strong>Analytics.</strong> We don&apos;t currently use any analytics or tracking
-            tools. If that changes, this policy and our{" "}
-            <a href="/cookies">Cookie Policy</a> will be updated first, and the choice you make in
-            our cookie banner will govern whether analytics cookies are set.
+            <strong>Analytics.</strong> If you accept in our cookie banner, we use{" "}
+            <a href="https://plausible.io" target="_blank" rel="noopener noreferrer">
+              Plausible
+            </a>
+            , a privacy-focused analytics tool that doesn&apos;t use cookies or any other
+            persistent identifier, doesn&apos;t collect personal data, and reports aggregate
+            traffic numbers only, not individual visitor behaviour. If you decline, or don&apos;t
+            choose, it&apos;s never loaded. See our{" "}
+            <a href="/cookies">Cookie Policy</a> for more detail.
           </p>
 
           <h2>How long we keep it</h2>

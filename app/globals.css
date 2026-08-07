@@ -92,6 +92,28 @@ body {
   pointer-events: none;
 }
 
+/* Hero-only, dark-mode-only background: a single soft wash blending the
+   brand blue into the page's black background, offset toward the right side
+   of the section rather than centered, instead of section-glow's two
+   light-mode orbs. Still gradient-based, not filter: blur (see the note
+   above) — the blur look comes from the radial-gradient's own wide, soft
+   falloff. Mix is kept low and the circle large so it reads as ambient
+   tone, not a visible glow.
+   z-index is raised from section-glow's -1 to 0: `body` has no position/
+   z-index of its own, so it never becomes a stacking context — a -1 child
+   anywhere under it escapes to the root stacking context and renders behind
+   body's own opaque background, i.e. fully invisible. 0 keeps it behind the
+   section's actual (unpositioned, z-index:auto) content while still
+   painting above that root-level background. */
+.dark .hero-glow::before {
+  z-index: 0;
+  background: radial-gradient(
+    950px circle at 85% 20%,
+    color-mix(in srgb, var(--container) 24%, var(--background) 76%) 0%,
+    transparent 65%
+  );
+}
+
 /* Fixed blur/fade strip pinned to the bottom of the viewport, visible while
    scrolling in either direction. Non-interactive so it never blocks clicks. */
 .bottom-scroll-blur {

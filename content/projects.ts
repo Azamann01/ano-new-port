@@ -14,7 +14,7 @@ export const projects: ProjectCaseStudy[] = [
       "Built a lightweight scheduling app with an intuitive dispatch board, technician availability, and automated SMS reminders for customers.",
     results: [
       "40% fewer missed appointments in the first quarter",
-      "Dispatch time cut from ~20 minutes to under 5 minutes per job",
+      "Dispatch time cut from 20 minutes to under 5 minutes per job",
       "Technicians get their day's schedule automatically each morning",
     ],
     tags: ["Scheduling", "SMS Automation", "Internal Tool"],
@@ -32,7 +32,7 @@ export const projects: ProjectCaseStudy[] = [
       "Built an integration pipeline syncing POS inventory changes to the online store continuously, with a daily reconciliation report.",
     results: [
       "Eliminated overselling incidents",
-      "Removed ~6 hours/week of manual reconciliation work",
+      "Removed 6 hours/week of manual reconciliation work",
       "Single dashboard for stock across all locations",
     ],
     tags: ["Integrations", "Retail", "Automation"],
@@ -49,7 +49,7 @@ export const projects: ProjectCaseStudy[] = [
     solution:
       "Built a secure client portal with guided document upload, status tracking, and automated reminder emails.",
     results: [
-      "Onboarding time reduced from ~3 weeks to under 5 days",
+      "Onboarding time reduced from 3 weeks to under 5 days",
       "Staff reclaimed hours previously spent chasing documents",
       "Clients get live status visibility",
     ],

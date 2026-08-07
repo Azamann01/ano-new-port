@@ -12,7 +12,7 @@ export function FeaturedProjects() {
       <Container className="flex flex-col gap-10">
         <SectionHeading
           eyebrow="Recent work"
-          title="Real problems, real software"
+          title="real problems, real solutions"
           description="A sample of the tools we've built for businesses looking to cut manual work out of their daily operations."
         />
         <ProjectGrid projects={featured} />

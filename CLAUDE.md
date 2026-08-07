@@ -38,9 +38,9 @@ app/
 components/
   layout/            Header (nav + mobile menu + ThemeToggle), Footer
   ui/                Container, Button, SectionHeading, AnimatedCard, AnimatedSection, Accordion,
-                     ThemeToggle, ThemeWatcher, PhoneMockup, SectionDivider
+                     ThemeToggle, ThemeWatcher, SectionDivider
   home/              Hero, ServicesSummary, FeaturedProjects, CTASection
-  projects/          ProjectCard (renders as an interactive phone mockup), ProjectGrid, ProjectAppScreen
+  projects/          ProjectCard (image-banner case-study card), ProjectGrid
   services/          ServiceCard
   research/          ResearchBrief, GoogleFormEmbed
   blog/              BlogList, BlogPostCard
@@ -98,11 +98,13 @@ Every border was deliberately removed from Header, Button (secondary/ghost use a
 
 `components/ui/Button.tsx` has three variants: `primary` (`surface-container`, i.e. brand-blue fill), `secondary` (subtle `--foreground`-tinted background, no border), and `ghost` (text-only, tinted hover background). Radius is `rounded-md` (deliberately not pill-shaped/`rounded-full` — that was an earlier iteration). Buttons nested inside a `surface-container` parent generally need an explicit override (e.g. `bg-white text-black`) since the default `secondary`/`ghost` styles assume they're sitting on the plain page background, not another colored surface — check contrast by eye whenever adding a `Button` inside a card.
 
-### Project cards render as interactive iPhone mockups
+### Project cards: image-banner case-study format
 
-`components/projects/ProjectCard.tsx` no longer looks like a flat text card — it renders a `PhoneMockup` (pure-CSS iPhone frame: status bar, dynamic island, home indicator) containing a `ProjectAppScreen`, with the project title/summary/tags as a caption underneath. On hover the whole card lifts, tilts slightly, and scales up (`group-hover:-translate-y-2 group-hover:rotate-[-1deg] group-hover:scale-[1.03]`). Both the Projects page grid and Home's `FeaturedProjects` teaser use this via the shared `ProjectGrid`/`ProjectCard`.
+`components/projects/ProjectCard.tsx` renders a modern case-study card: a wide `aspect-[16/10]` gradient banner (industry icon watermark, a "Concept visual" disclosure badge, client name/industry caption) sitting above a `surface-container` info panel (title, summary, a lead result stat pulled from `project.results[0]`, tags). Hover lifts the whole card and scales the banner's icon slightly (`hover:-translate-y-1 hover:shadow-xl`, `group-hover:scale-110` on the icon) — no rotation/tilt. Both the Projects page grid and Home's `FeaturedProjects` teaser use this via the shared `ProjectGrid`/`ProjectCard`.
 
-`ProjectAppScreen` shows a gradient "cover" image (standing in for AI-generated art — there's no image-generation tool available in this environment, see the note below) with a small "✨ Generated" badge and the client name captioned over it, plus two thumbnail rows built from the project's real `results`/`tags` data. **`ProjectGrid` passes `index` down to `ProjectCard` → `ProjectAppScreen`** specifically so each project gets a different, stable gradient from the small `gradients` palette — an earlier version picked the gradient by hashing `project.slug`, but with only 4 gradients and 4 seeded projects, two slugs happened to hash to the same bucket and got identical covers. Keep using the list index (not a content hash) for this unless the palette grows enough to make collisions a non-issue.
+This replaced an earlier "interactive iPhone mockup" treatment (a `PhoneMockup` frame containing a `ProjectAppScreen`) by explicit request: none of the seeded case studies are actually mobile apps (a scheduling dispatch board, an integration pipeline, a client portal, a ticketing system are all web/dashboard tools), so framing every card as a phone screen was visually inaccurate, and the new flat banner format is consistent with `ServiceCard`'s established image-plus-`surface-container` pattern instead of introducing a one-off device-frame conceit. `PhoneMockup`/`ProjectAppScreen` were deleted, not kept as unused code.
+
+The banner's gradient (standing in for AI-generated art — there's no image-generation tool available in this environment, see the note below) uses the same small `gradients` palette and index-based selection as before. **`ProjectGrid` passes `index` down to `ProjectCard`** specifically so each project gets a different, stable gradient — an earlier version picked the gradient by hashing `project.slug`, but with only 4 gradients and 4 seeded projects, two slugs happened to hash to the same bucket and got identical covers. Keep using the list index (not a content hash) for this unless the palette grows enough to make collisions a non-issue.
 
 ## Key implementation notes
 
@@ -110,23 +112,25 @@ Every border was deliberately removed from Header, Button (secondary/ghost use a
 - **Blog**: MDX files in `content/blog/` are read at build time via Node `fs` in `lib/mdx.ts` (Server Components only). `app/blog/[slug]/page.tsx` renders via `<MDXRemote source={...} />` from `next-mdx-remote/rsc`, with `generateStaticParams()` for static generation.
 - **SEO**: `lib/metadata.ts` exports `buildMetadata()`, used by every page's `export const metadata` (or `generateMetadata()` for dynamic project/blog detail pages). `app/sitemap.ts` and `app/robots.ts` use Next's built-in `MetadataRoute` types. Default OG image is generated dynamically at `/opengraph-image` via `next/og`'s `ImageResponse`.
 - **Contact form**: `components/contact/ContactForm.tsx` is a client component with an `idle | submitting | success | error` state machine, client-side validation (required fields + email regex), and a `fetch(..., { method: "POST" })` straight to `siteConfig.formspreeEndpoint`. No server route.
+- **Analytics**: `components/ui/PlausibleAnalytics.tsx` loads the Plausible script (`data-domain` derived from `siteConfig.url`'s hostname) only when `lib/cookie-consent.ts`'s stored status is `"accepted"` — mounted in `app/layout.tsx` next to `ThemeWatcher`, same `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)` pattern as the rest of that store's consumers. Plausible itself is cookieless and wouldn't strictly require consent, but the cookie banner's copy explicitly promises "your choice here will control it," so gating behind an explicit accept (not just "not declined") keeps that promise literally true. `/privacy`, `/cookies`, and `/terms` were all updated to describe Plausible by name instead of "we don't currently use analytics."
 
 ## Current page copy (source of truth — don't regress to older placeholder wording)
 
-- **Home hero**: heading "Transforming Business Challenges into Practical Digital Solutions"; sub-copy "Smarter operations, better decisions with technology that delivers measurable results." No eyebrow badge/button above the heading — it was there briefly (a link to `/blog`) but was removed by request; don't re-add it without being asked.
-- **About page**: heading "Technology should solve business problems—not create them."; a "How we work" 5-step list (Discover → Analyse → Design → Develop → Improve); a "WHY WORK WITH US" panel ("we don't start with technology—I start with your business.").
-- **Services page**: 6 services, each just a title + one-line description (no sub-bullet feature lists): Operational Discovery, Business Process Automation, Custom Business Systems, Operational Dashboards, Digital Transformation, MVP Development.
+- **Home hero**: heading "Transforming Business Challenges into Practical Digital Solutions"; sub-copy "Smarter operations, better decisions with technology that delivers measurable results." No eyebrow badge/button above the heading — it was there briefly (a link to `/blog`) but was removed by request; don't re-add it without being asked. Only one CTA button ("See past work", linking to `/projects`) — a second "Start a project" button was removed by request so the hero has a single, unambiguous action; don't re-add it without being asked.
+- **About page**: heading "Technology should solve business problems, not create them."; a four-paragraph intro (belief in technology that fits how a business operates, the research-driven approach, evidence-guided engagements, technology as an enabler of progress); a "How we work" 5-step list (Discover → Analyse → Design → Develop → Improve); a "WHY WORK WITH US" panel ("We don't start with technology. We start with your business.").
+- **Services page**: 6 services, each just a title + one-line description (no sub-bullet feature lists): Operational Discovery, Business Process Automation, Custom Business Systems, Operational Dashboards, Digital Transformation, MVP Development. The page heading is deliberately lowercase — "custom technology scoped to your actual problem" — and set smaller than `SectionHeading`'s default h1 size via its `titleClassName` prop; not a bug, a requested style.
+- **Home's "What We Do" section** (`ServicesSummary.tsx`): heading "Research Driven Technology Solutions" (Title Case, no hyphen — an intentional, requested exception to the lowercase-heading treatment used elsewhere), set smaller via `titleClassName`. No "View all services" button — removed by request; don't re-add it without being asked.
+- **Blog/Insights page**: heading is deliberately lowercase — "notes on technology, automation and operations" (no Oxford comma) — same `titleClassName` size-reduction treatment as Services.
+- **Research page**: the "Industries involved" section renders each industry as an icon + label card (icons from `lucide-react`, mapped in `app/research/page.tsx`), not plain text pills — matches the hover-lift card language used by `ServiceCard`/`ProjectCard` elsewhere. The "Contribute to the research" section (the embedded `GoogleFormEmbed`) was removed from the page by request, "for now" — `components/research/GoogleFormEmbed.tsx` and `siteConfig.researchGoogleFormUrl` are kept, just currently unused, so it can be re-added later without rebuilding it. The FAQ answers in `content/faq.ts` were edited to stop referencing "the Google Form above" accordingly.
+- **Word choice**: the word "software" is deliberately avoided in visitor-facing copy site-wide, in favour of "technology" (and occasionally "solutions"/"systems"/"tools" for variety) — a brand-voice choice made by explicit request, distinct from the "Custom Ideal" corruption incident described below. Keep new copy consistent with this.
 
 ## Placeholders to replace before launch
 
 All centralized in `lib/site-config.ts` and `.env.local.example`:
 
-- `NEXT_PUBLIC_FORMSPREE_ID` — real Formspree form ID for the contact form to actually deliver mail
-- `NEXT_PUBLIC_SITE_URL` — real production domain (used for canonical URLs, sitemap, OG metadata)
-- `siteConfig.researchGoogleFormUrl` — real embedded Google Form URL on the Research page
-- `siteConfig.calendlyUrl` — real Calendly (or similar) link, used in two places, both placeholder-aware:
-  - `components/contact/InterviewCTA.tsx` (the "Prefer to talk instead?" panel on the Contact page) renders nothing until it's set, rather than showing a self-referential link back to the page it's already on
-  - `components/home/CTASection.tsx` (the homepage's closing CTA) shows "Book a call" linking to Calendly once set; until then it falls back to "Get in touch" linking to `/contact`
+- `NEXT_PUBLIC_FORMSPREE_ID` — set in `.env.local` (real form ID: `mrpzbvrw`, delivers to `info@techwithtop.co.uk`). This file is gitignored (see `.gitignore`'s `.env*` rule) — a fresh clone or a new deploy target needs this env var set again; it isn't carried by the repo itself.
+- `NEXT_PUBLIC_SITE_URL` — still unset (falls back to `https://example.com`) — real production domain (used for canonical URLs, sitemap, OG metadata, **and** the Plausible `data-domain` below).
+- `siteConfig.researchGoogleFormUrl` — real embedded Google Form URL on the Research page. Not currently wired to the page at all (see "Research page" above) — set this **and** re-add `GoogleFormEmbed` to `app/research/page.tsx` when the "Contribute to the research" section comes back.
 - `public/research-brief.pdf` — currently a minimal placeholder PDF; swap for the real research brief
 - `content/projects.ts`, `content/blog/*.mdx` — currently seeded/placeholder copy; swap for real case studies and posts as they're ready
 - `siteConfig.social` — placeholder GitHub/LinkedIn/Twitter links
@@ -158,7 +162,7 @@ Test files live next to the code they cover, as `*.test.ts(x)`:
 
 ## Known environment limitation: no image generation or upload
 
-This coding environment has no image-generation tool and no way to save an image a user pastes/shares in chat as an actual file on disk — there's no "download attachment" capability available. When a request asks for "AI generated pictures" or "uploaded screenshots" for the project cards, that can't be fulfilled literally yet. The current approach (see `ProjectAppScreen` above) is a CSS-gradient stand-in, explicitly labeled as such. If the user wants real images, they need to either place image files directly in the repo (e.g. `public/projects/`) and say so, or provide an actual reachable file path/URL — don't guess at files in unrelated folders (e.g. Desktop screenshots) without the user explicitly confirming which file belongs to which project.
+This coding environment has no image-generation tool and no way to save an image a user pastes/shares in chat as an actual file on disk — there's no "download attachment" capability available. When a request asks for "AI generated pictures" or "uploaded screenshots" for the project cards, that can't be fulfilled literally yet. The current approach (see `ProjectCard`'s banner above) is a CSS-gradient stand-in, explicitly labeled "Concept visual". If the user wants real images, they need to either place image files directly in the repo (e.g. `public/projects/`) and say so, or provide an actual reachable file path/URL — don't guess at files in unrelated folders (e.g. Desktop screenshots) without the user explicitly confirming which file belongs to which project.
 
 ## A note on external/unexplained edits
 

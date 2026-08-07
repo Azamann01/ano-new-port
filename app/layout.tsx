@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeWatcher } from "@/components/ui/ThemeWatcher";
 import { CookieConsentBanner } from "@/components/ui/CookieConsentBanner";
+import { PlausibleAnalytics } from "@/components/ui/PlausibleAnalytics";
 import { isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 
 const THEME_INIT_SCRIPT = `
@@ -78,6 +79,7 @@ export default function RootLayout({
           }}
         />
         <ThemeWatcher />
+        <PlausibleAnalytics />
         <Header />
         <main id="main-content" className="flex-1">
           {children}

@@ -3,20 +3,23 @@ import { ServiceCard } from "@/components/services/ServiceCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCard } from "@/components/ui/AnimatedCard";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 
 export function ServicesSummary() {
   return (
     <section className="section-glow relative overflow-hidden py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
-        <SectionHeading eyebrow="What We Do" title="Research-driven technology solutions" />
+        <SectionHeading
+          eyebrow="What We Do"
+          title="Research Driven Technology Solutions"
+          titleClassName="text-2xl sm:text-3xl"
+        />
         <div className="flex max-w-2xl flex-col gap-4 text-base text-[var(--muted)] sm:text-lg">
           <p>
-            We partner with organisations to simplify complex operations through research-driven
+            We partner with organisations to simplify complex operations through research driven
             technology solutions.
           </p>
           <p>
-            By combining business analysis with modern software development, we help businesses
+            By combining business analysis with modern technology development, we help businesses
             streamline processes, improve visibility, automate repetitive tasks, and make more
             informed decisions.
           </p>
@@ -29,9 +32,6 @@ export function ServicesSummary() {
             </AnimatedCard>
           ))}
         </div>
-        <Button href="/services" variant="secondary" className="self-start">
-          View all services
-        </Button>
       </Container>
     </section>
   );

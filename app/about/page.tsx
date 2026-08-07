@@ -28,7 +28,7 @@ const steps = [
   },
   {
     title: "Develop",
-    description: "Build secure, scalable software focused on business outcomes.",
+    description: "Build secure, scalable technology focused on business outcomes.",
   },
   {
     title: "Improve",
@@ -52,13 +52,28 @@ export default function AboutPage() {
       <AnimatedSection className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]" delay={0.05}>
         <div className="flex flex-col gap-4 text-base text-[var(--muted)] sm:text-lg">
           <p>
-            At TechWithTop, we work closely with organisations to understand how they operate,
-            identify inefficiencies, and develop software that improves productivity and
-            supports growth.
+            At TechWithTop, we believe every organisation deserves technology that works in
+            harmony with the way it operates. Lasting business improvement begins with
+            understanding how work gets done, where challenges arise, and what prevents teams
+            from performing at their best.
           </p>
           <p>
-            Every solution is informed by research, built around real workflows, and designed
-            to deliver measurable business value.
+            We take a research driven approach to understanding organisations, working closely
+            with business leaders to gain insight into their operations, processes, and
+            objectives. By identifying inefficiencies, reducing unnecessary complexity, and
+            uncovering opportunities for improvement, we help organisations build stronger, more
+            efficient ways of working.
+          </p>
+          <p>
+            Every engagement is guided by evidence, informed by operational insight, and focused
+            on delivering measurable outcomes. Our commitment is to create practical solutions
+            that improve productivity, strengthen decision making, support sustainable growth,
+            and deliver lasting business value.
+          </p>
+          <p>
+            We see technology as an enabler of progress. Our purpose is to help organisations
+            transform operational challenges into opportunities for continuous improvement,
+            innovation, and long term success.
           </p>
         </div>
         <div className="surface-container rounded-2xl p-6">

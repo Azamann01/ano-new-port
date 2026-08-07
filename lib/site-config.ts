@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "TechWithTop",
   tagline: "Helping SMEs work smarter with technology",
   description:
-    "We help businesses simplify operations by developing custom software: practical tools that remove busywork and let your team focus on what matters.",
+    "We help businesses simplify operations by developing custom technology: practical tools that remove busywork and let your team focus on what matters.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
-  email: "projects@topewilson.tech",
+  email: "info@techwithtop.co.uk",
   location: "United Kingdom / Worldwide",
 
   nav: [
@@ -40,7 +40,7 @@ export const siteConfig = {
       : "https://formspree.io/f/REPLACE_ME",
   researchGoogleFormUrl:
     "https://docs.google.com/forms/d/e/REPLACE_ME/viewform?embedded=true",
-  calendlyUrl: "https://calendly.com/REPLACE_ME/interview",
+  calendlyUrl: "https://calendly.com/techwithtop-info/30min",
   researchBriefPath: "/research-brief.pdf",
 } as const;
 

@@ -6,9 +6,9 @@ import { SectionDivider } from "@/components/ui/SectionDivider";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Custom Software for SMEs",
+  title: "Custom Technology for SMEs",
   description:
-    "Helping small and midsize businesses work smarter with practical, custom software.",
+    "Helping small and midsize businesses work smarter with practical, custom technology.",
   path: "/",
 });
 

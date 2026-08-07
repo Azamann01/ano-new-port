@@ -7,6 +7,7 @@ type SectionHeadingProps = {
   level?: "h1" | "h2" | "h3";
   align?: "left" | "center";
   className?: string;
+  titleClassName?: string;
 };
 
 export function SectionHeading({
@@ -16,6 +17,7 @@ export function SectionHeading({
   level = "h2",
   align = "left",
   className,
+  titleClassName,
 }: SectionHeadingProps) {
   const Heading = level;
 
@@ -36,7 +38,8 @@ export function SectionHeading({
         className={cn(
           level === "h1"
             ? "text-4xl font-bold tracking-tight sm:text-5xl"
-            : "text-3xl font-bold tracking-tight sm:text-4xl"
+            : "text-3xl font-bold tracking-tight sm:text-4xl",
+          titleClassName
         )}
       >
         {title}

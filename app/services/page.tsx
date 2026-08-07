@@ -23,7 +23,8 @@ export default function ServicesPage() {
         <SectionHeading
           level="h1"
           eyebrow="Services"
-          title="Custom software, scoped to your actual problem"
+          title="custom technology scoped to your actual problem"
+          titleClassName="text-3xl sm:text-4xl"
           description="Every engagement starts with understanding the manual process costing your team time, then building the smallest tool that fixes it."
         />
       </AnimatedSection>

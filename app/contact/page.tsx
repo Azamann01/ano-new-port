@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Contact",
-  description: "Get in touch to talk about a custom software project for your business.",
+  description: "Get in touch to talk about a custom technology project for your business.",
   path: "/contact",
   ogImage: "/contact/opengraph-image",
 });

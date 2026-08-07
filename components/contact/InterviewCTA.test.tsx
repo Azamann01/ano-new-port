@@ -1,12 +1,14 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { InterviewCTA } from "@/components/contact/InterviewCTA";
+import { siteConfig } from "@/lib/site-config";
 
 describe("InterviewCTA", () => {
-  it("renders nothing while calendlyUrl is still a placeholder", () => {
-    const { container } = render(<InterviewCTA />);
+  it("links to Calendly now that a real calendlyUrl is configured", () => {
+    render(<InterviewCTA />);
 
-    expect(container).toBeEmptyDOMElement();
-    expect(screen.queryByText(/prefer to talk instead/i)).not.toBeInTheDocument();
+    const link = screen.getByRole("link", { name: /book free consultation/i });
+    expect(link).toHaveAttribute("href", siteConfig.calendlyUrl);
+    expect(link).toHaveAttribute("target", "_blank");
   });
 });

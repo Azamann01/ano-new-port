@@ -46,9 +46,8 @@ export default function AccessibilityPage() {
           <h2>Known limitations</h2>
           <p>
             Some content on this site is embedded from third parties we don&apos;t control: the
-            Calendly booking widget, the Formspree-powered contact form delivery, and the Google
-            Form embed on our Research page. Their accessibility is governed by those providers,
-            not by us.
+            Calendly booking widget and the Formspree-powered contact form delivery. Their
+            accessibility is governed by those providers, not by us.
           </p>
 
           <h2>Reporting an issue</h2>

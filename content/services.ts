@@ -18,7 +18,7 @@ export const services: Service[] = [
   {
     slug: "custom-business-systems",
     title: "Custom Business Systems",
-    description: "Software built around how your business actually operates.",
+    description: "Technology built around how your business actually operates.",
     icon: "AppWindow",
     image: "/services/custom-business-systems.png",
   },
@@ -39,7 +39,7 @@ export const services: Service[] = [
   {
     slug: "mvp-development",
     title: "MVP Development",
-    description: "Validate new ideas with scalable, production ready software.",
+    description: "Validate new ideas with scalable, production ready technology.",
     icon: "Rocket",
     image: "/services/mvp-development.png",
   },

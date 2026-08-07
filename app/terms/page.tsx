@@ -29,7 +29,7 @@ export default function TermsPage() {
           <h2>Scope</h2>
           <p>
             These terms govern your use of this website only. They don&apos;t form a contract for
-            any software development, consulting, or other services: any client engagement with{" "}
+            any technology development, consulting, or other services: any client engagement with{" "}
             {siteConfig.companyName} is governed by a separate agreement entered into directly with
             you.
           </p>
@@ -50,9 +50,9 @@ export default function TermsPage() {
           <h2>Third-party links and embeds</h2>
           <p>
             This site links to or embeds third-party services, including Calendly (scheduling),
-            Formspree (contact form delivery), and Google Forms (research contribution). We
-            aren&apos;t responsible for the content, availability, or practices of these third
-            parties, which are governed by their own terms.
+            Formspree (contact form delivery), and Plausible (analytics). We aren&apos;t
+            responsible for the content, availability, or practices of these third parties, which
+            are governed by their own terms.
           </p>
 
           <h2>Liability</h2>
