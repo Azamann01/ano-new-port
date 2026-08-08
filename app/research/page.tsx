@@ -61,7 +61,7 @@ export default function ResearchPage() {
           level="h1"
           eyebrow="Research"
           title="What's actually costing SMEs the most time?"
-          description="We're running ongoing research into where manual processes cost small and midsize businesses the most: time, money, and errors, and where custom technology realistically pays off."
+          description="We're running ongoing research into where manual processes cost small and midsize businesses the most: time, money, errors, and where custom technology realistically pays off."
         />
       </AnimatedSection>
 

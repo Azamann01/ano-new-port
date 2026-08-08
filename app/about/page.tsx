@@ -43,7 +43,7 @@ export default function AboutPage() {
         <SectionHeading
           level="h1"
           eyebrow="About"
-          title="Technology should solve business problems, not create them."
+          title="Technology should solve business problems not create them"
         />
       </AnimatedSection>
 
