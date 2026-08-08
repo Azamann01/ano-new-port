@@ -37,6 +37,7 @@ export const projects: ProjectCaseStudy[] = [
       "Single dashboard for stock across all locations",
     ],
     tags: ["Integrations", "Retail", "Automation"],
+    image: "/projects/inventory-sync-pipeline.svg",
   },
   {
     slug: "client-onboarding-portal",
@@ -55,6 +56,7 @@ export const projects: ProjectCaseStudy[] = [
       "Clients get live status visibility",
     ],
     tags: ["Client Portal", "Workflow", "Professional Services"],
+    image: "/projects/client-onboarding-portal.svg",
   },
   {
     slug: "maintenance-request-system",
@@ -73,5 +75,6 @@ export const projects: ProjectCaseStudy[] = [
       "Tenant satisfaction scores improved",
     ],
     tags: ["Ticketing", "Real Estate", "Internal Tool"],
+    image: "/projects/maintenance-request-system.svg",
   },
 ];
