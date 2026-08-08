@@ -42,6 +42,20 @@ const industries: { label: string; icon: LucideIcon; gradient: string }[] = [
 export default function ResearchPage() {
   return (
     <Container className="section-glow relative overflow-hidden flex flex-col gap-16 py-20 sm:py-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map(({ question, answer }) => ({
+              "@type": "Question",
+              name: question,
+              acceptedAnswer: { "@type": "Answer", text: answer },
+            })),
+          }),
+        }}
+      />
       <AnimatedSection>
         <SectionHeading
           level="h1"

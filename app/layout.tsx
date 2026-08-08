@@ -39,6 +39,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   robots: { index: true, follow: true },
+  verification: {
+    google: "KNntoyH-AU7H7qZf_lriqtQVF4_9B0PslW6QTzXzaiQ",
+  },
 };
 
 export default function RootLayout({
@@ -72,6 +75,7 @@ export default function RootLayout({
               legalName: siteConfig.companyName,
               description: siteConfig.description,
               url: siteConfig.url,
+              image: new URL("/opengraph-image", siteConfig.url).toString(),
               email: siteConfig.email,
               areaServed: siteConfig.location,
               sameAs: Object.values(siteConfig.social).filter((url) => !isPlaceholderUrl(url)),

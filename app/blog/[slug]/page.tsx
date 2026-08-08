@@ -7,6 +7,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 import { buildMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site-config";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -46,8 +47,32 @@ export default async function BlogPostPage({ params }: Props) {
     day: "numeric",
   });
 
+  const postUrl = new URL(`/blog/${post.slug}`, siteConfig.url).toString();
+
   return (
     <Container className="section-glow relative overflow-hidden flex flex-col gap-10 py-20 sm:py-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description: post.excerpt,
+            datePublished: post.date,
+            dateModified: post.date,
+            url: postUrl,
+            mainEntityOfPage: postUrl,
+            image: new URL(`/blog/${post.slug}/opengraph-image`, siteConfig.url).toString(),
+            author: { "@type": "Person", name: post.author },
+            publisher: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+            },
+          }),
+        }}
+      />
       <Link
         href="/blog"
         className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--container)]"
