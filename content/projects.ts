@@ -56,6 +56,7 @@ export const projects: ProjectCaseStudy[] = [
       "Clients get live status visibility",
     ],
     tags: ["Client Portal", "Workflow", "Professional Services"],
+    image: "/projects/client-onboarding-portal.jpg",
   },
   {
     slug: "maintenance-request-system",
