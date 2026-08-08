@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent tooling (npx skills add), not part of the site
+/.agents/
+/agent/
+/.claude/skills/
+/skills-lock.json
