@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowUpRight,
   Briefcase,
@@ -37,17 +38,33 @@ export function ProjectCard({ project, index = 0 }: { project: ProjectCaseStudy;
       href={`/projects/${project.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-3xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     >
-      <div className={`relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br ${gradient}`}>
-        <Icon
-          aria-hidden
-          strokeWidth={1.25}
-          className="absolute -bottom-4 -right-4 h-28 w-28 text-white/15 transition-transform duration-300 group-hover:scale-110"
-        />
-        <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-black/25 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-[2px]">
-          <Sparkles aria-hidden className="h-3 w-3" />
-          Concept visual
-        </div>
-        <div className="absolute inset-x-4 bottom-3">
+      <div
+        className={`relative aspect-[16/10] w-full overflow-hidden ${project.image ? "" : `bg-gradient-to-br ${gradient}`}`}
+      >
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={`${project.title} interface`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <Icon
+            aria-hidden
+            strokeWidth={1.25}
+            className="absolute -bottom-4 -right-4 h-28 w-28 text-white/15 transition-transform duration-300 group-hover:scale-110"
+          />
+        )}
+        {!project.image && (
+          <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-black/25 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-[2px]">
+            <Sparkles aria-hidden className="h-3 w-3" />
+            Concept visual
+          </div>
+        )}
+        <div
+          className={`absolute inset-x-0 bottom-0 px-4 pb-3 pt-8 ${project.image ? "bg-gradient-to-t from-black/70 to-transparent" : ""}`}
+        >
           <p className="text-[11px] font-semibold uppercase tracking-widest text-white/70">
             {project.industry}
           </p>

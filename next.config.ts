@@ -31,6 +31,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    // Only local, first-party SVGs under /public (e.g. project screenshots) go
+    // through next/image — never user-uploaded or remote content — so the usual
+    // SVG/XSS risk this flag guards against doesn't apply here. The scoped CSP
+    // on the image response itself is still the recommended safety net regardless.
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "inline",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async headers() {
     return [

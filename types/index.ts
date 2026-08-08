@@ -16,6 +16,8 @@ export type ProjectCaseStudy = {
   solution: string;
   results: string[];
   tags: string[];
+  /** Path under /public to a real screenshot/mockup. Falls back to the gradient "Concept visual" banner when unset. */
+  image?: string;
 };
 
 export type FAQItem = {

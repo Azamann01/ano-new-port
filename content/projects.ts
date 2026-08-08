@@ -18,6 +18,7 @@ export const projects: ProjectCaseStudy[] = [
       "Technicians get their day's schedule automatically each morning",
     ],
     tags: ["Scheduling", "SMS Automation", "Internal Tool"],
+    image: "/projects/field-service-scheduler.svg",
   },
   {
     slug: "inventory-sync-pipeline",
