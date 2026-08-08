@@ -9,6 +9,9 @@ const socialLinks = [
   { label: "Twitter", href: siteConfig.social.twitter, icon: TwitterIcon },
 ].filter(({ href }) => !isPlaceholderUrl(href));
 
+const companyDetailsReady =
+  !isPlaceholderUrl(siteConfig.companyNumber) && !isPlaceholderUrl(siteConfig.registeredAddress);
+
 export function Footer() {
   return (
     <footer className="border-t border-[var(--border)]">
@@ -53,10 +56,12 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <p>
-            {siteConfig.companyName} · Company No. {siteConfig.companyNumber} ·{" "}
-            {siteConfig.registeredAddress}
-          </p>
+          {companyDetailsReady && (
+            <p>
+              {siteConfig.companyName} · Company No. {siteConfig.companyNumber} ·{" "}
+              {siteConfig.registeredAddress}
+            </p>
+          )}
         </div>
 
         <nav className="flex flex-wrap items-center gap-x-4 gap-y-1">
