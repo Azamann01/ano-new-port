@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
@@ -15,6 +15,15 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [values, setValues] = useState({ name: "", email: "", message: "", consent: false });
+
+  useEffect(() => {
+    if (status !== "success") return;
+    const timeout = setTimeout(() => {
+      setStatus("idle");
+      setValues({ name: "", email: "", message: "", consent: false });
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [status]);
 
   function validate() {
     const nextErrors: Record<string, string> = {};
