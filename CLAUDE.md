@@ -48,7 +48,7 @@ components/
 
 content/
   services.ts        typed Service[] data (6 services, no sub-feature bullets — title + one-line description)
-  projects.ts         typed ProjectCaseStudy[] data (4 seeded case studies)
+  projects.ts         typed ProjectCaseStudy[] data (5 seeded case studies)
   faq.ts              typed FAQItem[] data (Research page FAQ)
   blog/*.mdx           3 seeded placeholder posts with frontmatter (title, date, excerpt, author)
 
@@ -105,7 +105,13 @@ Every border was deliberately removed from Header, Button (secondary/ghost use a
 
 This replaced an earlier "interactive iPhone mockup" treatment (a `PhoneMockup` frame containing a `ProjectAppScreen`) by explicit request: none of the seeded case studies are actually mobile apps (a scheduling dispatch board, an integration pipeline, a client portal, a ticketing system are all web/dashboard tools), so framing every card as a phone screen was visually inaccurate, and the new flat banner format is consistent with `ServiceCard`'s established image-plus-`surface-container` pattern instead of introducing a one-off device-frame conceit. `PhoneMockup`/`ProjectAppScreen` were deleted, not kept as unused code.
 
-The banner's gradient (standing in for AI-generated art — there's no image-generation tool available in this environment, see the note below) uses the same small `gradients` palette and index-based selection as before. **`ProjectGrid` passes `index` down to `ProjectCard`** specifically so each project gets a different, stable gradient — an earlier version picked the gradient by hashing `project.slug`, but with only 4 gradients and 4 seeded projects, two slugs happened to hash to the same bucket and got identical covers. Keep using the list index (not a content hash) for this unless the palette grows enough to make collisions a non-issue.
+The banner's gradient (standing in for AI-generated art — there's no image-generation tool available in this environment, see the note below) uses the same small `gradients` palette and index-based selection as before. **`ProjectGrid` passes `index` down to `ProjectCard`** specifically so each project gets a different, stable gradient — an earlier version picked the gradient by hashing `project.slug`, but with only 4 gradients and 4 seeded projects, two slugs happened to hash to the same bucket and got identical covers. Keep using the list index (not a content hash) for this unless the palette grows enough to make collisions a non-issue. The `gradients` array now has 5 entries (one per seeded project); extend it again before adding a 6th project.
+
+### Project detail page video
+
+`ProjectCaseStudy` has two optional flat fields, `video?: string` and `videoPoster?: string` (paths under `/public`, same convention as `image`). When `project.video` is set, `app/projects/[slug]/page.tsx` renders a self-hosted `<video controls preload="none">` between the intro header and the problem/solution section. `preload="none"` is deliberate: the video file isn't fetched until a visitor presses play. This needed a `media-src 'self'` addition to the CSP in `next.config.ts` (self-hosted only, no `frame-src` change since this isn't an iframe embed). `hospitality-supply-chain-platform` is the first project using this; the other 4 have no `video` field, so the section simply doesn't render for them.
+
+To turn a screen recording into these assets on macOS without installing anything: transcode to H.264 `.mp4` with `avconvert -s <source.mov> -p Preset1280x720 -o public/projects/<slug>.mp4 --replace` (needed if the source is HEVC, which most macOS screen recordings are by default, and HEVC isn't reliably playable in non-Safari browsers). Extract a poster frame with `qlmanage -t -s 1280 -o public/projects <source.mov>`, then rename the resulting `<source>.mov.png` to `public/projects/<slug>-poster.png`.
 
 ## Key implementation notes
 
@@ -133,7 +139,7 @@ All centralized in `lib/site-config.ts` and `.env.local.example`:
 - `NEXT_PUBLIC_SITE_URL` — still unset (falls back to `https://example.com`) — real production domain (used for canonical URLs, sitemap, OG metadata, **and** the Plausible `data-domain` below).
 - `siteConfig.researchGoogleFormUrl` — real embedded Google Form URL on the Research page. Not currently wired to the page at all (see "Research page" above) — set this **and** re-add `GoogleFormEmbed` to `app/research/page.tsx` when the "Contribute to the research" section comes back.
 - `public/research-brief.pdf` — currently a minimal placeholder PDF; swap for the real research brief
-- `content/projects.ts`, `content/blog/*.mdx` — currently seeded/placeholder copy; swap for real case studies and posts as they're ready
+- `content/projects.ts`, `content/blog/*.mdx` — currently seeded/placeholder copy; swap for real case studies and posts as they're ready. `hospitality-supply-chain-platform` is real content with a real cover `image` and demo `video`, not placeholder.
 - `siteConfig.social` — placeholder GitHub/LinkedIn/Twitter links
 - `siteConfig.companyNumber` / `siteConfig.registeredAddress` — Companies House number and registered office address for TechWithTop Ltd, shown in the footer and Privacy Policy; deliberately left as `REPLACE_ME` rather than a fabricated value
 
@@ -161,9 +167,11 @@ Test files live next to the code they cover, as `*.test.ts(x)`:
 - Add a test alongside any new component that has non-trivial logic (validation, conditional rendering, data transforms). Pure presentational components don't need dedicated tests.
 - Run `npm test` and `npm run build`/`npm run lint` before considering a change done.
 
-## Known environment limitation: no image generation or upload
+## Known environment limitation: no saving pasted chat images to disk
 
-This coding environment has no image-generation tool and no way to save an image a user pastes/shares in chat as an actual file on disk — there's no "download attachment" capability available. When a request asks for "AI generated pictures" or "uploaded screenshots" for the project cards, that can't be fulfilled literally yet. The current approach (see `ProjectCard`'s banner above) is a CSS-gradient stand-in, explicitly labeled "Concept visual". If the user wants real images, they need to either place image files directly in the repo (e.g. `public/projects/`) and say so, or provide an actual reachable file path/URL — don't guess at files in unrelated folders (e.g. Desktop screenshots) without the user explicitly confirming which file belongs to which project.
+This coding environment has no way to save an image a user pastes or shares directly in chat as an actual file on disk. There is no "download attachment" capability available. When a request asks for "uploaded screenshots" and the only thing supplied is an image pasted into the conversation, that can't be fulfilled literally: the model can see and describe the image, but can't turn it into a file in `public/`. If the user wants real images (or video, the same constraint applies), they need to either place the file directly in the repo (for example `public/projects/`) and say so, or give an actual reachable file path on disk. `hospitality-supply-chain-platform`'s demo video and cover image both confirm this works: both were supplied as real paths under `~/Desktop/`, not pasted into chat. Don't guess at files in unrelated folders without the user explicitly confirming which file belongs to which project.
+
+This is distinct from image *generation*: ImageKit's text-to-image tool (`ik-genimg`) is available in this session and was used for `client-onboarding-portal.jpg`'s real screenshot (see its `image` field in `content/projects.ts`). The gradient "Concept visual" banner (see `ProjectCard`'s banner above) is a deliberate per-project choice, not a hard environment limitation, for projects that haven't had a real image generated or supplied yet.
 
 ## A note on external/unexplained edits
 

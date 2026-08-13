@@ -6,9 +6,12 @@ export function CTASection() {
   const calendlyReady = !isPlaceholderUrl(siteConfig.calendlyUrl);
 
   return (
-    <section className="section-glow relative overflow-hidden py-20 sm:py-28">
-      <Container>
-        <div className="surface-container flex flex-col items-center gap-6 rounded-3xl px-8 py-16 text-center">
+    <section className="relative overflow-hidden">
+      {/* Full-bleed band, not a contained/rounded card: the surface-container
+          tint sits on the outer section so it spans edge to edge, with
+          Container only constraining the text column inside it. */}
+      <div className="surface-container">
+        <Container className="flex flex-col items-center gap-6 py-8 text-center">
           <h2 className="max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">
             Ready to cut the busywork out of your operations?
           </h2>
@@ -22,8 +25,8 @@ export function CTASection() {
           >
             {calendlyReady ? "Book a call" : "Get in touch"}
           </Button>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   );
 }

@@ -77,4 +77,25 @@ export const projects: ProjectCaseStudy[] = [
     tags: ["Ticketing", "Real Estate", "Internal Tool"],
     image: "/projects/maintenance-request-system.svg",
   },
+  {
+    slug: "hospitality-supply-chain-platform",
+    title: "Hospitality Supply Chain Operations Platform",
+    client: "Restaurant and Supplier Demo Network",
+    industry: "Hospitality",
+    summary:
+      "An ordering platform that connects restaurants and suppliers with one shared, live record of every order. It replaces daily phone calls and guesswork.",
+    problem:
+      "Ordering between restaurants and suppliers ran entirely on phone calls and texts, with no shared record of what was ordered, confirmed, or where it stood. Orders got lost, and neither side had fulfillment visibility.",
+    solution:
+      "Built an MVP with two connected portals. Restaurants get an ordering flow with reordering in one click, and suppliers get a dashboard that tracks every order through five stages (Submitted, Confirmed, Preparing, Out for Delivery, and Delivered). Both sides see the status update live.",
+    results: [
+      "Order lifecycle tracked end to end across both portals, restaurant and supplier",
+      "Reordering in one click replaces the daily phone call",
+      "Live status updates remove the need for extra calls to check on an order",
+    ],
+    tags: ["MVP", "Hospitality", "Dual Portal"],
+    image: "/projects/hospitality-supply-chain-platform.jpg",
+    video: "/projects/hospitality-supply-chain-platform.mp4",
+    videoPoster: "/projects/hospitality-supply-chain-platform-poster.png",
+  },
 ];

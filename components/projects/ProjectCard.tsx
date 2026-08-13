@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   Briefcase,
   Building2,
+  ChefHat,
   ShoppingBag,
   Sparkles,
   TrendingUp,
@@ -17,6 +18,7 @@ const industryIcons: Record<string, LucideIcon> = {
   Retail: ShoppingBag,
   "Professional Services": Briefcase,
   "Real Estate": Building2,
+  Hospitality: ChefHat,
 };
 
 // Curated gradient pairs standing in for a real project screenshot — deterministic
@@ -27,11 +29,18 @@ const gradients = [
   "from-sky-400 via-indigo-400 to-violet-500",
   "from-emerald-400 via-teal-400 to-cyan-500",
   "from-orange-400 via-rose-400 to-fuchsia-500",
+  "from-cyan-400 via-blue-500 to-indigo-500",
 ];
 
 export function ProjectCard({ project, index = 0 }: { project: ProjectCaseStudy; index?: number }) {
   const Icon = industryIcons[project.industry] ?? Briefcase;
   const gradient = gradients[index % gradients.length];
+  // Only real raster screenshots (jpg/png) get the brand wash below, not the
+  // hand-built SVG mockups (field-service-scheduler, inventory-sync-pipeline,
+  // maintenance-request-system) — those are vector illustrations, not actual
+  // product screenshots, so tinting them isn't the same kind of "on-brand
+  // wash over a real screenshot" the CTA section uses.
+  const isRealScreenshot = /\.(jpe?g|png)$/i.test(project.image ?? "");
 
   return (
     <Link
@@ -42,13 +51,21 @@ export function ProjectCard({ project, index = 0 }: { project: ProjectCaseStudy;
         className={`relative aspect-[16/10] w-full overflow-hidden ${project.image ? "" : `bg-gradient-to-br ${gradient}`}`}
       >
         {project.image ? (
-          <Image
-            src={project.image}
-            alt={`${project.title} interface`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          <>
+            <Image
+              src={project.image}
+              alt={`${project.title} interface`}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {isRealScreenshot && (
+              // Light brand wash, same 10% opacity as the Home CTA's
+              // screenshot background, so real project screenshots read as
+              // on-brand without burying the screenshot itself.
+              <div className="absolute inset-0 bg-[var(--container)]/10" />
+            )}
+          </>
         ) : (
           <Icon
             aria-hidden

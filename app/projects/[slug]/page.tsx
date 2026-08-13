@@ -51,7 +51,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <AnimatedSection className="flex flex-col gap-3">
         <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
-          {project.industry} · {project.client}
+          {project.industry}, {project.client}
         </p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{project.title}</h1>
         <p className="max-w-2xl text-lg text-[var(--muted)]">{project.summary}</p>
@@ -59,7 +59,26 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <SectionDivider />
 
-      <AnimatedSection delay={0.05} className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      {project.video && (
+        <>
+          <AnimatedSection delay={0.05} className="surface-container overflow-hidden rounded-2xl">
+            <video
+              src={project.video}
+              poster={project.videoPoster}
+              controls
+              preload="none"
+              className="w-full"
+            />
+          </AnimatedSection>
+
+          <SectionDivider />
+        </>
+      )}
+
+      <AnimatedSection
+        delay={project.video ? 0.1 : 0.05}
+        className="grid grid-cols-1 gap-8 lg:grid-cols-2"
+      >
         <article>
           <h2 className="text-lg font-semibold">The problem</h2>
           <p className="mt-2 text-[var(--muted)]">{project.problem}</p>
@@ -72,7 +91,10 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <SectionDivider />
 
-      <AnimatedSection delay={0.1} className="surface-container rounded-2xl p-6">
+      <AnimatedSection
+        delay={project.video ? 0.15 : 0.1}
+        className="surface-container rounded-2xl p-6"
+      >
         <h2 className="text-lg font-semibold">Results</h2>
         <ul className="mt-3 flex flex-col gap-2">
           {project.results.map((result) => (
@@ -84,7 +106,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         </ul>
       </AnimatedSection>
 
-      <AnimatedSection delay={0.15} className="flex justify-start">
+      <AnimatedSection delay={project.video ? 0.2 : 0.15} className="flex justify-start">
         <Button href="/contact">Start a similar project</Button>
       </AnimatedSection>
     </Container>

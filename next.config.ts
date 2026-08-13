@@ -19,6 +19,7 @@ const contentSecurityPolicy = [
   `script-src ${scriptSrc.join(" ")}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
+  "media-src 'self'",
   "font-src 'self' data:",
   "connect-src 'self' https://plausible.io https://formspree.io",
   "frame-ancestors 'none'",
