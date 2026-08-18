@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
@@ -155,16 +155,25 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <AnimatedSection
         delay={project.video ? 0.3 : 0.25}
-        className="flex flex-wrap justify-start gap-3"
+        className="flex flex-wrap justify-start gap-2"
       >
+        <Button href="/contact" className="group hover:shadow-lg">
+          Start a similar project
+          <ArrowRight
+            aria-hidden
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </Button>
         {project.liveDemoUrl && (
-          <Button href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer">
+          <Button
+            href={project.liveDemoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="secondary"
+          >
             Try the live demo
           </Button>
         )}
-        <Button href="/contact" variant={project.liveDemoUrl ? "secondary" : "primary"}>
-          Start a similar project
-        </Button>
       </AnimatedSection>
     </Container>
   );
