@@ -120,10 +120,10 @@ export default async function ProjectDetailPage({ params }: Props) {
         className="surface-container rounded-2xl p-6"
       >
         <h2 className="text-lg font-semibold">Results</h2>
-        {project.client === "Self-initiated project" && (
+        {project.client === "Internal build" && (
           <p className="mt-1 text-xs text-[var(--container-muted)]">
-            Illustrative figures for this self-initiated project, not measured results from a
-            paying client.
+            Illustrative figures for this internal build, not measured results from a paying
+            client.
           </p>
         )}
         <ul className="mt-3 flex flex-col gap-2">

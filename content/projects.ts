@@ -1,14 +1,14 @@
 import type { ProjectCaseStudy } from "@/types";
 
-// Honest framing: none of these were paid client engagements, so `client`
-// is a plain label rather than a company-shaped name that could read as a
-// real (but unnamed) client. Swap it for the real client name once one of
-// these becomes an actual engagement.
+// Honest framing: none of these were paid client engagements yet, so `client`
+// reads as deliberate company R&D ("Internal build") rather than a
+// company-shaped name that could pass as a real (but unnamed) client. Swap
+// it for the real client name once one of these becomes an actual engagement.
 export const projects: ProjectCaseStudy[] = [
   {
     slug: "field-service-scheduler",
     title: "Field Service Scheduler",
-    client: "Self-initiated project",
+    client: "Internal build",
     industry: "Home Services",
     summary:
       "Replaced a manual whiteboard and phone scheduling process with a shared dispatch tool for technicians.",
@@ -28,7 +28,7 @@ export const projects: ProjectCaseStudy[] = [
   {
     slug: "inventory-sync-pipeline",
     title: "Inventory Sync Pipeline",
-    client: "Self-initiated project",
+    client: "Internal build",
     industry: "Retail",
     summary:
       "Connected point of sale and ecommerce inventory so stock counts stayed accurate across 6 store locations.",
@@ -48,7 +48,7 @@ export const projects: ProjectCaseStudy[] = [
   {
     slug: "client-onboarding-portal",
     title: "Client Onboarding Portal",
-    client: "Self-initiated project",
+    client: "Internal build",
     industry: "Professional Services",
     summary:
       "An online portal so new clients can submit documents and information without a long email exchange.",
@@ -68,7 +68,7 @@ export const projects: ProjectCaseStudy[] = [
   {
     slug: "maintenance-request-system",
     title: "Maintenance Request System",
-    client: "Self-initiated project",
+    client: "Internal build",
     industry: "Real Estate",
     summary:
       "A simple ticketing system for tenants to submit maintenance requests and for staff to track resolution.",
@@ -88,7 +88,7 @@ export const projects: ProjectCaseStudy[] = [
   {
     slug: "hospitality-supply-chain-platform",
     title: "Hospitality Supply Chain Operations Platform",
-    client: "Self-initiated project",
+    client: "Internal build",
     industry: "Hospitality",
     summary:
       "An ordering platform that connects restaurants and suppliers with one shared, live record of every order. It replaces daily phone calls and guesswork.",
