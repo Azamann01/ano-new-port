@@ -48,3 +48,7 @@ export const siteConfig = {
 export function isPlaceholderUrl(url: string): boolean {
   return url.includes("REPLACE_ME");
 }
+
+/** True once real Companies House details have replaced the REPLACE_ME placeholders. */
+export const companyDetailsReady =
+  !isPlaceholderUrl(siteConfig.companyNumber) && !isPlaceholderUrl(siteConfig.registeredAddress);

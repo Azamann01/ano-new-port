@@ -55,6 +55,16 @@ export default async function ProjectDetailPage({ params }: Props) {
         </p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{project.title}</h1>
         <p className="max-w-2xl text-lg text-[var(--muted)]">{project.summary}</p>
+        <div className="flex flex-wrap gap-2 pt-1">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full bg-[var(--foreground)]/5 px-2.5 py-1 text-xs text-[var(--muted)]"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </AnimatedSection>
 
       <SectionDivider />
@@ -89,13 +99,38 @@ export default async function ProjectDetailPage({ params }: Props) {
         </article>
       </AnimatedSection>
 
+      {project.techStack && (
+        <>
+          <SectionDivider />
+          <AnimatedSection delay={project.video ? 0.15 : 0.1}>
+            <h2 className="text-lg font-semibold">Built with</h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full bg-[var(--foreground)]/5 px-2.5 py-1 text-xs text-[var(--muted)]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </AnimatedSection>
+        </>
+      )}
+
       <SectionDivider />
 
       <AnimatedSection
-        delay={project.video ? 0.15 : 0.1}
+        delay={project.video ? 0.2 : 0.15}
         className="surface-container rounded-2xl p-6"
       >
         <h2 className="text-lg font-semibold">Results</h2>
+        {project.client === "Self-initiated project" && (
+          <p className="mt-1 text-xs text-[var(--container-muted)]">
+            Illustrative figures for this self-initiated project, not measured results from a
+            paying client.
+          </p>
+        )}
         <ul className="mt-3 flex flex-col gap-2">
           {project.results.map((result) => (
             <li key={result} className="flex gap-2 text-sm text-[var(--container-muted)]">
@@ -106,8 +141,35 @@ export default async function ProjectDetailPage({ params }: Props) {
         </ul>
       </AnimatedSection>
 
-      <AnimatedSection delay={project.video ? 0.2 : 0.15} className="flex justify-start">
-        <Button href="/contact">Start a similar project</Button>
+      {project.testimonial && (
+        <>
+          <SectionDivider />
+          <AnimatedSection
+            delay={project.video ? 0.25 : 0.2}
+            className="surface-container rounded-2xl p-6 sm:p-8"
+          >
+            <blockquote className="text-lg font-medium text-[var(--container-foreground)]">
+              &ldquo;{project.testimonial.quote}&rdquo;
+            </blockquote>
+            <p className="mt-4 text-sm text-[var(--container-muted)]">
+              {project.testimonial.author}, {project.testimonial.role}
+            </p>
+          </AnimatedSection>
+        </>
+      )}
+
+      <AnimatedSection
+        delay={project.video ? 0.3 : 0.25}
+        className="flex flex-wrap justify-start gap-3"
+      >
+        {project.liveDemoUrl && (
+          <Button href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer">
+            Try the live demo
+          </Button>
+        )}
+        <Button href="/contact" variant={project.liveDemoUrl ? "secondary" : "primary"}>
+          Start a similar project
+        </Button>
       </AnimatedSection>
     </Container>
   );

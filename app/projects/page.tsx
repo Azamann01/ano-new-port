@@ -21,7 +21,7 @@ export default function ProjectsPage() {
         <SectionHeading
           level="h1"
           eyebrow="Projects"
-          title="case studies from real engagements"
+          title="Case Studies From Real Problems"
           description="Each project started as a specific, costly manual process. Here's how they got fixed."
         />
       </AnimatedSection>

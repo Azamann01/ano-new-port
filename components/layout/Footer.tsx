@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { isPlaceholderUrl, siteConfig } from "@/lib/site-config";
+import { companyDetailsReady, isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 import { Container } from "@/components/ui/Container";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/SocialIcons";
 
@@ -8,9 +8,6 @@ const socialLinks = [
   { label: "LinkedIn", href: siteConfig.social.linkedin, icon: LinkedinIcon },
   { label: "Twitter", href: siteConfig.social.twitter, icon: TwitterIcon },
 ].filter(({ href }) => !isPlaceholderUrl(href));
-
-const companyDetailsReady =
-  !isPlaceholderUrl(siteConfig.companyNumber) && !isPlaceholderUrl(siteConfig.registeredAddress);
 
 export function Footer() {
   return (

@@ -23,7 +23,7 @@ export default function BlogPage() {
         <SectionHeading
           level="h1"
           eyebrow="Insights"
-          title="notes on technology, automation and operations"
+          title="Notes On Technology, Automation And Operations"
           titleClassName="text-3xl sm:text-4xl"
           description="Short, practical writing. No jargon, no theory that doesn't hold up in a small business."
         />

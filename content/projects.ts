@@ -1,10 +1,14 @@
 import type { ProjectCaseStudy } from "@/types";
 
+// Honest framing: none of these were paid client engagements, so `client`
+// is a plain label rather than a company-shaped name that could read as a
+// real (but unnamed) client. Swap it for the real client name once one of
+// these becomes an actual engagement.
 export const projects: ProjectCaseStudy[] = [
   {
     slug: "field-service-scheduler",
     title: "Field Service Scheduler",
-    client: "Regional HVAC Contractor",
+    client: "Self-initiated project",
     industry: "Home Services",
     summary:
       "Replaced a manual whiteboard and phone scheduling process with a shared dispatch tool for technicians.",
@@ -18,12 +22,13 @@ export const projects: ProjectCaseStudy[] = [
       "Technicians get their day's schedule automatically each morning",
     ],
     tags: ["Scheduling", "SMS Automation", "Internal Tool"],
+    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/field-service-scheduler.svg",
   },
   {
     slug: "inventory-sync-pipeline",
     title: "Inventory Sync Pipeline",
-    client: "Multi-location Retailer",
+    client: "Self-initiated project",
     industry: "Retail",
     summary:
       "Connected point of sale and ecommerce inventory so stock counts stayed accurate across 6 store locations.",
@@ -37,12 +42,13 @@ export const projects: ProjectCaseStudy[] = [
       "Single dashboard for stock across all locations",
     ],
     tags: ["Integrations", "Retail", "Automation"],
+    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/inventory-sync-pipeline.svg",
   },
   {
     slug: "client-onboarding-portal",
     title: "Client Onboarding Portal",
-    client: "Boutique Accounting Firm",
+    client: "Self-initiated project",
     industry: "Professional Services",
     summary:
       "An online portal so new clients can submit documents and information without a long email exchange.",
@@ -56,12 +62,13 @@ export const projects: ProjectCaseStudy[] = [
       "Clients get live status visibility",
     ],
     tags: ["Client Portal", "Workflow", "Professional Services"],
+    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/client-onboarding-portal.jpg",
   },
   {
     slug: "maintenance-request-system",
     title: "Maintenance Request System",
-    client: "Property Management Company",
+    client: "Self-initiated project",
     industry: "Real Estate",
     summary:
       "A simple ticketing system for tenants to submit maintenance requests and for staff to track resolution.",
@@ -75,17 +82,18 @@ export const projects: ProjectCaseStudy[] = [
       "Tenant satisfaction scores improved",
     ],
     tags: ["Ticketing", "Real Estate", "Internal Tool"],
+    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/maintenance-request-system.svg",
   },
   {
     slug: "hospitality-supply-chain-platform",
     title: "Hospitality Supply Chain Operations Platform",
-    client: "Restaurant and Supplier Demo Network",
+    client: "Self-initiated project",
     industry: "Hospitality",
     summary:
       "An ordering platform that connects restaurants and suppliers with one shared, live record of every order. It replaces daily phone calls and guesswork.",
     problem:
-      "Ordering between restaurants and suppliers ran entirely on phone calls and texts, with no shared record of what was ordered, confirmed, or where it stood. Orders got lost, and neither side had fulfillment visibility.",
+      "Ordering between restaurants and suppliers ran entirely on phone calls and texts, with no shared record of what was ordered, confirmed, or where it stood. Orders got lost, and neither side had fulfilment visibility.",
     solution:
       "Built an MVP with two connected portals. Restaurants get an ordering flow with reordering in one click, and suppliers get a dashboard that tracks every order through five stages (Submitted, Confirmed, Preparing, Out for Delivery, and Delivered). Both sides see the status update live.",
     results: [
@@ -94,6 +102,7 @@ export const projects: ProjectCaseStudy[] = [
       "Live status updates remove the need for extra calls to check on an order",
     ],
     tags: ["MVP", "Hospitality", "Dual Portal"],
+    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/hospitality-supply-chain-platform.jpg",
     video: "/projects/hospitality-supply-chain-platform.mp4",
     videoPoster: "/projects/hospitality-supply-chain-platform-poster.png",

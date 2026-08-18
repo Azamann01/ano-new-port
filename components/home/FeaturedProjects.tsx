@@ -11,7 +11,7 @@ export function FeaturedProjects() {
     <section className="section-glow relative overflow-hidden py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
         <SectionHeading
-          eyebrow="Recent work"
+          eyebrow="Recent Work"
           title="real problems, real solutions"
           description="A sample of the tools we've built for businesses looking to cut manual work out of their daily operations."
         />

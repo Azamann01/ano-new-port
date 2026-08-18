@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { BlogPostMeta } from "@/types";
 
 export function BlogPostCard({ post }: { post: BlogPostMeta }) {
-  const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+  const formattedDate = new Date(post.date).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",

@@ -101,7 +101,7 @@ export default function AboutPage() {
       <AnimatedSection delay={0.1}>
         <div className="surface-container rounded-2xl p-8 sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--container-muted)]">
-            WHY WORK WITH US
+            Why work with us
           </p>
           <p className="mt-3 text-xl font-semibold sm:text-2xl">
             We don&apos;t start with technology. We start with your business.

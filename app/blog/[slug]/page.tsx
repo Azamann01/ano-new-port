@@ -17,6 +17,11 @@ export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
+// Reject any slug that isn't one of the real posts above at build time,
+// instead of falling through to a runtime lookup that builds a filesystem
+// path straight from the URL (see lib/mdx.ts's getPostBySlug).
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -41,7 +46,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound();
 
-  const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+  const formattedDate = new Date(post.date).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -64,7 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
             url: postUrl,
             mainEntityOfPage: postUrl,
             image: new URL(`/blog/${post.slug}/opengraph-image`, siteConfig.url).toString(),
-            author: { "@type": "Person", name: post.author },
+            author: { "@type": "Organization", name: post.author },
             publisher: {
               "@type": "Organization",
               name: siteConfig.name,
