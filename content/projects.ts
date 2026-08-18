@@ -26,6 +26,7 @@ export const projects: ProjectCaseStudy[] = [
     image: "/projects/hospitality-supply-chain-platform.jpg",
     video: "/projects/hospitality-supply-chain-platform.mp4",
     videoPoster: "/projects/hospitality-supply-chain-platform-poster.png",
+    liveDemoUrl: "https://hospitality.techwithtop.co.uk/",
   },
   {
     slug: "field-service-scheduler",
