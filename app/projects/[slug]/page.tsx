@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Button } from "@/components/ui/Button";
+import { VideoDemoButton } from "@/components/projects/VideoDemoButton";
 import { projects } from "@/content/projects";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -71,14 +72,8 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       {project.video && (
         <>
-          <AnimatedSection delay={0.05} className="surface-container overflow-hidden rounded-2xl">
-            <video
-              src={project.video}
-              poster={project.videoPoster}
-              controls
-              preload="none"
-              className="w-full"
-            />
+          <AnimatedSection delay={0.05} className="flex justify-start">
+            <VideoDemoButton video={project.video} videoPoster={project.videoPoster} />
           </AnimatedSection>
 
           <SectionDivider />
