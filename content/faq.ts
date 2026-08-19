@@ -9,7 +9,7 @@ export const faq: FAQItem[] = [
   {
     question: "What industries are you looking at?",
     answer:
-      "Primarily Home Services, Retail, Professional Services, Real Estate, Hospitality and Logistics, industries where daily operations still rely heavily on manual processes and spreadsheets.",
+      "Primarily Home Services, Retail, Professional Services, Real Estate, Hospitality and Logistics — industries where daily operations still rely heavily on manual processes and spreadsheets.",
   },
   {
     question: "Is this based on a formal study?",

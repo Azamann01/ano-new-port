@@ -36,10 +36,10 @@ export function ProjectCard({ project, index = 0 }: { project: ProjectCaseStudy;
   const Icon = industryIcons[project.industry] ?? Briefcase;
   const gradient = gradients[index % gradients.length];
   // Only real raster screenshots (jpg/png) get the brand wash below, not the
-  // hand-built SVG mockups (field-service-scheduler, inventory-sync-pipeline,
-  // maintenance-request-system) — those are vector illustrations, not actual
-  // product screenshots, so tinting them isn't the same kind of "on-brand
-  // wash over a real screenshot" the CTA section uses.
+  // hand-built SVG mockups (inventory-sync-pipeline, maintenance-request-system)
+  // — those are vector illustrations, not actual product screenshots, so
+  // tinting them isn't the same kind of "on-brand wash over a real
+  // screenshot" the CTA section uses.
   const isRealScreenshot = /\.(jpe?g|png)$/i.test(project.image ?? "");
 
   return (
@@ -73,7 +73,7 @@ export function ProjectCard({ project, index = 0 }: { project: ProjectCaseStudy;
             className="absolute -bottom-4 -right-4 h-28 w-28 text-white/15 transition-transform duration-300 group-hover:scale-110"
           />
         )}
-        {!project.image && (
+        {!isRealScreenshot && (
           <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-black/25 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-[2px]">
             <Sparkles aria-hidden className="h-3 w-3" />
             Concept visual

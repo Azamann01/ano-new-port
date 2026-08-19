@@ -138,8 +138,8 @@ export default function ResearchPage() {
             July 2026 survey of 1,000 UK micro, small and medium-sized business owners
           </a>
           , run by American Express with Small Business Saturday UK, found they spend an average of
-          11 hours a week on admin and finance-related tasks (around six working days a month), more
-          than twice what they spend on sales and business development (3.6 days a month). And 54%
+          11 hours a week on admin and finance-related tasks (around six working days a month),
+          nearly twice what they spend on sales and business development (3.6 days a month). And 54%
           said paperwork gets in the way of running their business.
         </p>
         <p className="max-w-2xl text-sm text-[var(--muted)]">
