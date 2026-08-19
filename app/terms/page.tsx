@@ -36,8 +36,8 @@ export default function TermsPage() {
 
           <h2>Intellectual property</h2>
           <p>
-            The content on this website, including text, graphics, and case study material, is
-            owned by {siteConfig.companyName} unless otherwise credited, and may not be reproduced
+            The content on this website, including text, graphics and case study material, is
+            owned by {siteConfig.companyName} unless otherwise credited and may not be reproduced
             without permission.
           </p>
 
@@ -50,7 +50,7 @@ export default function TermsPage() {
           <h2>Third-party links and embeds</h2>
           <p>
             This site links to or embeds third-party services, including Calendly (scheduling),
-            Formspree (contact form delivery), and Plausible (analytics). We aren&apos;t
+            Formspree (contact form delivery) and Plausible (analytics). We aren&apos;t
             responsible for the content, availability, or practices of these third parties, which
             are governed by their own terms.
           </p>
@@ -58,7 +58,7 @@ export default function TermsPage() {
           <h2>Liability</h2>
           <p>
             This website is provided &ldquo;as is.&rdquo; We don&apos;t guarantee it will be
-            uninterrupted or error-free, and to the extent permitted by law we aren&apos;t liable
+            uninterrupted or error-free. To the extent permitted by law, we aren&apos;t liable
             for any loss arising from your use of it.
           </p>
 

@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Accessibility Statement",
-  description: "Our approach to making this website accessible, and how to report an issue.",
+  description: "Our approach to making this website accessible and how to report an issue.",
   path: "/accessibility",
 });
 
@@ -30,7 +30,7 @@ export default function AccessibilityPage() {
             The Public Sector Bodies Accessibility Regulations 2018 don&apos;t apply to{" "}
             {siteConfig.companyName}, a private company. This statement isn&apos;t a legal
             requirement. We&apos;re publishing it because we think accessibility is worth doing
-            well, and we&apos;re voluntarily aiming for WCAG 2.1 AA.
+            well and we&apos;re voluntarily aiming for WCAG 2.1 AA.
           </p>
 
           <h2>What we&apos;ve done</h2>
@@ -54,7 +54,7 @@ export default function AccessibilityPage() {
           <p>
             If you hit an accessibility barrier anywhere on this site, we&apos;d like to know.
             Email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> with the page and a
-            description of the problem, and we&apos;ll look into it.
+            description of the problem. We&apos;ll look into it.
           </p>
         </article>
       </AnimatedSection>

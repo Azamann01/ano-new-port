@@ -20,7 +20,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Research",
   description:
-    "Ongoing research into where SMEs lose the most time to manual processes, and where custom technology actually pays off.",
+    "Ongoing research into where SMEs lose the most time to manual processes and where custom technology actually pays off.",
   path: "/research",
   ogImage: "/research/opengraph-image",
 });
@@ -37,14 +37,14 @@ export const metadata = buildMetadata({
 // vendor-blog content citing invented or misattributed surveys — verified
 // and rejected a few examples of exactly that while researching this page).
 // These are honest, informed observations from scoping projects in each
-// industry, and are labelled as such in the section intro below.
+// industry and are labelled as such in the section intro below.
 const industryFindings: { label: string; icon: LucideIcon; gradient: string; description: string }[] = [
   {
     label: "Home Services",
     icon: Wrench,
     gradient: "from-amber-400 via-orange-400 to-rose-400",
     description:
-      "Scheduling and dispatch are still coordinated by phone for a lot of independent trades businesses — a technician's day gets built and rebuilt over calls and texts instead of a shared board. It's a sizeable market to get right: contractors in the US and Canada do an estimated $1.5 trillion a year in trades services, and 43% of the equipment those technicians service today is more than a decade old, per ServiceTitan's 2025 State of the Trades data, so call volume isn't slowing down.",
+      "Scheduling and dispatch are still coordinated by phone for a lot of independent trades businesses: a technician's day gets built and rebuilt over calls and texts instead of a shared board. Call volume isn't slowing down either. Almost a third of privately rented homes in England (32%) were built before 1919 and older housing stock generally means more repairs, not fewer, according to the government's 2024 English Housing Survey.",
   },
   {
     label: "Retail",
@@ -58,21 +58,21 @@ const industryFindings: { label: string; icon: LucideIcon; gradient: string; des
     icon: Briefcase,
     gradient: "from-sky-400 via-blue-400 to-indigo-500",
     description:
-      "Client onboarding at firms like accounting practices and consultancies is still commonly run through email: documents requested one at a time, chased individually, and tracked in an inbox rather than a shared checklist. The bottleneck usually isn't any single document — it's the back-and-forth needed to collect all of them.",
+      "Client onboarding at firms like accounting practices and consultancies is still commonly run through email: documents requested one at a time, chased individually and tracked in an inbox rather than a shared checklist. The bottleneck usually isn't any single document. It's the back-and-forth needed to collect all of them.",
   },
   {
     label: "Real Estate",
     icon: Building2,
     gradient: "from-emerald-400 via-teal-400 to-cyan-500",
     description:
-      "Maintenance requests for rental properties typically arrive through a mix of phone calls, texts, and emails, with no single record of what was reported, assigned, or resolved. That makes a simple question hard to answer: how many requests are open right now, and how long has each one been waiting?",
+      "Maintenance requests for rental properties typically arrive through a mix of phone calls, texts and emails, with no single record of what was reported, assigned, or resolved. That makes a simple question hard to answer: how many requests are open right now and how long has each one been waiting?",
   },
   {
     label: "Hospitality",
     icon: UtensilsCrossed,
     gradient: "from-orange-400 via-amber-300 to-yellow-300",
     description:
-      "Ordering between restaurants and their suppliers still runs largely on phone calls: a kitchen calls in an order, a supplier confirms it verbally, and neither side has a shared, live record of what was actually agreed. When an order is wrong or late, resolving it means another phone call rather than simply checking its status.",
+      "Ordering between restaurants and their suppliers still runs largely on phone calls: a kitchen calls in an order, a supplier confirms it verbally and neither side has a shared, live record of what was actually agreed. When an order is wrong or late, resolving it means another phone call rather than simply checking its status.",
   },
   {
     label: "Logistics",
@@ -105,7 +105,7 @@ export default function ResearchPage() {
           level="h1"
           eyebrow="Research"
           title="What's actually costing SMEs the most time?"
-          description="We're running ongoing research into where manual processes cost small and midsize businesses the most: time, money, errors, and where custom technology realistically pays off."
+          description="We're running ongoing research into where manual processes cost small and midsize businesses the most: time, money, errors and where custom technology realistically pays off."
         />
       </AnimatedSection>
 
@@ -115,8 +115,8 @@ export default function ResearchPage() {
         <h2 className="text-xl font-semibold">Purpose of this research</h2>
         <p className="max-w-2xl text-[var(--muted)]">
           Most advice about &ldquo;digital transformation&rdquo; is written for enterprises with dedicated IT
-          teams and large budgets. This research is focused specifically on SMEs, building an honest,
-          practical picture of where custom technology is worth the investment, and where it isn&apos;t.
+          teams and large budgets. This research is focused specifically on UK SMEs, building an honest,
+          practical picture of where custom technology is worth the investment and where it isn&apos;t.
         </p>
       </AnimatedSection>
 
@@ -126,9 +126,24 @@ export default function ResearchPage() {
         <h2 className="text-xl font-semibold">What we&apos;re finding so far</h2>
         <p className="max-w-2xl text-[var(--muted)]">
           Across the SMEs we talk to, the same pattern keeps showing up: work that should take
-          minutes stretches into hours because it still runs through phone calls, spreadsheets, and
-          manual re-entry between systems that don&apos;t talk to each other. That matches the wider
-          data too — a{" "}
+          minutes stretches into hours because it still runs through phone calls, spreadsheets and
+          manual re-entry between systems that don&apos;t talk to each other. That matches the UK
+          data too: a{" "}
+          <a
+            href="https://retailtimes.co.uk/amex-sme-barometer-small-business-owners-spend-nearly-twice-the-time-on-admin-than-growing-their-business/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-[var(--container)]"
+          >
+            July 2026 survey of 1,000 UK micro, small and medium-sized business owners
+          </a>
+          , run by American Express with Small Business Saturday UK, found they spend an average of
+          11 hours a week on admin and finance-related tasks (around six working days a month), more
+          than twice what they spend on sales and business development (3.6 days a month). And 54%
+          said paperwork gets in the way of running their business.
+        </p>
+        <p className="max-w-2xl text-sm text-[var(--muted)]">
+          A similar pattern shows up elsewhere too: in the US, a{" "}
           <a
             href="https://erp.intuit.com/blog/research/business-solutions-survey-2024/"
             target="_blank"
@@ -137,9 +152,8 @@ export default function ResearchPage() {
           >
             2024 survey of 630 small business owners and executives
           </a>{" "}
-          found they spend an average of 25 hours a week on manual data entry and reconciling
-          information across different apps, and 91% said it was actively undermining their
-          productivity.
+          found manual data entry and reconciling information across different apps eats an average
+          of 25 hours a week, with 91% saying it undermines their productivity.
         </p>
       </AnimatedSection>
 
@@ -149,7 +163,7 @@ export default function ResearchPage() {
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-semibold">Where the time actually goes, industry by industry</h2>
           <p className="max-w-2xl text-sm text-[var(--muted)]">
-            Reliable, industry-specific research at this level of detail is scarce — a lot of what
+            Reliable, industry-specific research at this level of detail is scarce. A lot of what
             circulates online turns out to be marketing content citing surveys that don&apos;t
             actually exist. What&apos;s below is an honest mix of the data above and the patterns we
             consistently see scoping projects in each industry, not a formal, industry-by-industry

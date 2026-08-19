@@ -20,7 +20,7 @@ export function ServicesSummary() {
           </p>
           <p>
             By combining business analysis with modern technology development, we help businesses
-            streamline processes, improve visibility, automate repetitive tasks, and make more
+            streamline processes, improve visibility, automate repetitive tasks and make more
             informed decisions.
           </p>
           <p>Every solution is designed to deliver measurable business value and long-term operational improvement.</p>

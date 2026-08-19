@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Services",
   description:
-    "Operational discovery, process automation, custom business systems, and dashboards for growing businesses.",
+    "Operational discovery, process automation, custom business systems and dashboards for growing businesses.",
   path: "/services",
   ogImage: "/services/opengraph-image",
 });
@@ -52,7 +52,7 @@ export default function ServicesPage() {
             <AnimatedSection>
               <h2 className="text-2xl font-semibold">Not sure which fits?</h2>
               <p className="mx-auto mt-2 max-w-lg text-[var(--container-muted)]">
-                Tell us about the process that&apos;s slowing your team down, and we&apos;ll recommend the
+                Tell us about the process that&apos;s slowing your team down and we&apos;ll recommend the
                 right starting point, even if that means no project is needed.
               </p>
               <Button

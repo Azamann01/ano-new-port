@@ -37,7 +37,7 @@ export const services: Service[] = [
     slug: "digital-transformation",
     title: "Digital Transformation",
     description: "Modernise legacy processes to improve efficiency and accuracy.",
-    outcome: "Fewer manual handoffs, and fewer errors slipping through outdated processes.",
+    outcome: "Fewer manual handoffs and fewer errors slipping through outdated processes.",
     icon: "RefreshCw",
     image: "/services/digital-transformation.png",
   },

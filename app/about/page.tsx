@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Technology should solve business problems, not create them. How TechWithTop approaches discovery, design, and development.",
+    "Technology should solve business problems, not create them. How TechWithTop approaches discovery, design and development.",
   path: "/about",
   ogImage: "/about/opengraph-image",
 });
@@ -16,7 +16,7 @@ export const metadata = buildMetadata({
 const steps = [
   {
     title: "Discover",
-    description: "Understand your business, goals, and operational challenges.",
+    description: "Understand your business, goals and operational challenges.",
   },
   {
     title: "Analyse",
@@ -54,26 +54,26 @@ export default function AboutPage() {
           <p>
             At TechWithTop, we believe every organisation deserves technology that works in
             harmony with the way it operates. Lasting business improvement begins with
-            understanding how work gets done, where challenges arise, and what prevents teams
+            understanding how work gets done, where challenges arise and what prevents teams
             from performing at their best.
           </p>
           <p>
             We take a research driven approach to understanding organisations, working closely
-            with business leaders to gain insight into their operations, processes, and
-            objectives. By identifying inefficiencies, reducing unnecessary complexity, and
+            with business leaders to gain insight into their operations, processes and
+            objectives. By identifying inefficiencies, reducing unnecessary complexity and
             uncovering opportunities for improvement, we help organisations build stronger, more
             efficient ways of working.
           </p>
           <p>
-            Every engagement is guided by evidence, informed by operational insight, and focused
+            Every engagement is guided by evidence, informed by operational insight and focused
             on delivering measurable outcomes. Our commitment is to create practical solutions
-            that improve productivity, strengthen decision making, support sustainable growth,
+            that improve productivity, strengthen decision making, support sustainable growth
             and deliver lasting business value.
           </p>
           <p>
             We see technology as an enabler of progress. Our purpose is to help organisations
             transform operational challenges into opportunities for continuous improvement,
-            innovation, and long term success.
+            innovation and long term success.
           </p>
         </div>
         <div className="surface-container rounded-2xl p-6">
@@ -107,7 +107,7 @@ export default function AboutPage() {
             We don&apos;t start with technology. We start with your business.
           </p>
           <p className="mt-3 text-[var(--container-muted)]">
-            By understanding your operations, identifying inefficiencies, and focusing on
+            By understanding your operations, identifying inefficiencies and focusing on
             measurable outcomes, we build solutions that solve real problems and deliver
             lasting value.
           </p>

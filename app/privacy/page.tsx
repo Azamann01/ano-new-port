@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: "How TechWithTop Ltd collects, uses, and protects your personal data.",
+  description: "How TechWithTop Ltd collects, uses and protects your personal data.",
   path: "/privacy",
 });
 
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
           <h2>Who we are</h2>
           <p>
             This website is operated by {siteConfig.companyName}, a company registered in England
-            and Wales
+           and Wales
             {companyDetailsReady && (
               <>
                 {" "}
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
           <h2>What we collect and why</h2>
           <p>
             <strong>Contact form.</strong> When you use the contact form, we collect your name,
-            email address, and message. This is used solely to respond to your enquiry. We rely on
+            email address and message. This is used solely to respond to your enquiry. We rely on
             your consent (given via the checkbox on the form) and our legitimate interest in
             answering enquiries as the legal basis for processing this data.
           </p>
@@ -68,7 +68,7 @@ export default function PrivacyPage() {
               Plausible
             </a>
             , a privacy-focused analytics tool that doesn&apos;t use cookies or any other
-            persistent identifier, doesn&apos;t collect personal data, and reports aggregate
+            persistent identifier, doesn&apos;t collect personal data and reports aggregate
             traffic numbers only, not individual visitor behaviour. If you decline, or don&apos;t
             choose, it&apos;s never loaded. See our{" "}
             <a href="/cookies">Cookie Policy</a> for more detail.
@@ -77,13 +77,13 @@ export default function PrivacyPage() {
           <h2>How long we keep it</h2>
           <p>
             Contact form enquiries and any resulting correspondence are kept for as long as
-            reasonably necessary to handle your enquiry and any follow-up, and are then deleted.
+            reasonably necessary to handle your enquiry and any follow-up and are then deleted.
           </p>
 
           <h2>Your rights</h2>
           <p>
             Under UK GDPR, you have the right to request access to, correction of, or deletion of
-            your personal data, to object to or restrict our processing of it, and to data
+            your personal data, to object to or restrict our processing of it and to data
             portability. To exercise any of these rights, email{" "}
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>. You also have the right
             to lodge a complaint with the{" "}

@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Projects",
   description:
-    "Case studies of custom technology built for small and midsize businesses across home services, retail, and more.",
+    "Case studies of custom technology built for small and midsize businesses across home services, retail and more.",
   path: "/projects",
   ogImage: "/projects/opengraph-image",
 });

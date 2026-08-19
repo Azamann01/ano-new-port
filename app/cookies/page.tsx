@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Cookie Policy",
-  description: "What cookies and similar technologies this website uses, and why.",
+  description: "What cookies and similar technologies this website uses and why.",
   path: "/cookies",
 });
 
@@ -30,7 +30,7 @@ export default function CookiesPage() {
           <p>
             None. This website doesn&apos;t set any cookies of its own. Your light/dark theme
             preference is stored in your browser&apos;s <code>localStorage</code>, which is not a
-            cookie: it&apos;s only ever read by this site, on your device, and is never
+            cookie: it&apos;s only ever read by this site, on your device and is never
             transmitted anywhere.
           </p>
 
@@ -41,7 +41,7 @@ export default function CookiesPage() {
               Plausible
             </a>
             , a privacy-focused analytics tool. Plausible doesn&apos;t use cookies or any other
-            persistent identifiers, doesn&apos;t collect personal data, and doesn&apos;t track you
+            persistent identifiers, doesn&apos;t collect personal data and doesn&apos;t track you
             across different websites. It counts page views and aggregate visitor numbers only. If
             you decline, or don&apos;t choose, Plausible is never loaded.
           </p>
@@ -63,7 +63,7 @@ export default function CookiesPage() {
           <h2>Changes</h2>
           <p>
             If we start using any additional analytics, advertising, or tracking cookies, this
-            page will be updated first to list exactly what&apos;s set, by whom, and for how long.
+            page will be updated first to list exactly what&apos;s set, by whom and for how long.
           </p>
 
           <h2>Questions</h2>

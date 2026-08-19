@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Insights",
   description:
-    "Practical writing on custom technology, automation, and operations for small and midsize businesses.",
+    "Practical writing on custom technology, automation and operations for small and midsize businesses.",
   path: "/blog",
   ogImage: "/blog/opengraph-image",
 });

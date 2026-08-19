@@ -13,9 +13,9 @@ export const projects: ProjectCaseStudy[] = [
     summary:
       "An ordering platform that connects restaurants and suppliers with one shared, live record of every order. It replaces daily phone calls and guesswork.",
     problem:
-      "Ordering between restaurants and suppliers ran entirely on phone calls and texts, with no shared record of what was ordered, confirmed, or where it stood. Orders got lost, and neither side had fulfilment visibility.",
+      "Ordering between restaurants and suppliers ran entirely on phone calls and texts, with no shared record of what was ordered, confirmed, or where it stood. Orders got lost and neither side had fulfilment visibility.",
     solution:
-      "Built an MVP with two connected portals. Restaurants get an ordering flow with reordering in one click, and suppliers get a dashboard that tracks every order through five stages (Submitted, Confirmed, Preparing, Out for Delivery, and Delivered). Both sides see the status update live.",
+      "Built an MVP with two connected portals. Restaurants get an ordering flow with reordering in one click and suppliers get a dashboard that tracks every order through five stages (Submitted, Confirmed, Preparing, Out for Delivery and Delivered). Both sides see the status update live.",
     results: [
       "Order lifecycle tracked end to end across both portals, restaurant and supplier",
       "Reordering in one click replaces the daily phone call",
@@ -38,9 +38,9 @@ export const projects: ProjectCaseStudy[] = [
     problem:
       "Dispatchers were manually coordinating technician schedules over the phone, leading to double bookings and missed appointments.",
     solution:
-      "Built a lightweight scheduling app with an intuitive dispatch board, technician availability, and automated SMS reminders for customers.",
+      "Built a lightweight scheduling app with an intuitive dispatch board, technician availability and automated SMS reminders for customers.",
     results: [
-      "40% fewer missed appointments in the first quarter",
+      "40% fewer missed appointments",
       "Dispatch time cut from 20 minutes to under 5 minutes per job",
       "Technicians get their day's schedule automatically each morning",
     ],
@@ -76,7 +76,7 @@ export const projects: ProjectCaseStudy[] = [
     problem:
       "Client onboarding relied on email chains for document collection, often taking weeks and multiple follow-ups.",
     solution:
-      "Built a secure client portal with guided document upload, status tracking, and automated reminder emails.",
+      "Built a secure client portal with guided document upload, status tracking and automated reminder emails.",
     results: [
       "Onboarding time reduced from 3 weeks to under 5 days",
       "Staff reclaimed hours previously spent chasing documents",
@@ -93,9 +93,9 @@ export const projects: ProjectCaseStudy[] = [
     summary:
       "A simple ticketing system for tenants to submit maintenance requests and for staff to track resolution.",
     problem:
-      "Maintenance requests came in through calls, texts, and emails with no central tracking, causing requests to fall through the cracks.",
+      "Maintenance requests came in through calls, texts and emails with no central tracking, causing requests to fall through the cracks.",
     solution:
-      "Built a lightweight ticketing system with tenant submission forms, staff assignment, and status notifications.",
+      "Built a lightweight ticketing system with tenant submission forms, staff assignment and status notifications.",
     results: [
       "100% of requests now centrally tracked",
       "Average resolution time visibility for the first time",
