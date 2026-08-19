@@ -122,8 +122,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <h2 className="text-lg font-semibold">Results</h2>
         {project.client === "Internal build" && (
           <p className="mt-1 text-xs text-[var(--container-muted)]">
-            Illustrative figures for this internal build, not measured results from a paying
-            client.
+            Illustrative figures for this internal build.
           </p>
         )}
         <ul className="mt-3 flex flex-col gap-2">

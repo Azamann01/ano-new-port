@@ -45,7 +45,6 @@ export const projects: ProjectCaseStudy[] = [
       "Technicians get their day's schedule automatically each morning",
     ],
     tags: ["Scheduling", "SMS Automation", "Internal Tool"],
-    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/field-service-scheduler.svg",
   },
   {
@@ -65,7 +64,6 @@ export const projects: ProjectCaseStudy[] = [
       "Single dashboard for stock across all locations",
     ],
     tags: ["Integrations", "Retail", "Automation"],
-    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/inventory-sync-pipeline.svg",
   },
   {
@@ -85,7 +83,6 @@ export const projects: ProjectCaseStudy[] = [
       "Clients get live status visibility",
     ],
     tags: ["Client Portal", "Workflow", "Professional Services"],
-    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/client-onboarding-portal.jpg",
   },
   {
@@ -105,7 +102,6 @@ export const projects: ProjectCaseStudy[] = [
       "Tenant satisfaction scores improved",
     ],
     tags: ["Ticketing", "Real Estate", "Internal Tool"],
-    techStack: ["Next.js", "Supabase", "Vercel"],
     image: "/projects/maintenance-request-system.svg",
   },
 ];
