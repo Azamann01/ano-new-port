@@ -3,7 +3,12 @@
 import { useSyncExternalStore } from "react";
 import Script from "next/script";
 import { subscribe, getSnapshot, getServerSnapshot } from "@/lib/cookie-consent";
-import { siteConfig } from "@/lib/site-config";
+
+// This site's per-site Plausible script (issued from the Plausible dashboard
+// for www.techwithtop.co.uk) — it bakes the domain into the script URL
+// itself, so unlike the old shared script.js there's no data-domain attribute
+// to set separately.
+const PLAUSIBLE_SCRIPT_SRC = "https://plausible.io/js/pa-0fR4zxGA8QGKM4bJEWuLk.js";
 
 /**
  * Plausible is cookieless (no persistent identifiers, nothing stored in the
@@ -17,14 +22,12 @@ export function PlausibleAnalytics() {
 
   if (status !== "accepted") return null;
 
-  const domain = new URL(siteConfig.url).hostname;
-
   return (
-    <Script
-      defer
-      data-domain={domain}
-      src="https://plausible.io/js/script.js"
-      strategy="afterInteractive"
-    />
+    <>
+      <Script async src={PLAUSIBLE_SCRIPT_SRC} strategy="afterInteractive" />
+      <Script id="plausible-init" strategy="afterInteractive">
+        {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`}
+      </Script>
+    </>
   );
 }

@@ -36,10 +36,20 @@ describe("PlausibleAnalytics", () => {
   it("loads the Plausible script once the visitor accepted", async () => {
     window.localStorage.setItem("cookie-consent", "accepted");
 
-    const { getByTestId } = await renderAnalytics();
+    await renderAnalytics();
 
-    const script = getByTestId("plausible-script");
-    expect(script).toHaveAttribute("src", "https://plausible.io/js/script.js");
-    expect(script).toHaveAttribute("data-domain");
+    // React hoists the async src="..." script to document.head as a
+    // resource, so it won't show up inside the render container — query the
+    // whole document instead.
+    const scripts = document.querySelectorAll('[data-testid="plausible-script"]');
+    expect(scripts).toHaveLength(2);
+    expect(
+      Array.from(scripts).some(
+        (s) => s.getAttribute("src") === "https://plausible.io/js/pa-0fR4zxGA8QGKM4bJEWuLk.js"
+      )
+    ).toBe(true);
+    expect(
+      Array.from(scripts).some((s) => s.textContent?.includes("plausible.init()"))
+    ).toBe(true);
   });
 });
