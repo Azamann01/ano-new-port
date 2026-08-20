@@ -36,13 +36,13 @@ export const projects: ProjectCaseStudy[] = [
     summary:
       "A role-based operations platform for field service teams: job assignment, scheduling and reporting in one shared system, replacing the spreadsheets and texts most SME crews still run on.",
     problem:
-      "SMEs running field jobs — contractors, service crews — coordinate customer information, scheduling and employee assignment across spreadsheets and texts, with no single source of truth and no visibility into what's overdue or who's overloaded.",
+      "SMEs running field jobs (contractors, service crews) coordinate customer information, scheduling and employee assignment across spreadsheets and texts, with no single source of truth and no visibility into what's overdue or who's overloaded.",
     solution:
       "Built a role-based operations platform (Admin/Employee) covering the full job lifecycle: assignment, status tracking, multi-site customer management, an append-only audit-trail log per job, live dashboards and VAT-aware revenue reporting.",
     results: [
-      "Full job audit trail — every status change, note and assignment logged automatically",
-      "Real-time ops visibility — overdue and due-today jobs, team workload and weekly performance surfaced on a single dashboard, no spreadsheet reconciliation",
-      "Role-scoped access enforced at three layers (route, layout, server action) — employees see only their assigned jobs, admins get full visibility",
+      "Full job audit trail: every status change, note and assignment logged automatically",
+      "Real-time ops visibility: overdue and due-today jobs, team workload and weekly performance surfaced on a single dashboard, no spreadsheet reconciliation",
+      "Role-scoped access enforced at three layers (route, layout, server action): employees see only their assigned jobs, admins get full visibility",
     ],
     tags: ["Full-Stack", "Operations Management", "Field Service", "Role-Based Auth"],
     techStack: [

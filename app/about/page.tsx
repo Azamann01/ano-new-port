@@ -52,28 +52,25 @@ export default function AboutPage() {
       <AnimatedSection className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]" delay={0.05}>
         <div className="flex flex-col gap-4 text-base text-[var(--muted)] sm:text-lg">
           <p>
-            At TechWithTop, we believe every organisation deserves technology that works in
-            harmony with the way it operates. Lasting business improvement begins with
-            understanding how work gets done, where challenges arise and what prevents teams
-            from performing at their best.
+            At <strong className="text-[var(--foreground)]">TechWithTop</strong>, we believe
+            every organisation deserves technology that works in harmony with the way it
+            operates. Lasting improvement starts with understanding how work actually gets
+            done, where the friction is, and what stops teams performing at their best.
           </p>
           <p>
-            We take a research driven approach to understanding organisations, working closely
-            with business leaders to gain insight into their operations, processes and
-            objectives. By identifying inefficiencies, reducing unnecessary complexity and
-            uncovering opportunities for improvement, we help organisations build stronger, more
-            efficient ways of working.
+            We take a research driven approach, working closely with business leaders to
+            understand their operations, processes and objectives before writing a line of
+            code. That groundwork lets us cut unnecessary complexity and design around real
+            workflows, not assumptions.
           </p>
           <p>
-            Every engagement is guided by evidence, informed by operational insight and focused
-            on delivering measurable outcomes. Our commitment is to create practical solutions
-            that improve productivity, strengthen decision making, support sustainable growth
-            and deliver lasting business value.
+            Every engagement is guided by evidence and judged on results: better productivity,
+            sharper decision making and technology that supports sustainable growth rather than
+            adding to the workload.
           </p>
           <p>
-            We see technology as an enabler of progress. Our purpose is to help organisations
-            transform operational challenges into opportunities for continuous improvement,
-            innovation and long term success.
+            Technology, done well, is an enabler of progress. Our purpose is turning operational
+            challenges into lasting, practical improvement.
           </p>
         </div>
         <div className="surface-container rounded-2xl p-6">
@@ -107,9 +104,8 @@ export default function AboutPage() {
             We don&apos;t start with technology. We start with your business.
           </p>
           <p className="mt-3 text-[var(--container-muted)]">
-            By understanding your operations, identifying inefficiencies and focusing on
-            measurable outcomes, we build solutions that solve real problems and deliver
-            lasting value.
+            We build around how your operations actually work, not the other way round.
+            Solutions are judged by the outcomes they deliver, not the technology behind them.
           </p>
         </div>
       </AnimatedSection>
