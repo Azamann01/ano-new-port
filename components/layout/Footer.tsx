@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { companyDetailsReady, isPlaceholderUrl, siteConfig } from "@/lib/site-config";
+import { companyNumberReady, isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 import { Container } from "@/components/ui/Container";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/SocialIcons";
 
@@ -15,7 +15,7 @@ export function Footer() {
       <Container className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-lg font-extrabold tracking-tight">{siteConfig.name}</p>
-          <p className="mt-1 max-w-sm text-sm text-[var(--muted)]">
+          <p className="mt-1 max-w-sm text-sm text-[var(--container)]">
             {siteConfig.tagline}
           </p>
         </div>
@@ -53,10 +53,10 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          {companyDetailsReady && (
+          {companyNumberReady && (
             <p>
-              {siteConfig.companyName} · Company No. {siteConfig.companyNumber} ·{" "}
-              {siteConfig.registeredAddress}
+              {siteConfig.companyName} is registered in England and Wales. Company number{" "}
+              {siteConfig.companyNumber}.
             </p>
           )}
         </div>

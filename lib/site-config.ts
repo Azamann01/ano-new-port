@@ -30,7 +30,7 @@ export const siteConfig = {
   ],
 
   companyName: "TechWithTop Ltd",
-  companyNumber: "REPLACE_ME",
+  companyNumber: "16699473",
   registeredAddress: "REPLACE_ME, United Kingdom",
 
   // --- Placeholders: swap these for real values before launch ---
@@ -49,6 +49,9 @@ export function isPlaceholderUrl(url: string): boolean {
   return url.includes("REPLACE_ME");
 }
 
-/** True once real Companies House details have replaced the REPLACE_ME placeholders. */
+/** True once the real Companies House number has replaced the REPLACE_ME placeholder. */
+export const companyNumberReady = !isPlaceholderUrl(siteConfig.companyNumber);
+
+/** True once real Companies House details (number + registered office) have replaced the REPLACE_ME placeholders. */
 export const companyDetailsReady =
   !isPlaceholderUrl(siteConfig.companyNumber) && !isPlaceholderUrl(siteConfig.registeredAddress);
