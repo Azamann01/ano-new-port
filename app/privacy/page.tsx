@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
-import { companyDetailsReady, siteConfig } from "@/lib/site-config";
+import { companyDetailsReady, companyNumberReady, siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
@@ -29,13 +29,10 @@ export default function PrivacyPage() {
           <h2>Who we are</h2>
           <p>
             This website is operated by {siteConfig.companyName}, a company registered in England
-           and Wales
+            and Wales
+            {companyNumberReady && <>{" "}(company number {siteConfig.companyNumber})</>}
             {companyDetailsReady && (
-              <>
-                {" "}
-                (company number {siteConfig.companyNumber}), with its registered office at{" "}
-                {siteConfig.registeredAddress}
-              </>
+              <>, with its registered office at {siteConfig.registeredAddress}</>
             )}
             . We&apos;re the data controller for the personal data described below. You can
             contact us at <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
