@@ -73,18 +73,20 @@ export default function AboutPage() {
             challenges into lasting, practical improvement.
           </p>
         </div>
-        <div className="surface-container rounded-2xl p-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--container-muted)]">
+        <div className="surface-container rounded-2xl p-6">
+          <p className="text-center text-sm font-semibold uppercase tracking-widest text-[var(--container-muted)]">
             How we work
           </p>
-          <ol className="mt-4 flex flex-col items-center gap-4 text-sm">
+          <ol className="mt-4 flex flex-col gap-4 text-sm">
             {steps.map((step, index) => (
-              <li key={step.title} className="flex max-w-[240px] flex-col items-center gap-1">
+              <li key={step.title} className="flex gap-3">
                 <span className="font-semibold text-[var(--container-muted)]">
                   {index + 1}
                 </span>
-                <span className="font-semibold">{step.title}</span>
-                <span className="text-[var(--container-muted)]">{step.description}</span>
+                <span>
+                  <span className="font-semibold">{step.title}</span>
+                  <span className="text-[var(--container-muted)]">: {step.description}</span>
+                </span>
               </li>
             ))}
           </ol>
