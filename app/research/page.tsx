@@ -129,32 +129,17 @@ export default function ResearchPage() {
           Across the SMEs we talk to, the same pattern keeps showing up: work that should take
           minutes stretches into hours because it still runs through phone calls, spreadsheets and
           manual re-entry between systems that don&apos;t talk to each other. That matches the UK
-          data too: a{" "}
-          <a
-            href="https://retailtimes.co.uk/amex-sme-barometer-small-business-owners-spend-nearly-twice-the-time-on-admin-than-growing-their-business/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-[var(--container)]"
-          >
-            July 2026 survey of 1,000 UK micro, small and medium-sized business owners
-          </a>
-          , run by American Express with Small Business Saturday UK, found they spend an average of
+          data too: a July 2026 survey of 1,000 UK micro, small and medium-sized business owners,
+          run by American Express with Small Business Saturday UK, found they spend an average of
           11 hours a week on admin and finance-related tasks (around six working days a month),
           nearly twice what they spend on sales and business development (3.6 days a month). And 54%
           said paperwork gets in the way of running their business.
         </p>
         <p className="max-w-2xl text-sm text-[var(--muted)]">
-          A similar pattern shows up elsewhere too: in the US, a{" "}
-          <a
-            href="https://erp.intuit.com/blog/research/business-solutions-survey-2024/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-[var(--container)]"
-          >
-            2024 survey of 630 small business owners and executives
-          </a>{" "}
-          found manual data entry and reconciling information across different apps eats an average
-          of 25 hours a week, with 91% saying it undermines their productivity.
+          A similar pattern shows up elsewhere too: in the US, a 2024 survey of 630 small business
+          owners and executives found manual data entry and reconciling information across
+          different apps eats an average of 25 hours a week, with 91% saying it undermines their
+          productivity.
         </p>
       </AnimatedSection>
 

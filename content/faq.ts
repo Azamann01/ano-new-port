@@ -14,7 +14,7 @@ export const faq: FAQItem[] = [
   {
     question: "Is this based on a formal study?",
     answer:
-      "Not yet, no. This page combines cited third-party research, linked directly wherever we use it, with patterns we consistently see when scoping projects for SMEs in these industries. We're upfront about which is which and we'll add more primary research as we gather it.",
+      "Not yet, no. This page combines cited third-party research, named by source wherever we use it, with patterns we consistently see when scoping projects for SMEs in these industries. We're upfront about which is which and we'll add more primary research as we gather it.",
   },
   {
     question: "How can we get the research brief?",
