@@ -14,6 +14,7 @@ import { AnimatedCard } from "@/components/ui/AnimatedCard";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Accordion } from "@/components/ui/Accordion";
 import { ResearchBrief } from "@/components/research/ResearchBrief";
+import { ResearchArchive } from "@/components/research/ResearchArchive";
 import { faq } from "@/content/faq";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -191,6 +192,12 @@ export default function ResearchPage() {
 
       <AnimatedSection delay={0.15}>
         <ResearchBrief />
+      </AnimatedSection>
+
+      <SectionDivider />
+
+      <AnimatedSection delay={0.18}>
+        <ResearchArchive />
       </AnimatedSection>
 
       <SectionDivider />

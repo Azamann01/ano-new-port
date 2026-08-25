@@ -41,6 +41,18 @@ export type FAQItem = {
   answer: string;
 };
 
+export type ResearchItem = {
+  title: string;
+  /** Display string, e.g. "August 2026" — not used for routing. */
+  date: string;
+  description: string;
+  type: "document" | "source";
+  /** "document": path under /public. "source": external URL. */
+  url: string;
+  /** Shown on "source" items — the publisher/outlet name, e.g. "American Express". */
+  publisher?: string;
+};
+
 export type BlogPostMeta = {
   slug: string;
   title: string;
