@@ -26,10 +26,9 @@ export const metadata = buildMetadata({
   ogImage: "/research/opengraph-image",
 });
 
-// Curated per-industry gradients standing in for real photography — there's no
+// A black icon badge stands in for real photography — there's no
 // image-generation tool available in this environment (see CLAUDE.md's
-// "Known environment limitation" note), so each card gets a distinct,
-// deterministic gradient icon badge instead, matching the same disclosed
+// "Known environment limitation" note) — matching the same disclosed
 // stand-in convention used for the Projects cards' cover art.
 //
 // The description text below is deliberately not dressed up as formal
@@ -39,46 +38,40 @@ export const metadata = buildMetadata({
 // and rejected a few examples of exactly that while researching this page).
 // These are honest, informed observations from scoping projects in each
 // industry and are labelled as such in the section intro below.
-const industryFindings: { label: string; icon: LucideIcon; gradient: string; description: string }[] = [
+const industryFindings: { label: string; icon: LucideIcon; description: string }[] = [
   {
     label: "Home Services",
     icon: Wrench,
-    gradient: "from-amber-400 via-orange-400 to-rose-400",
     description:
       "Scheduling and dispatch are still coordinated by phone for a lot of independent trades businesses: a technician's day gets built and rebuilt over calls and texts instead of a shared board. Call volume isn't slowing down either. Almost a third of privately rented homes in England (32%) were built before 1919 and older housing stock generally means more repairs, not fewer, according to the government's 2024 English Housing Survey.",
   },
   {
     label: "Retail",
     icon: ShoppingBag,
-    gradient: "from-fuchsia-500 via-pink-400 to-rose-300",
     description:
       "For small multi-location retailers, the recurring time sink is inventory reconciliation: keeping stock counts consistent between a point-of-sale system and an online store when the two aren't connected usually means someone manually checking and adjusting numbers at the end of each day, or discovering the mismatch only after a customer has already bought something that wasn't actually in stock.",
   },
   {
     label: "Professional Services",
     icon: Briefcase,
-    gradient: "from-sky-400 via-blue-400 to-indigo-500",
     description:
       "Client onboarding at firms like accounting practices and consultancies is still commonly run through email: documents requested one at a time, chased individually and tracked in an inbox rather than a shared checklist. The bottleneck usually isn't any single document. It's the back-and-forth needed to collect all of them.",
   },
   {
     label: "Real Estate",
     icon: Building2,
-    gradient: "from-emerald-400 via-teal-400 to-cyan-500",
     description:
       "Maintenance requests for rental properties typically arrive through a mix of phone calls, texts and emails, with no single record of what was reported, assigned, or resolved. That makes a simple question hard to answer: how many requests are open right now and how long has each one been waiting?",
   },
   {
     label: "Hospitality",
     icon: UtensilsCrossed,
-    gradient: "from-orange-400 via-amber-300 to-yellow-300",
     description:
       "Ordering between restaurants and their suppliers still runs largely on phone calls: a kitchen calls in an order, a supplier confirms it verbally and neither side has a shared, live record of what was actually agreed. When an order is wrong or late, resolving it means another phone call rather than simply checking its status.",
   },
   {
     label: "Logistics",
     icon: Truck,
-    gradient: "from-violet-500 via-indigo-400 to-sky-400",
     description:
       "For smaller logistics and delivery operations, shipment status often lives in whichever system last touched it: a driver's text, a dispatcher's spreadsheet, a customer's email. Reliably knowing where a shipment actually is usually means checking several places by hand rather than one shared source of truth.",
   },
@@ -157,12 +150,10 @@ export default function ResearchPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {industryFindings.map(({ label, icon: Icon, gradient, description }, index) => (
+          {industryFindings.map(({ label, icon: Icon, description }, index) => (
             <AnimatedCard key={label} index={index}>
               <div className="surface-container flex h-full flex-col gap-3 rounded-2xl p-5">
-                <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${gradient}`}
-                >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-neutral-800 via-neutral-900 to-black">
                   <Icon aria-hidden strokeWidth={1.5} className="h-5 w-5 text-white" />
                 </div>
                 <h3 className="text-base font-semibold text-[var(--container-foreground)]">{label}</h3>
