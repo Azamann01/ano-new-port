@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { companyNumberReady, isPlaceholderUrl, siteConfig } from "@/lib/site-config";
+import { isPlaceholderUrl, siteConfig } from "@/lib/site-config";
 import { Container } from "@/components/ui/Container";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/SocialIcons";
 
@@ -49,17 +49,9 @@ export function Footer() {
       </Container>
 
       <Container className="flex flex-col gap-4 border-t border-[var(--border)] py-6 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-col gap-1">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-          </p>
-          {companyNumberReady && (
-            <p>
-              {siteConfig.companyName} is registered in England and Wales. Company number{" "}
-              {siteConfig.companyNumber}.
-            </p>
-          )}
-        </div>
+        <p>
+          © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        </p>
 
         <nav className="flex flex-wrap items-center gap-x-3 gap-y-1">
           {siteConfig.legalNav.map((item) => (
