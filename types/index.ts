@@ -14,6 +14,8 @@ export type ProjectCaseStudy = {
   client: string;
   industry: string;
   summary: string;
+  /** Shorter override for the SEO meta description when `summary` runs past ~155 characters and would get truncated in search results. Falls back to `summary`. */
+  metaDescription?: string;
   problem: string;
   solution: string;
   results: string[];

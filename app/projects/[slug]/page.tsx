@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
 
   return buildMetadata({
     title: project.title,
-    description: project.summary,
+    description: project.metaDescription ?? project.summary,
     path: `/projects/${project.slug}`,
     ogImage: `/projects/${project.slug}/opengraph-image`,
   });

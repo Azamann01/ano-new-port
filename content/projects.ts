@@ -12,6 +12,8 @@ export const projects: ProjectCaseStudy[] = [
     industry: "Hospitality",
     summary:
       "An ordering platform that connects restaurants and suppliers with one shared, live record of every order. It replaces daily phone calls and guesswork.",
+    metaDescription:
+      "An ordering platform that connects restaurants and suppliers with one shared, live record of every order.",
     problem:
       "Ordering between restaurants and suppliers ran entirely on phone calls and texts, with no shared record of what was ordered, confirmed, or where it stood. Orders got lost and neither side had fulfilment visibility.",
     solution:
@@ -35,6 +37,8 @@ export const projects: ProjectCaseStudy[] = [
     industry: "Home Services",
     summary:
       "A role-based operations platform for field service teams: job assignment, scheduling and reporting in one shared system, replacing the spreadsheets and texts most SME crews still run on.",
+    metaDescription:
+      "A role-based operations platform for field service teams: job assignment, scheduling and reporting in one shared system.",
     problem:
       "SMEs running field jobs (contractors, service crews) coordinate customer information, scheduling and employee assignment across spreadsheets and texts, with no single source of truth and no visibility into what's overdue or who's overloaded.",
     solution:
