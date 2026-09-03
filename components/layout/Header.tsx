@@ -21,7 +21,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[var(--background)]/70 shadow-sm backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-16 items-center justify-between pl-3 sm:pl-4">
         <Link href="/" className="text-lg font-extrabold tracking-tight" onClick={() => setOpen(false)}>
           {siteConfig.name}
         </Link>
