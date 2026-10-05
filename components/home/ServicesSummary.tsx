@@ -23,7 +23,7 @@ export function ServicesSummary() {
             streamline processes, improve visibility, automate repetitive tasks and make more
             informed decisions.
           </p>
-          <p>Every solution is designed to deliver measurable business value and long-term operational improvement.</p>
+          <p>Every solution is designed to deliver measurable business value and long term operational improvement.</p>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
