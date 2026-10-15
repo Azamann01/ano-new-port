@@ -55,7 +55,7 @@ export default function AboutPage() {
             At <strong className="text-[var(--foreground)]">TechWithTop</strong>, we believe
             every organisation deserves technology that works in harmony with the way it
             operates. Lasting improvement starts with understanding how work actually gets
-            done, where the friction is, and what stops teams performing at their best.
+            done, where the friction is and what stops teams performing at their best.
           </p>
           <p>
             We take a research driven approach, working closely with business leaders to
