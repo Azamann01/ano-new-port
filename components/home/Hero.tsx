@@ -9,8 +9,8 @@ export function Hero() {
           Custom technology built around how your business already works
         </h1>
         <p className="max-w-2xl text-lg text-[var(--muted)] dark:text-white/90">
-          UK SME owners lose an average of 11 hours a week to admin. We find where yours goes,
-          then build the tools that give it back.
+          We Build Systems That Improve How Your Team Delivers, How Customers Experience It, And
+          What It All Costs To Run.
         </p>
         <div className="mt-2 flex flex-col gap-3 sm:flex-row">
           <Button href="/projects">See past work</Button>
