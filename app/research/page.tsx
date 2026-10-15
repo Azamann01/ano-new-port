@@ -21,7 +21,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Research",
   description:
-    "Ongoing research into where SMEs lose the most time to manual processes and where custom technology actually pays off.",
+    "Ongoing research into what manual processes really cost SMEs in money, service quality and errors, plus where custom technology actually pays off.",
   path: "/research",
   ogImage: "/research/opengraph-image",
 });
@@ -98,8 +98,8 @@ export default function ResearchPage() {
         <SectionHeading
           level="h1"
           eyebrow="Research"
-          title="What's actually costing SMEs the most time?"
-          description="We're running ongoing research into where manual processes cost small and midsize businesses the most: time, money, errors and where custom technology realistically pays off."
+          title="What manual operations actually cost SMEs"
+          description="We're running ongoing research into what manual processes really cost small and midsize businesses: money, service quality, errors and the point where custom technology realistically pays off."
         />
       </AnimatedSection>
 
@@ -134,13 +134,17 @@ export default function ResearchPage() {
           different apps eats an average of 25 hours a week, with 91% saying it undermines their
           productivity.
         </p>
+        <p className="max-w-2xl text-[var(--muted)]">
+          The hours are the measurable part. What they cost is slower answers for customers,
+          orders that go wrong and money spent coordinating work rather than doing it.
+        </p>
       </AnimatedSection>
 
       <SectionDivider />
 
       <AnimatedSection delay={0.15} className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-semibold">Where the time actually goes, industry by industry</h2>
+          <h2 className="text-xl font-semibold">Where it actually shows up, industry by industry</h2>
           <p className="max-w-2xl text-sm text-[var(--muted)]">
             Reliable, industry-specific research at this level of detail is scarce. A lot of what
             circulates online turns out to be marketing content citing surveys that don&apos;t

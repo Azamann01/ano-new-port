@@ -4,7 +4,7 @@ export const faq: FAQItem[] = [
   {
     question: "Who is this research for?",
     answer:
-      "This research is focused on UK small and midsize businesses (SMEs) looking to understand where custom technology can realistically save time and reduce operational overhead.",
+      "This research is focused on UK small and midsize businesses (SMEs) looking to understand where custom technology can realistically improve service and reduce operational cost.",
   },
   {
     question: "What industries are you looking at?",
