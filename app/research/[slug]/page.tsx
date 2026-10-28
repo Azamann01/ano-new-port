@@ -107,14 +107,16 @@ export default async function ResearchArticlePage({ params }: Props) {
 
       <SectionDivider />
 
-      <AnimatedSection
-        delay={0.05}
-        className="prose prose-neutral max-w-2xl dark:prose-invert prose-headings:font-semibold prose-a:text-[var(--foreground)]"
-      >
+      {/* Deliberately NOT wrapped in AnimatedSection. Scroll-triggered reveal
+          suits short marketing sections, but on a long article it means the
+          reader lands on a title followed by a screenful of nothing until
+          they scroll — reported as a bug, and rightly so. Long-form reading
+          content renders immediately. */}
+      <div className="prose prose-neutral max-w-2xl dark:prose-invert prose-headings:font-semibold prose-a:text-[var(--foreground)]">
         <article>
           <MDXRemote source={article.content} />
         </article>
-      </AnimatedSection>
+      </div>
 
       {article.methodology && (
         <AnimatedSection delay={0.1} className="max-w-2xl">

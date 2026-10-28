@@ -94,14 +94,14 @@ export default async function BlogPostPage({ params }: Props) {
 
       <SectionDivider />
 
-      <AnimatedSection
-        delay={0.05}
-        className="prose prose-neutral max-w-2xl dark:prose-invert prose-headings:font-semibold prose-a:text-[var(--foreground)]"
-      >
+      {/* Not animated — same reason as the research article body: a long post
+          wrapped in a scroll-triggered reveal leaves the reader staring at
+          blank space below the title until they scroll. */}
+      <div className="prose prose-neutral max-w-2xl dark:prose-invert prose-headings:font-semibold prose-a:text-[var(--foreground)]">
         <article>
           <MDXRemote source={post.content} />
         </article>
-      </AnimatedSection>
+      </div>
     </Container>
   );
 }

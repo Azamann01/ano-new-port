@@ -17,7 +17,15 @@ export function AnimatedSection({ children, className, delay = 0 }: AnimatedSect
       className={cn(className)}
       initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      // `amount: "some"` (any part intersecting), NOT a fraction. A fraction
+      // is unsatisfiable once an element is taller than 1/fraction viewports,
+      // which silently leaves it at opacity 0 forever. That happened: the
+      // October research article's body is ~4016px against an 812px mobile
+      // viewport, so at most 20.2% could ever be visible against the old
+      // `amount: 0.2` — the whole article rendered blank on a phone.
+      // AnimatedSection wraps arbitrarily long content, so it must never
+      // depend on how tall that content is.
+      viewport={{ once: true, amount: "some" }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
       {children}
