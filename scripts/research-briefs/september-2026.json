@@ -1,0 +1,117 @@
+{
+  "title": "The Hidden Administrative Work Behind SME Invoicing",
+  "dateLabel": "TechWithTop Research | September 2026",
+  "researchFocus": "Invoice processing, operational workflows and business system integration.",
+  "sections": [
+    {
+      "heading": "The research finding",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Many UK SMEs already use digital tools for invoicing, but structured electronic invoicing remains less widely adopted."
+        },
+        {
+          "type": "p",
+          "text": "Research commissioned by HM Revenue &amp; Customs and published on 26 March 2026 surveyed 800 VAT-registered UK SMEs. It found that:"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "29% reported using electronic invoicing.",
+            "PDF and email remained the most common methods of sending and receiving invoices.",
+            "Accounting software was already widely used among respondents."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The study defined electronic invoicing as exchanging invoices in structured formats that support automatic processing. Sending a PDF by email does not, by itself, meet that definition."
+        },
+        {
+          "type": "p",
+          "text": "The research therefore highlights an important distinction: having digital records is not necessarily the same as having an integrated financial workflow."
+        }
+      ]
+    },
+    {
+      "heading": "Where manual work may remain",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Consider a field-service company completing maintenance work."
+        },
+        {
+          "type": "p",
+          "text": "A customer requests a quotation. An employee prepares the quote, schedules the job and records the engineer's work. Once completed, another person may need to prepare the invoice, verify job details and update the accounting system."
+        },
+        {
+          "type": "p",
+          "text": "Where these steps are disconnected, staff may have to enter the same information repeatedly."
+        },
+        {
+          "type": "p",
+          "text": "Hospitality suppliers face a similar potential challenge when coordinating orders, dispatch confirmations, delivery records and invoices."
+        },
+        {
+          "type": "p",
+          "text": "These examples illustrate workflows worth investigating. They are not findings that every company operates this way."
+        }
+      ]
+    },
+    {
+      "heading": "What should businesses investigate?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Before purchasing new software, owners and operations managers should examine:"
+        },
+        {
+          "type": "numbers",
+          "items": [
+            "How many systems are involved between completing a job and receiving payment?",
+            "Which information is entered more than once?",
+            "How are invoice discrepancies identified and resolved?",
+            "How much staff time is spent preparing, checking and chasing invoices?",
+            "Can existing systems be integrated without replacing them?"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where technology may provide value",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Depending on the business, improvements could include automated invoice creation from completed jobs, accounting integrations, digital approval workflows, payment-status dashboards and exception alerts."
+        },
+        {
+          "type": "p",
+          "text": "However, custom software is only justified where the expected benefits outweigh development, integration and maintenance costs."
+        }
+      ]
+    },
+    {
+      "heading": "TechWithTop research conclusion",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The most useful question for an SME is not simply whether it uses accounting software."
+        },
+        {
+          "type": "p",
+          "text": "It is whether the full operational process, from customer enquiry or order through to payment, works efficiently."
+        },
+        {
+          "type": "p",
+          "text": "At TechWithTop, we examine these handoffs to identify where process improvements, integrations or focused software solutions may deliver measurable value."
+        }
+      ]
+    }
+  ],
+  "methodology": "Secondary analysis of published UK research, combined with illustrative workflow scenarios. No company-specific operational findings are asserted.",
+  "sources": [
+    {
+      "text": "HMRC, <i>Electronic invoicing: Quantitative research into small and medium-sized enterprises' usage and attitudes</i>, published March 2026. Survey fieldwork took place February to March 2025.",
+      "url": "https://www.gov.uk/government/publications/electronic-invoicing-sme-usage-and-attitudes"
+    }
+  ]
+}

@@ -13,7 +13,9 @@ export function ResearchBrief() {
       </div>
       <Button
         href={siteConfig.researchBriefPath}
-        download="research-brief.pdf"
+        // Derive the saved filename from the path rather than hardcoding it,
+        // so a new brief doesn't download under the previous one's name.
+        download={siteConfig.researchBriefPath.split("/").pop()}
         variant="secondary"
         className="shrink-0 bg-white/10 text-white hover:bg-white/20"
       >

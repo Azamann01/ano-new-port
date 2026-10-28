@@ -41,7 +41,10 @@ export const siteConfig = {
   researchGoogleFormUrl:
     "https://docs.google.com/forms/d/e/REPLACE_ME/viewform?embedded=true",
   calendlyUrl: "https://calendly.com/techwithtop-info/30min",
-  researchBriefPath: "/research-brief.pdf",
+  // Points at whichever brief is current — update this when a new one is
+  // published. Archive entries in content/research-items.ts deliberately use
+  // literal versioned paths instead, so they stay pinned to their own brief.
+  researchBriefPath: "/research/brief-october-2026.pdf",
 } as const;
 
 /** True while a value still contains the repo's REPLACE_ME placeholder convention. */

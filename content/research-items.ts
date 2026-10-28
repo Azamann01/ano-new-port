@@ -19,6 +19,22 @@ import type { ResearchItem } from "@/types";
 // type: "source" entry; otherwise keep this to "document" entries only.
 export const researchItems: ResearchItem[] = [
   {
+    title: "Where should restaurants, suppliers and field-service businesses automate first?",
+    date: "October 2026",
+    description:
+      "How to decide which workflow is worth investing in, using frequency, impact, feasibility and return as the test.",
+    type: "document",
+    url: "/research/brief-october-2026.pdf",
+  },
+  {
+    title: "The hidden administrative work behind SME invoicing",
+    date: "September 2026",
+    description:
+      "What HMRC research on electronic invoicing shows about the manual steps still sitting between a completed job and a paid invoice.",
+    type: "document",
+    url: "/research/brief-september-2026.pdf",
+  },
+  {
     title: "Research brief — August 2026",
     date: "August 2026",
     description:
