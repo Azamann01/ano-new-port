@@ -48,11 +48,36 @@ export type ResearchItem = {
   /** Display string, e.g. "August 2026" — not used for routing. */
   date: string;
   description: string;
-  type: "document" | "source";
-  /** "document": path under /public. "source": external URL. */
+  type: "article" | "document" | "source";
+  /** "article": internal route. "document": path under /public. "source": external URL. */
   url: string;
+  /** Optional PDF export for an "article" entry, shown as a secondary link. */
+  pdfUrl?: string;
   /** Shown on "source" items — the publisher/outlet name, e.g. "American Express". */
   publisher?: string;
+};
+
+export type ResearchSource = {
+  text: string;
+  /** Omit for a source that shouldn't be linked, e.g. a competitor's site. */
+  url?: string;
+};
+
+export type ResearchArticleMeta = {
+  slug: string;
+  title: string;
+  /** ISO date, e.g. "2026-10-28" — used for sorting, display and JSON-LD. */
+  date: string;
+  excerpt: string;
+  researchFocus?: string;
+  methodology?: string;
+  /** Optional PDF export under /public. The MDX article is the source of truth. */
+  pdf?: string;
+  sources: ResearchSource[];
+};
+
+export type ResearchArticle = ResearchArticleMeta & {
+  content: string;
 };
 
 export type BlogPostMeta = {

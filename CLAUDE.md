@@ -52,11 +52,13 @@ content/
   faq.ts              typed FAQItem[] data (Research page FAQ)
   research-items.ts   typed ResearchItem[] data (Research page archive — past briefs + cited sources)
   blog/*.mdx           3 seeded placeholder posts with frontmatter (title, date, excerpt, author)
+  research/*.mdx       research brief articles, same MDX pipeline as the blog (see "Publishing a research brief")
 
 lib/
   site-config.ts     site name/nav/social + placeholder external URLs (see below)
   metadata.ts        buildMetadata() helper for per-page Next Metadata
-  mdx.ts             getAllPosts() / getPostBySlug() — reads content/blog/*.mdx at build time
+  mdx.ts             getAllPosts()/getPostBySlug() and getAllResearchArticles()/getResearchArticleBySlug()
+                     — reads content/blog/*.mdx and content/research/*.mdx at build time
   theme.ts           dark-mode pub/sub store shared by ThemeToggle + ThemeWatcher (see below)
   cn.ts              clsx + tailwind-merge helper
 
@@ -136,13 +138,17 @@ To turn a screen recording into these assets on macOS without installing anythin
 
 ### Publishing a research brief
 
-Briefs are **generated, never uploaded** — there's no designed source document. `scripts/build-research-brief.py` (ReportLab) renders `scripts/research-briefs/<slug>.json` to `public/research/brief-<slug>.pdf`. Run `python3 scripts/build-research-brief.py` for all briefs or pass a slug for one. The August 2026 brief predates this script: it was generated ad hoc, the script was discarded, and the PDF then drifted badly out of sync with the page (it still carries the old "costing SMEs the most time" framing, prints a competitor's URL as a source and overstates the Amex finding as "more than twice" where the source says "nearly twice"). That drift is the whole reason the generator is committed now — **don't regenerate a brief by hand.**
+**A research brief is an MDX article, not a PDF.** It uses the same on-stack pipeline as the blog (`next-mdx-remote/rsc` + `gray-matter`), so the HTML page is the source of truth: indexable, real source links, its own publication date and OG image. A PDF is optional per article and is only ever a point-in-time export of what the article already says.
 
-To publish one: add the JSON, run the script, point `siteConfig.researchBriefPath` at the new file, and add an archive entry to `content/research-items.ts`. Three rules that the wiring depends on:
+> An earlier attempt generated these as PDFs via a committed Python/ReportLab script. That was wrong — it added an off-stack dependency to a project that already had the right tool. If a PDF needs regenerating, do it on-stack or not at all; don't reintroduce a Python build step.
 
-- **`siteConfig.researchBriefPath` is a moving pointer** to whichever brief is current, read by `ResearchBrief.tsx`'s "Download the current brief" panel. Archive entries must **never** reference it — they use literal versioned paths, otherwise publishing a new brief silently re-points an older entry and serves new content under an old date label.
-- **`ResearchBrief.tsx` derives the `download` filename from the path** rather than hardcoding it, so a new brief doesn't save under the previous one's name.
-- **Source URLs are printed in full in the PDF**, so the no-competitor-links rule applies to brief content too. The September/October briefs cite gov.uk (DSIT and HMRC), which is fine; a vendor selling competing business/ERP tooling is not.
+To publish one: add `content/research/<slug>.mdx` and that's it. Everything else derives from it:
+
+- `app/research/[slug]/page.tsx` renders it (with a `Report` JSON-LD block carrying `datePublished` and `citation`), `opengraph-image.tsx` generates its card, `app/sitemap.ts` lists it, `ResearchArchive` adds a row and `ResearchBrief` features it if it's the newest. **Don't also add it to `content/research-items.ts`** or it appears twice.
+- Frontmatter: `title`, `date` (ISO, used for sorting/display/JSON-LD), `excerpt`, optional `researchFocus`, `methodology`, `pdf`, and a `sources` list of `{ text, url? }`.
+- `content/research-items.ts` is now **only** for archive rows with no article behind them — currently just the legacy August 2026 PDF. Its `url` stays a literal path; never point it at a moving "current brief" pointer or publishing a new brief silently re-labels it.
+- Both detail routes set `dynamicParams = false`, which is a security guard, not an optimisation: `getResearchArticleBySlug`/`getPostBySlug` build a filesystem path from the slug, so unknown slugs must be rejected at build time.
+- **Source URLs render as real links**, so the no-competitor-links rule applies to article content. The September/October briefs cite gov.uk (DSIT and HMRC), which is fine; a vendor selling competing business/ERP tooling is not.
 - **Word choice**: the word "software" is deliberately avoided in visitor-facing copy site-wide, in favour of "technology" (and occasionally "solutions"/"systems"/"tools" for variety) — a brand-voice choice made by explicit request, distinct from the "Custom Ideal" corruption incident described below. Keep new copy consistent with this.
 - **Punctuation: never put a comma before "and"** — no Oxford/serial commas anywhere in visitor-facing copy, by explicit standing request ("always remove comma next to and in sentences"). So "where the friction is and what stops teams performing", not "...is, and what stops...". This was already the style on the Blog heading ("notes on technology, automation and operations") and is now applied site-wide. Check new copy for `, and` before shipping it — note that JSX wraps lines, so the comma and the "and" can end up on separate source lines and a naive grep will miss them.
 
@@ -153,7 +159,7 @@ All centralized in `lib/site-config.ts` and `.env.local.example`:
 - `NEXT_PUBLIC_FORMSPREE_ID` — set in `.env.local` (real form ID: `mrpzbvrw`, delivers to `info@techwithtop.co.uk`). This file is gitignored (see `.gitignore`'s `.env*` rule) — a fresh clone or a new deploy target needs this env var set again; it isn't carried by the repo itself.
 - `NEXT_PUBLIC_SITE_URL` — still unset (falls back to `https://example.com`) — real production domain (used for canonical URLs, sitemap, OG metadata, **and** the Plausible `data-domain` below).
 - `siteConfig.researchGoogleFormUrl` — real embedded Google Form URL on the Research page. Not currently wired to the page at all (see "Research page" above) — set this **and** re-add `GoogleFormEmbed` to `app/research/page.tsx` when the "Contribute to the research" section comes back.
-- `public/research-brief.pdf` — the August 2026 brief, kept at its original path because the archive entry points there. No longer a placeholder, but see the drift problems noted under "Publishing a research brief" above; it was left as-is by request rather than regenerated. Newer briefs live under `public/research/`.
+- `public/research-brief.pdf` — the August 2026 brief, kept at its original path because its archive entry points there. It has known drift: it still carries the old "costing SMEs the most time" framing, prints a competitor's URL (Intuit) as a source and overstates the Amex finding as "more than twice" where the source says "nearly twice". Left as-is by request; the fix is to republish it as an MDX article like September and October.
 - `content/projects.ts`, `content/blog/*.mdx` — currently seeded/placeholder copy; swap for real case studies and posts as they're ready. `hospitality-supply-chain-platform` and `operational-management` are both real content with a real cover `image`, demo `video`, and `liveDemoUrl`, not placeholder. `operational-management` replaced the earlier placeholder `field-service-scheduler` entry.
 - `siteConfig.social` — placeholder GitHub/LinkedIn/Twitter links
 - `siteConfig.companyNumber` / `siteConfig.registeredAddress` — Companies House number and registered office address for TechWithTop Ltd, shown in the footer and Privacy Policy; deliberately left as `REPLACE_ME` rather than a fabricated value

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { projects } from "@/content/projects";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts, getAllResearchArticles } from "@/lib/mdx";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -31,5 +31,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
   }));
 
-  return [...staticRoutes, ...projectRoutes, ...postRoutes];
+  const researchRoutes = getAllResearchArticles().map((article) => ({
+    url: new URL(`/research/${article.slug}`, siteConfig.url).toString(),
+    lastModified: new Date(article.date),
+  }));
+
+  return [...staticRoutes, ...projectRoutes, ...postRoutes, ...researchRoutes];
 }
