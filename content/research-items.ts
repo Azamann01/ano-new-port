@@ -16,13 +16,10 @@ import type { ResearchItem } from "@/types";
 // vendor selling competing business/ERP software), even as a cited source.
 // If a genuinely non-competitor source is worth citing later, add it as a
 // type: "source" entry; otherwise keep this to "document" entries only.
-export const researchItems: ResearchItem[] = [
-  {
-    title: "Research brief — August 2026",
-    date: "August 2026",
-    description:
-      "Current findings on where SMEs lose the most time to manual processes and where custom technology realistically pays off.",
-    type: "document",
-    url: "/research-brief.pdf",
-  },
-];
+// Intentionally empty. The August 2026 brief used to live here as a PDF row;
+// it's now an MDX article like the others, which fixed its three defects (the
+// old time framing, a printed competitor URL as a source and an overstatement
+// of the Amex finding). public/research-brief.pdf still exists so any external
+// link to it doesn't 404, but it carries those defects so the site no longer
+// links to it.
+export const researchItems: ResearchItem[] = [];
