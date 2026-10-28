@@ -1,10 +1,16 @@
 import type { ResearchItem } from "@/types";
-import { siteConfig } from "@/lib/site-config";
 
 // Running record of past research briefs, newest first. Add a new entry here
 // whenever a new brief is published — the old PDF file must stay in /public
 // under its own path so its entry keeps working (don't delete/overwrite a
 // past brief file when adding a new one).
+//
+// Every entry's `url` is a LITERAL, versioned path, deliberately not
+// `siteConfig.researchBriefPath`. That config value is a moving pointer to
+// whichever brief is current, so an archive entry referencing it would
+// silently start serving a newer brief under an older brief's date label.
+// New briefs go to /research/brief-<month>-<year>.pdf; the August 2026 one
+// predates that convention and keeps its original /research-brief.pdf path.
 //
 // External "source" entries are deliberately not used here even though the
 // type supports them — don't link out to a competitor's website (e.g. a
@@ -18,6 +24,6 @@ export const researchItems: ResearchItem[] = [
     description:
       "Current findings on where SMEs lose the most time to manual processes and where custom technology realistically pays off.",
     type: "document",
-    url: siteConfig.researchBriefPath,
+    url: "/research-brief.pdf",
   },
 ];
