@@ -188,3 +188,70 @@ body {
 .nav-link[data-active="true"]::after {
   right: 0;
 }
+
+/* ---------------------------------------------------------------------------
+   Print / "Download as PDF"
+   ---------------------------------------------------------------------------
+   Research and blog articles offer a PDF via the browser's own print-to-PDF
+   rather than a generated file. That keeps the PDF impossible to drift from
+   the article (it IS the article) and needs no PDF dependency — see the
+   "no new dependency or service" rule in CLAUDE.md.
+
+   Anything marked data-print="hide" is chrome, not content: site nav, the
+   cookie banner, the print button itself. The brand-blue surface panels are
+   flattened so a reader isn't printing full-bleed colour.
+--------------------------------------------------------------------------- */
+@media print {
+  [data-print="hide"],
+  header,
+  footer,
+  .bottom-scroll-blur,
+  .blur-divider {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Ambient glow and glass surfaces cost ink and hurt legibility on paper. */
+  .section-glow::before {
+    display: none !important;
+  }
+
+  .surface-container {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .surface-container * {
+    color: #000 !important;
+  }
+
+  /* Scroll-reveal sections may still be at opacity 0 when print is invoked. */
+  [style*="opacity"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+}

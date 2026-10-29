@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
+import { PrintButton } from "@/components/ui/PrintButton";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 import { buildMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site-config";
@@ -80,6 +81,7 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <Link
         href="/blog"
+        data-print="hide"
         className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--container)]"
       >
         <ArrowLeft className="h-4 w-4" /> Back to insights
@@ -101,6 +103,10 @@ export default async function BlogPostPage({ params }: Props) {
         <article>
           <MDXRemote source={post.content} />
         </article>
+      </div>
+
+      <div className="flex justify-start" data-print="hide">
+        <PrintButton />
       </div>
     </Container>
   );

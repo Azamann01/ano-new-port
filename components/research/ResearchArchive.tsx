@@ -108,17 +108,6 @@ export function ResearchArchive() {
               Read
               <ArrowRight className="h-4 w-4" />
             </Button>
-            {article.pdf && (
-              <Button
-                href={article.pdf}
-                download={article.pdf.split("/").pop()}
-                variant="ghost"
-                className="text-white hover:bg-white/10"
-              >
-                <Download className="h-4 w-4" />
-                PDF
-              </Button>
-            )}
           </Row>
         ))}
         {researchItems.map((item) => (

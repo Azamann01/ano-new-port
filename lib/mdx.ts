@@ -60,8 +60,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
 
 /**
  * Research briefs are MDX articles, same pipeline as the blog — the HTML page
- * is the source of truth, not a PDF. A `pdf` frontmatter field is optional and
- * only ever a point-in-time export of what the article already says.
+ * is the source of truth. "Download as PDF" on an article is the browser's own
+ * print-to-PDF (see `@media print` in app/globals.css), so there is no separate
+ * PDF artefact that can drift from the article.
  */
 function readResearchFile(slug: string): ResearchArticle {
   const { data, content } = readFile(RESEARCH_DIR, slug);
@@ -73,7 +74,6 @@ function readResearchFile(slug: string): ResearchArticle {
     excerpt: data.excerpt,
     researchFocus: data.researchFocus,
     methodology: data.methodology,
-    pdf: data.pdf,
     sources: (data.sources ?? []) as ResearchSource[],
     content,
   };

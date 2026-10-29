@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Download } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
-import { Button } from "@/components/ui/Button";
+import { PrintButton } from "@/components/ui/PrintButton";
 import { getAllResearchArticles, getResearchArticleBySlug } from "@/lib/mdx";
 import { buildMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site-config";
@@ -87,6 +87,7 @@ export default async function ResearchArticlePage({ params }: Props) {
       />
       <Link
         href="/research"
+        data-print="hide"
         className="inline-flex w-fit items-center gap-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--container)]"
       >
         <ArrowLeft className="h-4 w-4" /> Back to research
@@ -153,14 +154,9 @@ export default async function ResearchArticlePage({ params }: Props) {
         </AnimatedSection>
       )}
 
-      {article.pdf && (
-        <AnimatedSection delay={0.2} className="flex justify-start">
-          <Button href={article.pdf} download={article.pdf.split("/").pop()} variant="secondary">
-            <Download className="h-4 w-4" />
-            Download as PDF
-          </Button>
-        </AnimatedSection>
-      )}
+      <div className="flex justify-start" data-print="hide">
+        <PrintButton />
+      </div>
     </Container>
   );
 }

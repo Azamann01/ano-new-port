@@ -51,8 +51,6 @@ export type ResearchItem = {
   type: "article" | "document" | "source";
   /** "article": internal route. "document": path under /public. "source": external URL. */
   url: string;
-  /** Optional PDF export for an "article" entry, shown as a secondary link. */
-  pdfUrl?: string;
   /** Shown on "source" items — the publisher/outlet name, e.g. "American Express". */
   publisher?: string;
 };
@@ -71,8 +69,6 @@ export type ResearchArticleMeta = {
   excerpt: string;
   researchFocus?: string;
   methodology?: string;
-  /** Optional PDF export under /public. The MDX article is the source of truth. */
-  pdf?: string;
   sources: ResearchSource[];
 };
 

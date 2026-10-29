@@ -11,7 +11,10 @@ export function CookieConsentBanner() {
   if (status !== null) return null;
 
   return (
-    <div className="surface-container fixed inset-x-4 bottom-4 z-[60] flex flex-col gap-4 rounded-2xl p-5 shadow-lg sm:inset-x-auto sm:right-6 sm:max-w-sm">
+    <div
+      data-print="hide"
+      className="surface-container fixed inset-x-4 bottom-4 z-[60] flex flex-col gap-4 rounded-2xl p-5 shadow-lg sm:inset-x-auto sm:right-6 sm:max-w-sm"
+    >
       <p className="text-sm text-[var(--container-muted)]">
         We use Plausible, a cookieless, privacy-friendly analytics tool, to see how many people
         visit and which pages are useful, nothing more. It sets no cookies and doesn&apos;t track
