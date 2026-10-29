@@ -23,9 +23,9 @@ export default function BlogPage() {
         <SectionHeading
           level="h1"
           eyebrow="Insights"
-          title="Notes On Technology, Automation And Operations"
+          title="Practical Notes On Operations And Technology"
           titleClassName="text-3xl sm:text-4xl"
-          description="Short, practical writing. No jargon, no theory that doesn't hold up in a small business."
+          description="Short pieces for owners weighing whether to build, integrate or leave something alone, written from scoping real operations."
         />
       </AnimatedSection>
 
