@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Contact",
+  title: "Contact a UK Software Developer",
   description: "Get in touch to talk about a custom technology project for your business.",
   path: "/contact",
   ogImage: "/contact/opengraph-image",

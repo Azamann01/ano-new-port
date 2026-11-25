@@ -90,6 +90,10 @@ export type BlogPostMeta = {
   date: string;
   excerpt: string;
   author: string;
+  /** Search-result title override; may use "software" (see CLAUDE.md word-choice rule). */
+  metaTitle?: string;
+  /** Search-result description override when `excerpt` runs past ~155 chars. */
+  metaDescription?: string;
 };
 
 export type BlogPost = BlogPostMeta & {

@@ -7,7 +7,7 @@ import { getAllPosts } from "@/lib/mdx";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Insights",
+  title: "Software & Operations Insights for SMEs",
   description:
     "Practical writing on custom technology, automation and operations for small and midsize businesses.",
   path: "/blog",

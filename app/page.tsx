@@ -17,7 +17,7 @@ export const metadata = {
   // generate-metadata docs on `template`), so the homepage's <title> would
   // otherwise render without the "| TechWithTop" suffix every other page
   // gets. `absolute` sets the literal <title> tag directly, bypassing that.
-  title: { absolute: "Custom Technology for SMEs | TechWithTop" },
+  title: { absolute: "Bespoke Software for UK SMEs | TechWithTop" },
 };
 
 export default function Home() {

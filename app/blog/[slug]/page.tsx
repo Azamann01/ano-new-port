@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return buildMetadata({
-    title: post.title,
-    description: post.excerpt,
+    title: post.metaTitle ?? post.title,
+    description: post.metaDescription ?? post.excerpt,
     path: `/blog/${post.slug}`,
     ogImage: `/blog/${post.slug}/opengraph-image`,
   });

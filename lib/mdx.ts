@@ -39,6 +39,8 @@ function readPostFile(slug: string): BlogPost {
     date: data.date,
     excerpt: data.excerpt,
     author: data.author ?? "Ano",
+    metaTitle: data.metaTitle,
+    metaDescription: data.metaDescription,
     content,
   };
 }

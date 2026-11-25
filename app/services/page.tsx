@@ -9,7 +9,7 @@ import { services } from "@/content/services";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Services",
+  title: "Custom Software & Automation Services",
   description:
     "Operational discovery, process automation, custom business systems and dashboards for growing businesses.",
   path: "/services",

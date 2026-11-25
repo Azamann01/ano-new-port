@@ -7,7 +7,7 @@ import { projects } from "@/content/projects";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Projects",
+  title: "Custom Software Case Studies",
   description:
     "Case studies of custom technology built for small and midsize businesses across home services, retail and more.",
   path: "/projects",
