@@ -72,6 +72,8 @@ function readResearchFile(slug: string): ResearchArticle {
     title: data.title,
     date: data.date,
     excerpt: data.excerpt,
+    metaTitle: data.metaTitle,
+    metaDescription: data.metaDescription,
     researchFocus: data.researchFocus,
     methodology: data.methodology,
     sources: (data.sources ?? []) as ResearchSource[],

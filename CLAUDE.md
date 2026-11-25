@@ -29,7 +29,7 @@ app/
   layout.tsx          root layout: fonts, blocking theme-init script, ThemeWatcher, Header/Footer, default metadata
   page.tsx            Home
   globals.css         Tailwind v4 theme tokens, dark mode, glass/glow utilities, scrollbar hiding
-  sitemap.ts          dynamic sitemap (static routes + project + blog slugs)
+  sitemap.ts          dynamic sitemap (static routes + project, blog and research slugs)
   robots.ts
   opengraph-image.tsx dynamic OG image (next/og ImageResponse) used as default OG image
   about/page.tsx
@@ -37,6 +37,7 @@ app/
   projects/page.tsx
   projects/[slug]/page.tsx
   research/page.tsx
+  research/[slug]/page.tsx   research article (MDX), Report JSON-LD, print-to-PDF button
   blog/page.tsx
   blog/[slug]/page.tsx
   contact/page.tsx
@@ -44,11 +45,12 @@ app/
 components/
   layout/            Header (nav + mobile menu + ThemeToggle), Footer
   ui/                Container, Button, SectionHeading, AnimatedCard, AnimatedSection, Accordion,
-                     ThemeToggle, ThemeWatcher, SectionDivider
+                     ThemeToggle, ThemeWatcher, SectionDivider, CookieConsentBanner,
+                     PlausibleAnalytics, PrintButton, SocialIcons
   home/              Hero, ServicesSummary, FeaturedProjects, CTASection
-  projects/          ProjectCard (image-banner case-study card), ProjectGrid
+  projects/          ProjectCard (image-banner case-study card), ProjectGrid, VideoDemoButton
   services/          ServiceCard
-  research/          ResearchBrief, GoogleFormEmbed
+  research/          ResearchBrief (latest-article panel), ResearchArchive, GoogleFormEmbed (unused, kept)
   blog/              BlogList, BlogPostCard
   contact/           ContactForm, InterviewCTA
 
@@ -56,7 +58,7 @@ content/
   services.ts        typed Service[] data (6 services, no sub-feature bullets — title + one-line description)
   projects.ts         typed ProjectCaseStudy[] data (5 seeded case studies)
   faq.ts              typed FAQItem[] data (Research page FAQ)
-  research-items.ts   typed ResearchItem[] data (Research page archive — past briefs + cited sources)
+  research-items.ts   typed ResearchItem[] — archive rows with NO article behind them (currently empty)
   blog/*.mdx           3 seeded placeholder posts with frontmatter (title, date, excerpt, author)
   research/*.mdx       research brief articles, same MDX pipeline as the blog (see "Publishing a research brief")
 
@@ -66,9 +68,12 @@ lib/
   mdx.ts             getAllPosts()/getPostBySlug() and getAllResearchArticles()/getResearchArticleBySlug()
                      — reads content/blog/*.mdx and content/research/*.mdx at build time
   theme.ts           dark-mode pub/sub store shared by ThemeToggle + ThemeWatcher (see below)
+  cookie-consent.ts  consent pub/sub store, same pattern as theme.ts; gates analytics
+  og-image.tsx       shared next/og ImageResponse builder for every OG image route
   cn.ts              clsx + tailwind-merge helper
 
-types/index.ts       Service, ProjectCaseStudy, FAQItem, BlogPost(Meta) types
+types/index.ts       Service, ProjectCaseStudy, FAQItem, BlogPost(Meta), ResearchArticle(Meta),
+                     ResearchItem, ResearchSource types
 ```
 
 ## Design system
@@ -124,15 +129,15 @@ To turn a screen recording into these assets on macOS without installing anythin
 
 ## Key implementation notes
 
-- **Scroll animations**: `components/ui/AnimatedCard.tsx` uses Framer Motion's `whileInView` (not manual IntersectionObserver), `viewport={{ once: true, amount: 0.25 }}`, and a per-index stagger delay capped at 0.4s. Grids use `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` so on mobile each card fires its own in-view animation as the user scrolls. `useReducedMotion()` disables animation for accessibility. `AnimatedSection.tsx` is the non-staggered variant used for page sections.
+- **Scroll animations**: `components/ui/AnimatedCard.tsx` uses Framer Motion's `whileInView` (not manual IntersectionObserver), `viewport={{ once: true, amount: 0.25 }}`, and a per-index stagger delay capped at 0.4s. Grids use `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` so on mobile each card fires its own in-view animation as the user scrolls. `useReducedMotion()` disables animation for accessibility. `AnimatedSection.tsx` is the non-staggered variant used for page sections. **`AnimatedSection` uses `amount: "some"`, never a fraction**: a fractional threshold can't be met once an element is taller than `1 / fraction` viewports, which left it at `opacity: 0` permanently (a 4016px research article body on an 812px phone could reach 20.2% against a 0.2 threshold and rendered blank). **Research and blog article bodies are not animated at all**, because on long reading content a scroll reveal leaves the reader looking at empty space under the title.
 - **Blog**: MDX files in `content/blog/` are read at build time via Node `fs` in `lib/mdx.ts` (Server Components only). `app/blog/[slug]/page.tsx` renders via `<MDXRemote source={...} />` from `next-mdx-remote/rsc`, with `generateStaticParams()` for static generation.
-- **SEO**: `lib/metadata.ts` exports `buildMetadata()`, used by every page's `export const metadata` (or `generateMetadata()` for dynamic project/blog detail pages). `app/sitemap.ts` and `app/robots.ts` use Next's built-in `MetadataRoute` types. Default OG image is generated dynamically at `/opengraph-image` via `next/og`'s `ImageResponse`.
+- **SEO**: `lib/metadata.ts` exports `buildMetadata()`, used by every page's `export const metadata` (or `generateMetadata()` for dynamic project, blog and research detail pages). Search titles get " | TechWithTop" appended (14 chars) and Google truncates at ~60, so a detail page whose title runs long uses an optional short override: `metaDescription` on projects, `metaTitle` + `metaDescription` in research frontmatter. The visible headline and JSON-LD `headline` always keep the full title. The home page sets `title.absolute` because a root layout's `title.template` doesn't apply to a title set in the root `page.tsx` (same route segment). `app/sitemap.ts` and `app/robots.ts` use Next's built-in `MetadataRoute` types. Default OG image is generated dynamically at `/opengraph-image` via `next/og`'s `ImageResponse`.
 - **Contact form**: `components/contact/ContactForm.tsx` is a client component with an `idle | submitting | success | error` state machine, client-side validation (required fields + email regex), and a `fetch(..., { method: "POST" })` straight to `siteConfig.formspreeEndpoint`. No server route.
-- **Analytics**: `components/ui/PlausibleAnalytics.tsx` loads the Plausible script (`data-domain` derived from `siteConfig.url`'s hostname) only when `lib/cookie-consent.ts`'s stored status is `"accepted"` — mounted in `app/layout.tsx` next to `ThemeWatcher`, same `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)` pattern as the rest of that store's consumers. Plausible itself is cookieless and wouldn't strictly require consent, but the cookie banner's copy explicitly promises "your choice here will control it," so gating behind an explicit accept (not just "not declined") keeps that promise literally true. `/privacy`, `/cookies`, and `/terms` were all updated to describe Plausible by name instead of "we don't currently use analytics."
+- **Analytics**: `components/ui/PlausibleAnalytics.tsx` loads Plausible's per-site script (`https://plausible.io/js/pa-0fR4zxGA8QGKM4bJEWuLk.js` plus an inline `plausible.init()`, issued for the site in the Plausible dashboard, so there is no `data-domain` attribute) only when `lib/cookie-consent.ts`'s stored status is `"accepted"` — mounted in `app/layout.tsx` next to `ThemeWatcher`, same `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)` pattern as the rest of that store's consumers. Plausible itself is cookieless and wouldn't strictly require consent, but the cookie banner's copy explicitly promises "your choice here will control it," so gating behind an explicit accept (not just "not declined") keeps that promise literally true. `/privacy`, `/cookies`, and `/terms` were all updated to describe Plausible by name instead of "we don't currently use analytics."
 
 ## Current page copy (source of truth — don't regress to older placeholder wording)
 
-- **Home hero**: heading "Custom Technology Built Around How Your Business Operates"; sub-copy "We Build Systems That Improve How Your Team Delivers, How Customers Experience It, And What It All Costs To Run." Both lines are deliberately in **Title Case** (every word capitalised, including small words like "How", "And", "It") by explicit request — not a typo, don't "fix" either to sentence case. The sub-copy's wrapper is `max-w-2xl` (not `max-w-xl`) since the longer line wrapped awkwardly at the narrower width.
+- **Home hero**: heading "Custom Technology Built Around How Your Business Operates"; sub-copy "We Build Systems That Improve How Your Team Delivers, How Customers Experience It And What It All Costs To Run." Both lines are deliberately in **Title Case** (every word capitalised, including small words like "How", "And", "It") by explicit request — not a typo, don't "fix" either to sentence case. The sub-copy's wrapper is `max-w-2xl` (not `max-w-xl`) since the longer line wrapped awkwardly at the narrower width.
   - **Positioning: the hero does not sell saved time.** By explicit direction, the value proposition is better operational service, a better customer journey, less manual work, and lower cost to run — because SME buyers sign off on money and customer outcomes, not hours. This is backed by the case studies themselves: 13 of the 15 `results` lines in `content/projects.ts` are service/visibility/customer-experience outcomes ("Eliminated overselling incidents", "Tenant satisfaction scores improved", "Clients get live status visibility"), and only two are framed as time saved. Don't reintroduce time-saving as the headline promise.
   - Three earlier versions were rejected, each for a reason worth not repeating: the original "Transforming Operational Challenges into Practical Digital Solutions" (jargon-heavy and off-voice next to the About page's plainer register); "Your operations shouldn't run on spreadsheets and phone calls" (scolded the buyer, stripped the service keywords out of the H1, and anchored to the least-digitised end of the market, self-selecting out the integration work Inventory Sync Pipeline represents); and a version opening with "UK SME owners lose an average of 11 hours a week to admin" (an *average* can't speak to an individual reader, it was borrowed third-party authority on the front page when `/research` itself says no formal study exists yet, and the survey measured "admin and finance-related tasks" — bookkeeping and VAT — which is not what this studio builds).
   - **The rest of the site now follows the same positioning** (service quality, customer experience, running cost): the Research page was reframed around what manual operations *cost* with every cited figure left untouched, and the Services page was brought into line (see its entry below). When adding copy anywhere, check it doesn't reintroduce saved time as the promise. No eyebrow badge/button above the heading — it was there briefly (a link to `/blog`) but was removed by request; don't re-add it without being asked. Only one CTA button ("See past work", linking to `/projects`) — a second "Start a project" button was removed by request so the hero has a single, unambiguous action; don't re-add it without being asked.
@@ -140,7 +145,10 @@ To turn a screen recording into these assets on macOS without installing anythin
 - **Services page**: 6 services, each just a title + one-line description (no sub-bullet feature lists): Operational Discovery, Business Process Automation, Custom Business Systems, Operational Dashboards, Digital Transformation, MVP Development. The copy follows the hero's positioning, so nothing sells saved time: the page intro says "the manual process getting in the way of your service", Operational Discovery's outcome is "where money is lost and service breaks down", Business Process Automation's is "Fewer errors reaching your customers and less cost tied up in repetitive work", and the closing CTA asks about "the part of your operations that isn't working as it should". "real-time" on Operational Dashboards is a feature description, not a time-saving claim, so it stays. The page heading is "Custom Technology Scoped To Your Actual Problem" (Title Case — an earlier version of this file wrongly called it lowercase) and is set smaller than `SectionHeading`'s default h1 size via its `titleClassName` prop; not a bug, a requested style.
 - **Home's "What We Do" section** (`ServicesSummary.tsx`): heading "Research Driven Technology Solutions" (Title Case, no hyphen — as with the hero, Services and Insights headings), set smaller via `titleClassName`. No "View all services" button — removed by request; don't re-add it without being asked.
 - **Blog/Insights page**: heading "Practical Notes On Operations And Technology" (Title Case, matching the hero and Services) with the paragraph "Short pieces for owners weighing whether to build, integrate or leave something alone, written from scoping real operations." It replaced "Notes On Technology, Automation And Operations", which was a category list of three abstract nouns, and a paragraph that defined the writing by what it isn't ("No jargon, no theory…"). It keeps the category framing deliberately, but states value instead. Same `titleClassName` size-reduction treatment as Services. **Earlier versions of this file called the heading "deliberately lowercase" — that was stale, the page has been Title Case since commit `edb7f26`.**
-- **Research page**: the "Industries involved" section renders each industry as an icon + label card (icons from `lucide-react`, mapped in `app/research/page.tsx`), not plain text pills — matches the hover-lift card language used by `ServiceCard`/`ProjectCard` elsewhere. The "Contribute to the research" section (the embedded `GoogleFormEmbed`) was removed from the page by request, "for now" — `components/research/GoogleFormEmbed.tsx` and `siteConfig.researchGoogleFormUrl` are kept, just currently unused, so it can be re-added later without rebuilding it. The FAQ answers in `content/faq.ts` were edited to stop referencing "the Google Form above" accordingly. Below the single "download current brief" `ResearchBrief` panel is a second panel, `components/research/ResearchArchive.tsx`, rendering `content/research-items.ts` — a running, flat list (no individual detail pages/routes) of past research briefs (`type: "document"`) and cited external sources (`type: "source"`), newest first. Row separation is spacing-only, deliberately not a `divide-y` border, to avoid adding a third exception to the borderless design system beyond the footer and FAQ accordion (see the borders note above). **Whenever a new brief is published, add an entry to `content/research-items.ts` — don't just swap the PDF file** — and never delete/overwrite an old brief's file in `public/` once it has an archive entry pointing to it, or that entry's download breaks. Check for duplicate URLs across entries before adding a new one.
+- **Research page**: the "Industries involved" section renders each industry as an icon + label card (icons from `lucide-react`, mapped in `app/research/page.tsx`), not plain text pills — matches the hover-lift card language used by `ServiceCard`/`ProjectCard` elsewhere. The "Contribute to the research" section (the embedded `GoogleFormEmbed`) was removed from the page by request, "for now" — `components/research/GoogleFormEmbed.tsx` and `siteConfig.researchGoogleFormUrl` are kept, just currently unused, so it can be re-added later without rebuilding it. The FAQ answers in `content/faq.ts` were edited to stop referencing "the Google Form above" accordingly. Below the industry cards, `ResearchBrief` features the newest research article ("Latest research · <month>", title, excerpt, "Read the research"), and `ResearchArchive` lists every article newest first under the heading "TechWithTop Research" (black icon badge, month label, linked title, excerpt, Read button). **Both derive from `content/research/*.mdx`**, so publishing a brief is one file; see "Publishing a research brief" below. Row separation in the archive is spacing-only, deliberately not a `divide-y` border, to avoid a third exception to the borderless design system. Never delete or overwrite a PDF in `public/` that anything has ever linked to, so shared URLs don't 404.
+
+- **Word choice**: the word "software" is deliberately avoided in visitor-facing copy site-wide, in favour of "technology" (and occasionally "solutions"/"systems"/"tools" for variety) — a brand-voice choice made by explicit request, distinct from the "Custom Ideal" corruption incident described below. Keep new copy consistent with this.
+- **Punctuation: never put a comma before "and"** — no Oxford/serial commas anywhere in visitor-facing copy, by explicit standing request ("always remove comma next to and in sentences"). So "where the friction is and what stops teams performing", not "...is, and what stops...". This was already the style on the old Blog heading ("Notes On Technology, Automation And Operations") and is now applied site-wide. Check new copy for `, and` before shipping it — note that JSX wraps lines, so the comma and the "and" can end up on separate source lines and a naive grep will miss them.
 
 ### Publishing a research brief
 
@@ -151,25 +159,23 @@ To turn a screen recording into these assets on macOS without installing anythin
 To publish one: add `content/research/<slug>.mdx` and that's it. Everything else derives from it:
 
 - `app/research/[slug]/page.tsx` renders it (with a `Report` JSON-LD block carrying `datePublished` and `citation`), `opengraph-image.tsx` generates its card, `app/sitemap.ts` lists it, `ResearchArchive` adds a row and `ResearchBrief` features it if it's the newest. **Don't also add it to `content/research-items.ts`** or it appears twice.
-- Frontmatter: `title`, `date` (ISO, used for sorting/display/JSON-LD), `excerpt`, optional `researchFocus` and `methodology`, and a `sources` list of `{ text, url? }` (omit `url` for a source that shouldn't be linked).
-- `content/research-items.ts` is now **only** for archive rows with no article behind them — currently just the legacy August 2026 PDF. Its `url` stays a literal path; never point it at a moving "current brief" pointer or publishing a new brief silently re-labels it.
+- Frontmatter: `title`, `date` (ISO, used for sorting/display/JSON-LD), `excerpt`, optional `metaTitle`/`metaDescription` (search-result overrides, see the SEO note above; keep `metaTitle` under ~46 chars and `metaDescription` under ~155), optional `researchFocus` and `methodology`, and a `sources` list of `{ text, url? }` (omit `url` for a source that shouldn't be linked).
+- `content/research-items.ts` is now **only** for archive rows with no article behind them, and is currently **empty**. August, September and October are all MDX articles. Its `url` stays a literal path; never point it at a moving "current brief" pointer or publishing a new brief silently re-labels it.
 - Both detail routes set `dynamicParams = false`, which is a security guard, not an optimisation: `getResearchArticleBySlug`/`getPostBySlug` build a filesystem path from the slug, so unknown slugs must be rejected at build time.
 - **Source URLs render as real links**, so the no-competitor-links rule applies to article content. The September/October briefs cite gov.uk (DSIT and HMRC), which is fine; a vendor selling competing business/ERP tooling is not.
-- **Word choice**: the word "software" is deliberately avoided in visitor-facing copy site-wide, in favour of "technology" (and occasionally "solutions"/"systems"/"tools" for variety) — a brand-voice choice made by explicit request, distinct from the "Custom Ideal" corruption incident described below. Keep new copy consistent with this.
-- **Punctuation: never put a comma before "and"** — no Oxford/serial commas anywhere in visitor-facing copy, by explicit standing request ("always remove comma next to and in sentences"). So "where the friction is and what stops teams performing", not "...is, and what stops...". This was already the style on the old Blog heading ("Notes On Technology, Automation And Operations") and is now applied site-wide. Check new copy for `, and` before shipping it — note that JSX wraps lines, so the comma and the "and" can end up on separate source lines and a naive grep will miss them.
 
 ## Placeholders to replace before launch
 
 All centralized in `lib/site-config.ts` and `.env.local.example`:
 
 - `NEXT_PUBLIC_FORMSPREE_ID` — set in `.env.local` (real form ID: `mrpzbvrw`, delivers to `info@techwithtop.co.uk`). This file is gitignored (see `.gitignore`'s `.env*` rule) — a fresh clone or a new deploy target needs this env var set again; it isn't carried by the repo itself.
-- `NEXT_PUBLIC_SITE_URL` — still unset (falls back to `https://example.com`) — real production domain (used for canonical URLs, sitemap, OG metadata, **and** the Plausible `data-domain` below).
+- `NEXT_PUBLIC_SITE_URL` — **set in Vercel production** to `https://www.techwithtop.co.uk` (live canonicals, sitemap and OG URLs all use it). It is unset in local `.env.local`, so dev falls back to `https://example.com`; that's why local JSON-LD shows example.com. A new deploy target needs it set.
 - `siteConfig.researchGoogleFormUrl` — real embedded Google Form URL on the Research page. Not currently wired to the page at all (see "Research page" above) — set this **and** re-add `GoogleFormEmbed` to `app/research/page.tsx` when the "Contribute to the research" section comes back.
 - `public/research/brief-september-2026.pdf`, `public/research/brief-october-2026.pdf` — generated before the switch to print-to-PDF and **no longer linked from anywhere**. They're accurate but redundant; kept only so any URL already shared doesn't 404. Don't link them again — "Download as PDF" on the article is the supported route.
 - `public/research-brief.pdf` — the superseded August 2026 brief PDF. It is **no longer linked from anywhere on the site**: August is now the MDX article `content/research/where-manual-operations-cost-smes.mdx`, which fixed the PDF's three defects (old "costing SMEs the most time" framing, a printed competitor URL as a source, and the Amex finding overstated as "more than twice" where the source says "nearly twice"). The file stays on disk only so external links to it don't 404 — don't link it again, and don't treat it as the canonical August brief.
 - `content/projects.ts`, `content/blog/*.mdx` — currently seeded/placeholder copy; swap for real case studies and posts as they're ready. `hospitality-supply-chain-platform` and `operational-management` are both real content with a real cover `image`, demo `video`, and `liveDemoUrl`, not placeholder. `operational-management` replaced the earlier placeholder `field-service-scheduler` entry.
-- `siteConfig.social` — placeholder GitHub/LinkedIn/Twitter links
-- `siteConfig.companyNumber` / `siteConfig.registeredAddress` — Companies House number and registered office address for TechWithTop Ltd, shown in the footer and Privacy Policy; deliberately left as `REPLACE_ME` rather than a fabricated value
+- `siteConfig.social` — GitHub/LinkedIn/Twitter are all still `REPLACE_ME`, so the footer shows no social links and the JSON-LD `sameAs` is empty. LinkedIn is the one that matters for UK B2B trust.
+- `siteConfig.companyNumber` is **set** (`16699473`) but deliberately **not displayed anywhere**: it was removed from the footer and the Privacy Policy by request. `companyNumberReady`/`companyDetailsReady` in `site-config.ts` are now unused. `siteConfig.registeredAddress` is still `REPLACE_ME`, deliberately, rather than a fabricated value.
 
 `siteConfig.isPlaceholderUrl()` detects the `REPLACE_ME` convention at runtime — used to hide the "Prefer to talk instead?" Calendly panel entirely and swap the homepage CTA between "Book a call"/Calendly and "Get in touch"/`/contact` until a real link is set, hide unset social icons in the footer, and keep unresolved URLs out of the root layout's JSON-LD `sameAs` array. Any new placeholder URL should follow the same `REPLACE_ME` substring convention so it's automatically covered.
 
@@ -187,6 +193,9 @@ Test files live next to the code they cover, as `*.test.ts(x)`:
 - `lib/mdx.test.ts` — `getAllPosts()`/`getPostBySlug()` against the real seeded `content/blog/*.mdx` files.
 - `components/contact/ContactForm.test.tsx` — validation errors on empty/malformed submission, successful submit renders the confirmation state, failed submit shows the retry banner and preserves entered values. `fetch` is stubbed with `vi.stubGlobal`.
 - `components/ui/AnimatedCard.test.tsx` — children render, the hidden/offset initial style is applied when motion is enabled, and skipped when `useReducedMotion` is mocked to return `true`. **Don't mock this via `window.matchMedia`** — Framer Motion reads `prefers-reduced-motion` once at module load and caches it internally; mock the `useReducedMotion` export from `framer-motion` directly instead.
+- `lib/theme.test.ts` — the 7am/7pm local-time boundaries and the midnight rollover in `isNightTime`/`msUntilNextThemeBoundary`.
+- `components/ui/CookieConsentBanner.test.tsx`, `components/ui/PlausibleAnalytics.test.tsx` — the consent gate; the analytics script loads only after "accepted". React hoists an async `src` script to `document.head`, so query the whole document, not the render container.
+- `components/contact/InterviewCTA.test.tsx`, `components/home/CTASection.test.tsx` — the `REPLACE_ME` placeholder fallbacks.
 
 ### Conventions for new tests
 
@@ -217,6 +226,11 @@ npm run test:watch   # test suite in watch mode
 
 ## Verification done
 
-- `npm run build` passes cleanly: all 7 top-level routes + 4 project detail pages + 3 blog post pages statically generated, `sitemap.xml` and `robots.txt` generated.
-- `npm test` passes: 15 tests across `lib/mdx.test.ts`, `components/contact/ContactForm.test.tsx`, and `components/ui/AnimatedCard.test.tsx`.
-- Verified in-browser in both light and dark mode, desktop and mobile: theme toggle (manual + live OS-preference sync, and now hardened against `localStorage` throwing), phone-mockup project cards with distinct per-project gradient covers and their hover interaction, glass/glow surfaces, borderless UI (except the footer and FAQ accordion dividers), the section dividers between page sections, and the current Home/About/Services copy all render and behave as described above.
+Last full check: November 2026.
+
+- `npm run build` passes: 22 sitemap routes (11 static pages, 5 projects, 3 blog posts, 3 research articles) plus one OG image route per page, `sitemap.xml` and `robots.txt`.
+- `npm test` passes: 33 tests in 8 files.
+- Live site: all 22 sitemap pages return 200, all 55 internal and external links resolve, no console errors, no comma-before-"and" in any rendered page, TLS certificates auto-renew (current ones run to January 2027).
+- Google Search Console: the `techwithtop.co.uk` Domain property is verified (via a second `google-site-verification` TXT record at Porkbun; the original token belonged to another Google account and both records stay).
+
+Gotcha for anyone checking pages with the in-app browser: when the browser pane is hidden, IntersectionObserver doesn't fire, so scroll-revealed sections report `opacity: 0` and layout can report overflow. Take a screenshot (which makes the pane visible) before trusting either reading.

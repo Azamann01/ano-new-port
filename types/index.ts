@@ -67,6 +67,14 @@ export type ResearchArticleMeta = {
   /** ISO date, e.g. "2026-10-28" — used for sorting, display and JSON-LD. */
   date: string;
   excerpt: string;
+  /**
+   * Shorter override for the search-result title, used when `title` is too
+   * long once " | TechWithTop" is appended (Google truncates at ~60 chars).
+   * The visible headline on the page always uses `title`.
+   */
+  metaTitle?: string;
+  /** Shorter override for the meta description when `excerpt` runs past ~155 chars. */
+  metaDescription?: string;
   researchFocus?: string;
   methodology?: string;
   sources: ResearchSource[];
